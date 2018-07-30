@@ -1,0 +1,6 @@
+[core]
+    editor = subl -nw
+    excludesfile = ~/.gitignore_global
+[user]
+    name = Alexander Rodionov
+    email = alx1dr@gmail.com
