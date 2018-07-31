@@ -18,7 +18,7 @@ echo 'hello, bro...!'
 
 source ~/powerlevel9k/powerlevel9k.zsh-theme
 source "$DOTFILES_DIR/powerlevel9k-airline-theme.sh"
-source "$DOTFILES_DIR/aliases"
+source "$DOTFILES_DIR/aliases.sh"
 
 
 

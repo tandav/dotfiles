@@ -51,7 +51,7 @@ alias s='subl'
 # also s -a or --add: Add folders to the current window
 # or s folder1 folder2: open many folders / files in one window
 alias rc='subl ~/.zshrc'
-alias al='subl ~/GoogleDrive/Notes/L1_BASE/dev/dotfiles/aliases'
+alias al='subl ~/Documents/108/dotfiles/aliases.sh'
 # activate env/ virtualenv
 alias ve='source env/bin/activate'
 alias sd='source deactivate'
