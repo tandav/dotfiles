@@ -15,6 +15,7 @@ brew install youtube-dl
 # Desktop Apps
 brew cask install telegram 
 brew cask install sublime-text
+brew cask install borgbackup
 
 # optional
 brew cask install github # github desktop (electron)

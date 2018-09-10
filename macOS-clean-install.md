@@ -132,6 +132,8 @@ pip3 install pyqtgraph
 pip3 install pyserial
 pip3 install lxml
 pip3 install Pillow
+pip3 install Flask
+sudo pip3 install --upgrade borgmatic
 ------------------------------------------------
 pip3 install selenium
 pip3 install PyOpenGL PyOpenGL_accelerate

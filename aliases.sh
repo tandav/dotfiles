@@ -1,6 +1,10 @@
 alias s='subl'
 alias sz='source ~/.zshrc'
 
+# export LSCOLORS="Gxfxcxdxbxegedabagacad" # maybe colors are better without that line
+# Take advantage of $LS_COLORS for completion as well.
+alias ls='ls -G'
+
 
 
 # cd to folder
@@ -23,11 +27,11 @@ alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 alias termdown='termdown -b'
 alias weather='finger voronezh@graph.no'
 alias wttr='curl wttr.in/voronezh'
-alias speedtest='curl -s  https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python'
 alias mtop='open /Applications/Utilities/Activity\ Monitor.app'
 alias docker_size='du -h /Users/tandav/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/Docker.qcow2'
-alias yts='echo "document.getElementsByTagName('video')[0].playbackRate = 3"'
+alias yts='echo "document.getElementsByTagName(\"video\")[0].playbackRate = 3" | pbcopy'
 
+alias np='echo "import numpy as np\nimport matplotlib.pyplot as plt" | pbcopy'
 # netcracker/oracle
 # alias sqlcl='/Applications/SQLDeveloper.app/Contents/Resources/sqldeveloper/sqldeveloper/bin/sql'
 # alias nk_cli='sqlcl system/oracle@localhost:1521:xe'
@@ -36,37 +40,63 @@ alias yts='echo "document.getElementsByTagName('video')[0].playbackRate = 3"'
 
 # alias backup='rsync --info=all4 --delete -arR --exclude="**node_modules**" --exclude="**lib/python**" --files-from=/Users/tandav/GoogleDrive/Notes/etc/backup-dirs.txt ~ /Volumes/MyPassport/backup --log-file=/Volumes/MyPassport/backup/latest-backup.log'
 alias backup='python3 ~/GoogleDrive/Notes/etc/backup.py'
+alias bu='borgmatic --config /Users/tandav/Documents/108/dotfiles/borgmatic-config.yaml --verbosity 2'
+alias bl='borg list /Volumes/SanDisk64GB/borg-backup-repo'
+alias dot='subl ~/Documents/108/dotfiles'
 
-alias n='subl ~/GoogleDrive/Notes'
+# alias n='subl ~/GoogleDrive/Notes'
 alias nt='cd ~/GoogleDrive/Notes'
-alias ng='open https://github.com/tandav/Notes'
+
+lt() {
+  cd ~/Documents/716090045ddf6c076d7591dfe97bde23
+  ./update.sh
+}
+
+sn() {
+  cd ~/Documents/html-map/space-notes
+  serve -s render-html-string/build -p 4000 & 
+  FLASK_APP=flask-test.py flask run &
+  sleep 2
+  open http://localhost:4000/space/root
+}
+
+# alias ng='open https://github.com/tandav/Notes'
 
 alias o='open'
 
 alias python='python3'
 alias p3='python3'
+
+alias p='python3'
+alias ip='ipython'
+
 alias ip3='ipython'
-# alias p3a='/anaconda3/bin/python3'
+
 alias s='subl' 
 # also s -a or --add: Add folders to the current window
 # or s folder1 folder2: open many folders / files in one window
 alias rc='subl ~/.zshrc'
 alias al='subl ~/Documents/108/dotfiles/aliases.sh'
+
+alias d='python3  ~/Documents/108/brain-tools/finder-pro/dashboard/dashboard.py'
+
 # activate env/ virtualenv
-alias ve='source env/bin/activate'
-alias sd='source deactivate'
-alias pt='cd ~/Desktop && touch temp.py && s temp.py'
+# alias ve='source env/bin/activate'
+# alias sd='source deactivate'
+
+
+alias rt='cd ~/Desktop && cp ~/Documents/108/dotfiles/README.png . && open README.png'
+alias qt='cd ~/Desktop && cp ~/Documents/108/dotfiles/temp-request.py . && s temp-request.py'
+alias pt='cd ~/Desktop && cp ~/Documents/108/dotfiles/temp.py . && s temp.py:-1'
 alias jn='jupyter notebook'
 alias jnt='jupyter notebook ~/Documents/temp.ipynb' # temporary python
 alias jnc='open https://colab.research.google.com/notebook#fileId=1tMXb4IXryuenlUvIBkRgZlSQmrlp5mUr&scrollTo=gXzvGiMJD4rQ' # temp colab notebook 
 alias jna='open https://temp-tandav.notebooks.azure.com/nb//notebooks/temp.ipynb' # azure notebook
-alias sz='source ~/.zshrc'
-alias mh='open ~/GoogleDrive/images/AI/brain-tools/map/my-head/index.html'
 alias bp='open -a Preview ~/GoogleDrive/images/big-pic'
 alias ms='cd ~/Documents/millionaire/spring'
 alias mr='cd ~/Documents/millionaire/millionaire-react'
 alias i='open -a IntelliJ\ IDEA'
-alias aws='sshfs ubuntu@ec2-18-195-144-88.eu-central-1.compute.amazonaws.com:/home/ubuntu/ /Users/tandav/Documents/hn-best/fuse/ -o reconnect,auto_cache,defer_permissions,noappledouble,Compression=no -ovolname=ubuntu-aws-hn-best'
+# alias aws='sshfs ubuntu@ec2-18-195-144-88.eu-central-1.compute.amazonaws.com:/home/ubuntu/ /Users/tandav/Documents/hn-best/fuse/ -o reconnect,auto_cache,defer_permissions,noappledouble,Compression=no -ovolname=ubuntu-aws-hn-best'
 # alias hm='python3 ~/GoogleDrive/Notes/etc/htmlmap.py'
 # in order to run bm command (create blank map)
 export PATH=${PATH}:~/Documents/html-map
@@ -78,13 +108,13 @@ alias wf='open https://workflowy.com'
 alias yt='open https://www.youtube.com'
 alias tj='python ~/Documents/tj-vc-lite/tj.py'
 alias vc='python ~/Documents/tj-vc-lite/vc.py'
-# alias tj='echo "blocked until 10 July"'
-# alias vc='echo "blocked until 10 July"'
+
 alias gh='open "https://github.com/tandav?tab=repositories"'
-alias map='cd ~/GoogleDrive/Notes/ram/map'
-alias music='open https://github.com/tandav/life/tree/master/music'
-alias gmail='open https://mail.google.com'
-alias h='open file:///Users/tandav/GoogleDrive/Notes/ram/map/shortcuts.html'
+alias rutr='open -a TorBrowser https://rutracker.org'
+
+# alias music='open https://github.com/tandav/life/tree/master/music'
+# alias gmail='open https://mail.google.com'
+alias h='open -a Safari file:///Users/tandav/Documents/108/meta/map/shortcuts.svg'
 # alias t='cd ~/Desktop && touch'
 
 
@@ -111,7 +141,7 @@ alias 7='cd -7'
 alias 8='cd -8'
 alias 9='cd -9'
 
-alias d='dirs -v | head -10'
+alias ddd='dirs -v | head -10'
 alias md='mkdir -p'
 
 # List directory contents

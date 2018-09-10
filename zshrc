@@ -40,6 +40,8 @@ bindkey '^x^e' edit-command-line
 
 EDITOR='subl -nw'
 
+setopt auto_cd
+
 
 #local host_name="%{$fg[cyan]%}$"
 #local path_string="%{$fg[yellow]%}%~"
@@ -136,6 +138,11 @@ hg() {
 # duck duck go search
 ddg() {
     open "https://duckduckgo.com/?q=$1"
+}
+
+# ff = find filename
+ff() {
+    find . -iname "**$1**"
 }
 
 
