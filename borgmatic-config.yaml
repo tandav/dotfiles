@@ -7,7 +7,6 @@ location:
         - ~/Downloads
         - ~/Desktop
         - ~/Documents
-        - ~/GoogleDrive
         - ~/.ssh
 
     # Paths to local or remote repositories (required). Tildes are expanded. Multiple
@@ -15,7 +14,7 @@ location:
     # identity file or port.
     repositories:
         - /Volumes/SanDisk64GB/borg-backup-repo
-        - /Volumes/MyPassport/borg-backup-repo
+        # - /Volumes/MyPassport/borg-backup-repo
 
     # Any paths matching these patterns are excluded from backups. Globs and tildes
     # are expanded. See the output of "borg help patterns" for more details.
