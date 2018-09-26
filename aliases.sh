@@ -138,3 +138,9 @@ alias rutr='open -a TorBrowser https://rutracker.org'
 # alias h='open -a Safari file:///Users/tandav/Documents/108/meta/map/shortcuts.svg'
 alias h='open -a Safari http://localhost:4000/space/root'
 # alias t='cd ~/Desktop && touch'
+
+gupd() {
+  git add .
+  git commit -m 'upd'
+  git push
+}
