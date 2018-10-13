@@ -73,9 +73,9 @@ lt() {
 alias ns='bash ~/Documents/108/spaces/brain-tools/brain-tools/finder-pro/dashboard/scripts/night-shift.sh'
 
 sn() {
-  cd ~/Documents/html-map/space-notes
-  serve -s render-html-string/build -p 4000 & 
-  FLASK_APP=flask-test.py flask run &
+  cd ~/Documents/space-notes
+  serve -s gui/build -p 4000 & 
+  FLASK_APP=server.py flask run &
   sleep 2
   open http://localhost:4000/space/root
 }
