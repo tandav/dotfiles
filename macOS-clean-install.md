@@ -95,6 +95,7 @@ brew cask install arduino
 brew cask install sourcetree 
 brew cask install transmission
 ---
+brew cask install eqmac
 brew cask install sonic-visualiser
 
 brew install python # latest python

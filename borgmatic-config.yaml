@@ -28,7 +28,7 @@ storage:
     # use on repositories that were initialized with passcommand/repokey encryption.
     # Note that if both encryption_passcommand and encryption_passphrase are set,
     # then encryption_passphrase takes precedence.
-    encryption_passcommand: sed "6q;d" /Users/tandav/master-p.md
+    encryption_passcommand: sed "6q;d" /Users/tandav/Documents/spaces/etc/master-p.md
     # encryption_passcommand: echo 1234
 
 

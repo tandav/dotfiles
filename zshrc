@@ -11,7 +11,7 @@ export ZSH=/Users/tandav/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-export DOTFILES_DIR='/Users/tandav/Documents/dotfiles'
+export DOTFILES_DIR='/Users/tandav/Documents/spaces/dotfiles'
 
 
 # export PYTHONSTARTUP=~/Documents/108/dotfiles/python-startup.py
