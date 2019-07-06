@@ -22,6 +22,8 @@ location:
         - '*.pyc'
         - ~/*/.cache
         - '*/node_modules'
+        - '*/spark-warehouse'
+        - '*/.ipynb_checkpoints'
 
 storage:
     # The standard output of this command is used to unlock the encryption key. Only

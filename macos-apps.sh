@@ -32,3 +32,14 @@ brew cask install disk-inventory-x
 brew cask install ableton-live-suite
 brew cask install google-backup-and-sync
 brew cask install torbrowser
+brew cask install workflowy
+brew cask install pycharm
+brew cask install spotify
+brew cask install slack
+brew cask install visual-studio-code
+brew cask install iterm2
+
+brew cask install electrum
+brew cask install docker
+brew cask install sloth
+

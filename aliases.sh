@@ -5,8 +5,12 @@ alias sz='source ~/.zshrc'
 # Take advantage of $LS_COLORS for completion as well.
 alias ls='ls -G'
 
+alias tmp='open http://localhost:8888/notebooks/Documents/tmp.ipynb'
+alias snh='python ~/Documents/spaces/dotfiles/snh.py' # space notes here
 
+alias au='~/Documents/spaces/arduino/arduino.py'
 
+alias 2ch='python ~/Documents/spaces/etc/2ch/2ch.py'
 
 # Contract Job HP Laptop config
 hp() {
@@ -27,16 +31,19 @@ alias ut='python -c "from time import time; print(int(time() * 1000))"' # unix t
 
 # cd to folder
 alias doc='cd ~/Documents/'
+alias ds='cd ~/Documents/spaces'
 alias dt='cd ~/Desktop'
 alias dw='cd ~/Downloads'
 alias u='cd ~/Documents/spaces/steth/ultrasonic-stethoscope'
 # alias uv='cd ~/Documents/Ultrasonic-Stethoscope && source .steth/bin/activate'
+alias dot='subl ~/Documents/spaces/dotfiles'
 
 # apps & tools
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
 
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+alias pc='open -a PyCharm'
 
 # alias net='sudo tshark -i en0 -T fields -e frame.time -e ip.src -e dns.qry.name -Y 'dns.flags.response eq 0''
 # alias net='sudo tshark -i en0 -T fields -e frame.number -e frame.time -e ip.src -e dns.qry.name -Y 'dns.flags.response eq 0''
@@ -57,25 +64,25 @@ alias np='echo "import numpy as np\nimport matplotlib.pyplot as plt" | pbcopy'
 # alias nks='docker stop netcracker_db'
 
 # alias backup='rsync --info=all4 --delete -arR --exclude="**node_modules**" --exclude="**lib/python**" --files-from=/Users/tandav/GoogleDrive/Notes/etc/backup-dirs.txt ~ /Volumes/MyPassport/backup --log-file=/Volumes/MyPassport/backup/latest-backup.log'
-alias backup='python3 ~/GoogleDrive/Notes/etc/backup.py'
 alias bu='borgmatic --config /Users/tandav/Documents/spaces/dotfiles/borgmatic-config.yaml --verbosity 2'
 alias bl='borg list /Volumes/SanDisk64GB/borg-backup-repo'
-alias dot='subl ~/Documents/spaces/dotfiles'
 
 
-
+timestamp() { python -c 'from time import time; print(int(time() * 1000))' }
 
 lt() {
   cd ~/Documents/spaces/etc/716090045ddf6c076d7591dfe97bde23
   ./update.sh
 }
 
-alias ns='bash ~/Documents/spaces/brain-tools/brain-tools/finder-pro/dashboard/scripts/night-shift.sh'
+alias ns='osascript ~/Documents/spaces/brain-tools/finder-pro/dashboard/scripts/open_night_shift.applescript'
 
 sn() {
   cd ~/Documents/space-notes
   serve -s gui/build -p 4000 & 
   FLASK_APP=server.py flask run &
+  jupyter notebook --no-browser --notebook-dir=~ &
+  # jupyter lab --no-browser --notebook-dir=~ &
   sleep 2
   open http://localhost:4000/space/root
 }
@@ -83,7 +90,6 @@ sn() {
 
 
 alias o='open'
-alias s='subl' 
 
 alias python='python3'
 alias p='python3'
@@ -96,19 +102,29 @@ alias ip='ipython'
 alias rc='subl ~/.zshrc'
 alias al='subl ~/Documents/spaces/dotfiles/aliases.sh'
 
-alias d='python3  ~/Documents/spaces/brain-tools/brain-tools/finder-pro/dashboard/dashboard.py'
+alias d='python3  ~/Documents/spaces/brain-tools/finder-pro/dashboard/dashboard.py'
 
 # activate env/ virtualenv
 # alias ve='source env/bin/activate'
 # alias sd='source deactivate'
 
 # alias t='cd ~/Desktop && touch'
-alias rt='cd ~/Desktop && cp ~/Documents/spaces/dotfiles/README.png . && open README.png'
+rt() {
+  if [ -z "$1" ]; then
+    pic="$(openssl rand -hex 4)"
+  else
+    pic=$1.png
+  fi
+  # echo $pic
+  cd ~/Desktop
+  cp "${DOTFILES_DIR}/README.png" $pic
+  open $pic
+}
+
 alias qt='cd ~/Desktop && cp ~/Documents/spaces/dotfiles/temp-request.py . && s temp-request.py'
 alias pt='cd ~/Desktop && cp ~/Documents/spaces/dotfiles/temp.py . && s temp.py:-1'
 alias jn='jupyter notebook'
 alias jl='jupyter lab'
-alias jnt='jupyter notebook ~/Documents/temp.ipynb' # temporary python
 alias jnc='open https://colab.research.google.com/notebook#fileId=1tMXb4IXryuenlUvIBkRgZlSQmrlp5mUr&scrollTo=gXzvGiMJD4rQ' # temp colab notebook 
 alias jna='open https://temp-tandav.notebooks.azure.com/nb//notebooks/temp.ipynb' # azure notebook
 alias bp='open -a Preview ~/GoogleDrive/images/big-pic'
@@ -122,22 +138,34 @@ export PATH=${PATH}:~/Documents/html-map
 
 # websites
 alias wm='open https://www.youtube.com/playlist\?list\=PL4qBE1-4ZNC0Wam6r8MaZoUfZ8ektEVYe'
+alias dnb="open 'https://www.youtube.com/watch?v=OiuKZAkYqyE&index=4&list=PL4qBE1-4ZNC25bKGMcMICdIf9C2KqEcNv'"
 alias gist='open https://gist.github.com/tandav'
 alias wf='open https://workflowy.com'
 alias yt='open https://www.youtube.com'
 alias tj='python ~/Documents/spaces/etc/tj-vc-lite/tj.py'
 alias vc='python ~/Documents/spaces/etc/tj-vc-lite/vc.py'
-
 alias gh='open "https://github.com/tandav?tab=repositories"'
-alias rutr='open -a TorBrowser https://rutracker.org'
 
 # alias music='open https://github.com/tandav/life/tree/master/music'
-# alias gmail='open https://mail.google.com'
+alias gmail='open https://mail.google.com'
 # alias h='open -a Safari file:///Users/tandav/Documents/meta/map/shortcuts.svg'
 alias h='open -a Safari http://localhost:4000/space/root'
+
+tm() {
+  ssh $1 -t 'tmux -CC a -t my'
+}
 
 gupd() {
   git add .
   git commit -m 'upd'
   git push
 }
+
+hg() { history -99999 | grep $1 }
+
+# duck duck go search
+ddg() { open "https://duckduckgo.com/?q=$1" }
+
+# ff = find filename
+ff() { find . -iname "**$1**" }
+

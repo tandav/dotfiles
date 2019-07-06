@@ -2,8 +2,9 @@
 export TERM="xterm-256color"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=${PATH}:/usr/local/mysql/bin
 export PATH=${PATH}:/usr/local/miniconda3/bin
+# export PATH=${PATH}:/Users/tandav/Documents/spaces/python/my_modules
+export PYTHONPATH=~/Documents/spaces/python/my_modules
 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/tandav/.oh-my-zsh
@@ -14,12 +15,16 @@ export ZSH=/Users/tandav/.oh-my-zsh
 export DOTFILES_DIR='/Users/tandav/Documents/spaces/dotfiles'
 
 
-# export PYTHONSTARTUP=~/Documents/108/dotfiles/python-startup.py
+# for pyspark
+export PYSPARK_PYTHON='/usr/local/bin/python3'
+export PYSPARK_DRIVER_PYTHON='/usr/local/bin/python3'
+export JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home' # Java 10 is problematic
 
+
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 GREEN='\033[0;32m'
-# No Color
-NC='\033[0m'
+NO_COLOR='\033[0m'
 echo "${GREEN}"
 # echo 'Hello, bro!'
 # echo 'ॐ  नमः शिवाय'
@@ -31,11 +36,10 @@ echo "${GREEN}"
 # 108 names
 # echo 'शिव महेश्वर शम्भू पिनाकी शशिशेखर वामदेव विरूपाक्ष कपर्दी नीललोहित शंकर शूलपाणी खटवांगीविष्णुवल्लभ शिपिविष्ट अंबिकानाथश्रीकण्ठ भक्तवत्सल भव शर्व त्रिलोकेशशितिकण्ठ शिवाप्रिय उग्र कपाली कामारी सुरसूदन गंगाधर ललाटाक्ष महाकाल कृपानिधि भीम परशुहस्त मृगपाणी जटाधर कैलाशवासी कवची कठोर त्रिपुरांतक वृषांक वृषभारूढ़ भस्मोद्धूलितविग्रह सामप्रिय स्वरमयी त्रयीमूर्ति अनीश्वर सर्वज्ञ परमात्मा सोमसूर्याग्निलोचन हवि यज्ञमय सोम पंचवक्त्र सदाशिव विश्वेश्वरवीरभद्र गणनाथ प्रजापति हिरण्यरेता दुर्धुर्ष गिरीश गिरिश्वर अनघ भुजंगभूषण भर्ग गिरिधन्वा गिरिप्रिय कृत्तिवासा पुराराति भगवान् प्रमथाधिप मृत्युंजय सूक्ष्मतनु जगद्व्यापीजगद्गुरू व्योमकेश महासेनजनक चारुविक्रम रूद्र भूतपति स्थाणु अहिर्बुध्न्य दिगम्बर अष्टमूर्ति अनेकात्मा सात्त्विकशुद्धविग्रह शाश्वत खण्डपरशु अज पाशविमोचन मृड पशुपति देव महादेव अव्यय हरि पूषदन्तभित् अव्यग्र दक्षाध्वरहर हर भगनेत्रभिद् अव्यक्त सहस्राक्ष सहस्रपाद अपवर्गप्रद अनंत तारक परमेश्वर'
 # echo 'शिव महेश्वर शम्भू पिनाकी शशिशेखर वामदेव विरूपाक्ष कपर्दी नीललोहित शंकर शूलपाणी खटवांगीविष्णुवल्लभ शिपिविष्ट अंबिकानाथश्रीकण्ठ भक्तवत्सल भव शर्व त्रिलोकेशशितिकण्ठ शिवाप्रिय उग्र कपाली कामारी सुरसूदन गंगाधर ललाटाक्ष महाकाल कृपानिधि भीम परशुहस्त मृगपाणी जटाधर कैलाशवासी कवची कठोर त्रिपुरांतक वृषांक वृषभारूढ़'
-echo 'शिव महेश्वर शम्भू पिनाकी शशिशेखर वामदेव विरूपाक्ष कपर्दी नीललोहित'
-
-# echo "بسم الله"
-# echo '﷽'
-echo "${NC}"
+# echo 'शिव महेश्वर शम्भू पिनाकी शशिशेखर वामदेव विरूपाक्ष कपर्दी नीललोहित'
+# echo 'ॐ    ॐ    ॐ    ॐ    ॐ    ॐ    ॐ    ॐ    ॐ    ॐ    ॐ    ॐ  '
+echo 'ॐ  नमः शिवाय'
+echo "${NO_COLOR}"
 
 source ~/powerlevel9k/powerlevel9k.zsh-theme
 source "$DOTFILES_DIR/powerlevel9k-airline-theme.sh"
@@ -44,11 +48,17 @@ source "$DOTFILES_DIR/oh-my-zsh-aliases.sh"
 
 
 
+# complex topic, need a lot of googling
 HISTFILE=~/.zsh_history
-HISTSIZE=50000 # how many save in file
-SAVEHIST=10000 # how many load in memory (on each startup?)
-
-
+HISTSIZE=50000 # how many save in memory per one bash session
+# export HISTFILESIZE=
+# HISTFILESIZE=100000 # how many save in HISTFILE
+# If HISTFILESIZE is not set, no truncation is performed.
+SAVEHIST=100000 # how many load in memory (on each startup?)
+# setopt histappend
+# HISTFILESIZE=
+# HISTSIZE=
+HISTTIMEFORMAT="%F %T: "
 
 
 
@@ -146,25 +156,4 @@ setopt auto_cd
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
-t() {
-    cd ~/Desktop
-    touch $1
-    s $1
-}
-
-
-hg() {
-    history | grep $1
-}
-
-# duck duck go search
-ddg() {
-    open "https://duckduckgo.com/?q=$1"
-}
-
-# ff = find filename
-ff() {
-    find . -iname "**$1**"
-}
-
-
+# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

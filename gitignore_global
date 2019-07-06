@@ -3,3 +3,5 @@
 *.pyc
 .ipynb_checkpoints
 node_modules
+notes
+.idea

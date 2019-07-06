@@ -151,4 +151,13 @@ am I need `oh-my-zsh`?
 maybe just change shell to `zsh`: `chsh -s /bin/zsh`
 
 --- 
+
 now using powerlevel9k without any installation, just `clone` and `source`
+
+---
+
+use SF Mono wherever possible
+
+---
+
+SourceTree settings
