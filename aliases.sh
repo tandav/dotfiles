@@ -7,6 +7,7 @@ alias ls='ls -G'
 
 alias tmp='open http://localhost:8888/notebooks/Documents/tmp.ipynb'
 alias snh='python ~/Documents/spaces/dotfiles/snh.py' # space notes here
+alias rp='python ~/Documents/spaces/dotfiles/random_password.py'
 
 alias au='~/Documents/spaces/arduino/arduino.py'
 
