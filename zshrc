@@ -1,13 +1,14 @@
 # zmodload zsh/zprof # run zprof to see what slows down zsh startup
-export TERM="xterm-256color"
+# export TERM="xterm-256color"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=${PATH}:/usr/local/miniconda3/bin
+# export PATH=${PATH}:/usr/local/miniconda3/bin
+# export PATH=${PATH}:/Users/tandav/Documents/spaces/contract-job
 # export PATH=${PATH}:/Users/tandav/Documents/spaces/python/my_modules
 export PYTHONPATH=~/Documents/spaces/python/my_modules
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/tandav/.oh-my-zsh
+# export ZSH=/Users/tandav/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -25,7 +26,7 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 GREEN='\033[0;32m'
 NO_COLOR='\033[0m'
-echo "${GREEN}"
+# echo "${GREEN}"
 # echo 'Hello, bro!'
 # echo 'ॐ  नमः शिवाय'
 # echo 'प्रज्ञानम् ब्रह्म'
@@ -38,29 +39,57 @@ echo "${GREEN}"
 # echo 'शिव महेश्वर शम्भू पिनाकी शशिशेखर वामदेव विरूपाक्ष कपर्दी नीललोहित शंकर शूलपाणी खटवांगीविष्णुवल्लभ शिपिविष्ट अंबिकानाथश्रीकण्ठ भक्तवत्सल भव शर्व त्रिलोकेशशितिकण्ठ शिवाप्रिय उग्र कपाली कामारी सुरसूदन गंगाधर ललाटाक्ष महाकाल कृपानिधि भीम परशुहस्त मृगपाणी जटाधर कैलाशवासी कवची कठोर त्रिपुरांतक वृषांक वृषभारूढ़'
 # echo 'शिव महेश्वर शम्भू पिनाकी शशिशेखर वामदेव विरूपाक्ष कपर्दी नीललोहित'
 # echo 'ॐ    ॐ    ॐ    ॐ    ॐ    ॐ    ॐ    ॐ    ॐ    ॐ    ॐ    ॐ  '
-echo 'ॐ  नमः शिवाय'
-echo "${NO_COLOR}"
+# echo 'ॐ  नमः शिवाय'
+# echo "${NO_COLOR}"
 
-source ~/powerlevel9k/powerlevel9k.zsh-theme
-source "$DOTFILES_DIR/powerlevel9k-airline-theme.sh"
-source "$DOTFILES_DIR/aliases.sh"
+# source ~/powerlevel9k/powerlevel9k.zsh-theme
+# source "$DOTFILES_DIR/powerlevel9k-airline-theme.sh"
 source "$DOTFILES_DIR/oh-my-zsh-aliases.sh"
+source "$DOTFILES_DIR/aliases.sh"
 
+# export PROMPT="${ret_status} %m %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)"
+# export PS1='%(?.%F{green}.%F{green})%n@%m:%~ $ %f'
 
+NEWLINE=$'\n'
+# PROMPT="%B%F{green}%~%b${NEWLINE}$ %f"
+# PROMPT="%B%F{green}%~%b${NEWLINE}ॐ  %f"
+PROMPT="%B%F{green}%~%b%f${NEWLINE}"
+#local host_name="%{$fg[cyan]%}$"
+#local path_string="%{$fg[yellow]%}%~"
+#local prompt_string="»"
+#PROMPT='${host_name} ${path_string} %{$reset_color%}'
+# PROMPT='%F{red}%n%f@%F{blue}%m%f %F{yellow}%1~%f %# '
+#RPROMPT='[%F{yellow}%?%f]'
 
 # complex topic, need a lot of googling
 HISTFILE=~/.zsh_history
-HISTSIZE=50000 # how many save in memory per one bash session
+HISTSIZE=999999 # how many save in memory per one bash session
 # export HISTFILESIZE=
 # HISTFILESIZE=100000 # how many save in HISTFILE
 # If HISTFILESIZE is not set, no truncation is performed.
-SAVEHIST=100000 # how many load in memory (on each startup?)
+SAVEHIST=999999 # how many load in memory (on each startup?)
 # setopt histappend
 # HISTFILESIZE=
 # HISTSIZE=
 HISTTIMEFORMAT="%F %T: "
 
+# FROM: https://github.com/robbyrussell/oh-my-zsh/blob/master/lib/history.zsh
+## History command configuration
+setopt extended_history       # record timestamp of command in HISTFILE
+setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt hist_ignore_dups       # ignore duplicated commands history list
+setopt hist_ignore_space      # ignore commands that start with space
+setopt hist_verify            # show command with history expansion to user before running it
+setopt inc_append_history     # add commands to HISTFILE in order of execution
+setopt share_history          # share command history data
 
+
+# Basic auto/tab complete:
+autoload -U compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)       # Include hidden files.
 
 # Enable Ctrl-x-e to edit command in $EDITOR
 autoload -U edit-command-line
@@ -68,92 +97,10 @@ zle -N edit-command-line
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
 
-
-
 EDITOR='subl -nw'
 
 setopt auto_cd
 
-
-#local host_name="%{$fg[cyan]%}$"
-#local path_string="%{$fg[yellow]%}%~"
-#local prompt_string="»"
-
-
-#PROMPT='${host_name} ${path_string} %{$reset_color%}'
-
-# PROMPT='%F{red}%n%f@%F{blue}%m%f %F{yellow}%1~%f %# '
-#RPROMPT='[%F{yellow}%?%f]'
-
-
-
-# Add this separator after each output:
-# function echo_blank() {
-#   echo "------------------------------------------------------------"
-#   echo
-# }
-# precmd_functions+=echo_blank
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-# plugins=(git zsh-syntax-highlighting) # zsh-syntax-highlighting very heavy for startup time
-# plugins=(git)
-
-# source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-
 # test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# source /Users/tandav/Library/Preferences/org.dystroy.broot/launcher/bash/br

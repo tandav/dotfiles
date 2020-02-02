@@ -6,12 +6,11 @@ alias sz='source ~/.zshrc'
 alias ls='ls -G'
 
 alias tmp='open http://localhost:8888/notebooks/Documents/tmp.ipynb'
-alias snh='python ~/Documents/spaces/dotfiles/snh.py' # space notes here
 alias rp='python ~/Documents/spaces/dotfiles/random_password.py'
+alias sm='python ~/Documents/spaces/etc/send_email.py'
+alias gists='cd ~/Documents/spaces/etc/gists; s .'
 
-alias au='~/Documents/spaces/arduino/arduino.py'
 
-alias 2ch='python ~/Documents/spaces/etc/2ch/2ch.py'
 
 # Contract Job HP Laptop config
 hp() {
@@ -44,7 +43,7 @@ alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
 
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
-alias pc='open -a PyCharm'
+alias pc='open -a PyCharm\ CE'
 
 # alias net='sudo tshark -i en0 -T fields -e frame.time -e ip.src -e dns.qry.name -Y 'dns.flags.response eq 0''
 # alias net='sudo tshark -i en0 -T fields -e frame.number -e frame.time -e ip.src -e dns.qry.name -Y 'dns.flags.response eq 0''
@@ -58,6 +57,8 @@ alias docker_size='du -h /Users/tandav/Library/Containers/com.docker.docker/Data
 alias yts='echo "document.getElementsByTagName(\"video\")[0].playbackRate = 3" | pbcopy'
 
 alias np='echo "import numpy as np\nimport matplotlib.pyplot as plt" | pbcopy'
+alias spark='echo "from pyspark.sql import SparkSession\nspark = SparkSession.builder.enableHiveSupport().getOrCreate()" | pbcopy'
+
 # netcracker/oracle
 # alias sqlcl='/Applications/SQLDeveloper.app/Contents/Resources/sqldeveloper/sqldeveloper/bin/sql'
 # alias nk_cli='sqlcl system/oracle@localhost:1521:xe'
@@ -72,26 +73,25 @@ alias bl='borg list /Volumes/SanDisk64GB/borg-backup-repo'
 timestamp() { python -c 'from time import time; print(int(time() * 1000))' }
 
 lt() {
-  cd ~/Documents/spaces/etc/716090045ddf6c076d7591dfe97bde23
-  ./update.sh
+    cd ~/Documents/spaces/etc/716090045ddf6c076d7591dfe97bde23
+    ./update.sh
 }
 
-alias ns='osascript ~/Documents/spaces/brain-tools/finder-pro/dashboard/scripts/open_night_shift.applescript'
+alias ns='osascript ~/Documents/spaces/etc/night_shift/open_night_shift.applescript'
 
 sn() {
-  cd ~/Documents/space-notes
-  serve -s gui/build -p 4000 & 
-  FLASK_APP=server.py flask run &
-  jupyter notebook --no-browser --notebook-dir=~ &
-  # jupyter lab --no-browser --notebook-dir=~ &
-  sleep 2
-  open http://localhost:4000/space/root
+    cd ~/Documents/space-notes
+    serve -s gui/build -p 4000 & 
+    FLASK_APP=server.py flask run --port 5001 &
+    jupyter notebook --no-browser --notebook-dir=~ &
+    # jupyter lab --no-browser --notebook-dir=~ &
+    sleep 2
+    open http://localhost:4000/space/root
 }
 
 
 
 alias o='open'
-
 alias python='python3'
 alias p='python3'
 alias ip='ipython'
@@ -111,24 +111,26 @@ alias d='python3  ~/Documents/spaces/brain-tools/finder-pro/dashboard/dashboard.
 
 # alias t='cd ~/Desktop && touch'
 rt() {
-  if [ -z "$1" ]; then
-    pic="$(openssl rand -hex 4)"
-  else
-    pic=$1.png
-  fi
-  # echo $pic
-  cd ~/Desktop
-  cp "${DOTFILES_DIR}/README.png" $pic
-  open $pic
+    if [ -z "$1" ]; then
+        pic="$(openssl rand -hex 4).png"
+    else
+        pic=$1.png
+    fi
+    # echo $pic
+    cd ~/Desktop
+    cp "${DOTFILES_DIR}/README.png" $pic
+    open $pic
 }
+
+alias rand_music='python /Users/tandav/Documents/spaces/etc/gists/random_music_track.py'
 
 alias qt='cd ~/Desktop && cp ~/Documents/spaces/dotfiles/temp-request.py . && s temp-request.py'
 alias pt='cd ~/Desktop && cp ~/Documents/spaces/dotfiles/temp.py . && s temp.py:-1'
-alias jn='jupyter notebook'
-alias jl='jupyter lab'
-alias jnc='open https://colab.research.google.com/notebook#fileId=1tMXb4IXryuenlUvIBkRgZlSQmrlp5mUr&scrollTo=gXzvGiMJD4rQ' # temp colab notebook 
-alias jna='open https://temp-tandav.notebooks.azure.com/nb//notebooks/temp.ipynb' # azure notebook
-alias bp='open -a Preview ~/GoogleDrive/images/big-pic'
+# alias jn='jupyter notebook'
+# alias jl='jupyter lab'
+# alias jnc='open https://colab.research.google.com/notebook#fileId=1tMXb4IXryuenlUvIBkRgZlSQmrlp5mUr&scrollTo=gXzvGiMJD4rQ' # temp colab notebook 
+# alias jna='open https://temp-tandav.notebooks.azure.com/nb//notebooks/temp.ipynb' # azure notebook
+alias bp='open ~/Documents/spaces/meta/big-pic/pics'
 alias ms='cd ~/Documents/spaces/millionaire/spring'
 alias mr='cd ~/Documents/spaces/millionaire/millionaire-react'
 alias i='open -a IntelliJ\ IDEA'
@@ -156,9 +158,19 @@ tm() {
   ssh $1 -t 'tmux -CC a -t my'
 }
 
+yta() {
+    youtube-dl -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 $1
+}
+
+vid_and_audio() {
+    ffmpeg -i $1 -i $2 -c:v copy -map 0:v:0 -map 1:a:0 -shortest out.mp4
+}
+
+airpods() {python ~/Documents/spaces/etc/airpods-reconnect/main.py}
+
 gupd() {
   git add .
-  git commit -m 'upd'
+  git commit -m '_'
   git push
 }
 
@@ -168,5 +180,24 @@ hg() { history -99999 | grep $1 }
 ddg() { open "https://duckduckgo.com/?q=$1" }
 
 # ff = find filename
-ff() { find . -iname "**$1**" }
+# ff() { find . -iname "**$1**" }
 
+sshc() { s ~/.ssh/config }
+
+alias code='/Volumes/SanDisk64GB/apps/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
+
+bs() {
+    open https://news.ycombinator.com
+    open https://www.youtube.com
+    open https://tweetdeck.twitter.com
+    open https://www.reddit.com
+    open https://vc.ru
+    open https://tjournal.ru
+    open https://tmfeed.ru/popular/day
+    open https://trrrending.today
+    open http://138.68.164.186:5000
+}
+
+
+# Show local ip:
+alias myip="ipconfig getifaddr en0"
