@@ -1,4 +1,7 @@
+# apps & tools
+alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias s='subl'
+
 alias sz='source ~/.zshrc'
 
 # export LSCOLORS="Gxfxcxdxbxegedabagacad" # maybe colors are better without that line
@@ -9,23 +12,10 @@ alias tmp='open http://localhost:8888/notebooks/Documents/tmp.ipynb'
 alias rp='python ~/Documents/spaces/dotfiles/random_password.py'
 alias sm='python ~/Documents/spaces/etc/send_email.py'
 alias gists='cd ~/Documents/spaces/etc/gists; s .'
-
-
-
-# Contract Job HP Laptop config
-hp() {
-  if [ -z "$1" ] ; then
-    hp_lan_ip='172.16.36.208' 
-  # else
-   # hp_lan_ip=$1
-  fi
-  # echo "$hp_lan_ip"
-  # ~/Documents/spaces/contract-job
-  sshfs tandav@$hp_lan_ip:/home/tandav/ ~/Documents/spaces/contract-job/hp-laptop-fuse/ -o reconnect,auto_cache,defer_permissions,noappledouble,Compression=no -ovolname=HP-Laptop
-  open -R ~/Documents/spaces/contract-job/hp-laptop-fuse
-}
-
-
+alias rgc='rg . | fzf'
+alias rgf='rg . --files | fzf'
+ 
+hpf() { rsync -azvhP ~/Documents/spaces/contract-job/ssh-vpn/code.sh 'or1:code.sh' }
 
 alias ut='python -c "from time import time; print(int(time() * 1000))"' # unix time
 
@@ -34,12 +24,9 @@ alias doc='cd ~/Documents/'
 alias ds='cd ~/Documents/spaces'
 alias dt='cd ~/Desktop'
 alias dw='cd ~/Downloads'
-alias u='cd ~/Documents/spaces/steth/ultrasonic-stethoscope'
+# alias u='cd ~/Documents/spaces/steth/ultrasonic-stethoscope'
 # alias uv='cd ~/Documents/Ultrasonic-Stethoscope && source .steth/bin/activate'
 alias dot='subl ~/Documents/spaces/dotfiles'
-
-# apps & tools
-alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
 
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
@@ -49,8 +36,6 @@ alias pc='open -a PyCharm\ CE'
 # alias net='sudo tshark -i en0 -T fields -e frame.number -e frame.time -e ip.src -e dns.qry.name -Y 'dns.flags.response eq 0''
 # alias net='sudo tshark -i en0 -T fields -e frame.number -e ip.src -e dns.qry.name -Y 'dns.flags.response eq 0''
 
-alias termdown='termdown -b'
-alias weather='finger voronezh@graph.no'
 alias wttr='curl wttr.in/voronezh'
 alias mtop='open /Applications/Utilities/Activity\ Monitor.app'
 alias docker_size='du -h /Users/tandav/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/Docker.qcow2'
@@ -92,8 +77,11 @@ sn() {
 
 
 alias o='open'
+
+alias python3='/usr/local/opt/python@3.8/bin/python3'
 alias python='python3'
 alias p='python3'
+alias pip='python -m pip'
 alias ip='ipython'
 
 
@@ -124,8 +112,6 @@ rt() {
 
 alias rand_music='python /Users/tandav/Documents/spaces/etc/gists/random_music_track.py'
 
-alias qt='cd ~/Desktop && cp ~/Documents/spaces/dotfiles/temp-request.py . && s temp-request.py'
-alias pt='cd ~/Desktop && cp ~/Documents/spaces/dotfiles/temp.py . && s temp.py:-1'
 # alias jn='jupyter notebook'
 # alias jl='jupyter lab'
 # alias jnc='open https://colab.research.google.com/notebook#fileId=1tMXb4IXryuenlUvIBkRgZlSQmrlp5mUr&scrollTo=gXzvGiMJD4rQ' # temp colab notebook 
@@ -137,7 +123,7 @@ alias i='open -a IntelliJ\ IDEA'
 # alias aws='sshfs ubuntu@ec2-18-195-144-88.eu-central-1.compute.amazonaws.com:/home/ubuntu/ /Users/tandav/Documents/hn-best/fuse/ -o reconnect,auto_cache,defer_permissions,noappledouble,Compression=no -ovolname=ubuntu-aws-hn-best'
 # alias hm='python3 ~/GoogleDrive/Notes/etc/htmlmap.py'
 # in order to run bm command (create blank map)
-export PATH=${PATH}:~/Documents/html-map
+# export PATH=${PATH}:~/Documents/html-map
 
 # websites
 alias wm='open https://www.youtube.com/playlist\?list\=PL4qBE1-4ZNC0Wam6r8MaZoUfZ8ektEVYe'
@@ -193,11 +179,10 @@ bs() {
     open https://www.reddit.com
     open https://vc.ru
     open https://tjournal.ru
-    open https://tmfeed.ru/popular/day
     open https://trrrending.today
-    open http://138.68.164.186:5000
+    open http://http://130.61.63.6:5000/
 }
 
 
 # Show local ip:
-alias myip="ipconfig getifaddr en0"
+alias myip="ifconfig getifaddr en0"
