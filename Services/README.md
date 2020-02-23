@@ -3,8 +3,12 @@ you can use it from menubar/services or from right-click menu
 
 to install it run
 
-```zsh
-python3 install-services.py
+```py
+from pathlib import Path
+import os
+
+for service in Path.cwd().glob('*.workflow'):
+    os.symlink(service, Path.home() / 'Library/Services' / service.name)
 ```
 
 
