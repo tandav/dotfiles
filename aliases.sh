@@ -1,5 +1,6 @@
 # apps & tools
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
+# alias subl='open -a Sublime\ Text'
 alias s='subl'
 
 alias sz='source ~/.zshrc'
@@ -28,6 +29,7 @@ alias dw='cd ~/Downloads'
 # alias uv='cd ~/Documents/Ultrasonic-Stethoscope && source .steth/bin/activate'
 alias dot='subl ~/Documents/spaces/dotfiles'
 
+uc() { python ~/Documents/spaces/etc/gists/clean_url.py $1 | tee /dev/tty | pbcopy }
 
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 alias pc='open -a PyCharm\ CE'
@@ -117,9 +119,7 @@ alias rand_music='python /Users/tandav/Documents/spaces/etc/gists/random_music_t
 # alias jnc='open https://colab.research.google.com/notebook#fileId=1tMXb4IXryuenlUvIBkRgZlSQmrlp5mUr&scrollTo=gXzvGiMJD4rQ' # temp colab notebook 
 # alias jna='open https://temp-tandav.notebooks.azure.com/nb//notebooks/temp.ipynb' # azure notebook
 alias bp='open ~/Documents/spaces/meta/big-pic/pics'
-alias ms='cd ~/Documents/spaces/millionaire/spring'
-alias mr='cd ~/Documents/spaces/millionaire/millionaire-react'
-alias i='open -a IntelliJ\ IDEA'
+# alias i='open -a IntelliJ\ IDEA'
 # alias aws='sshfs ubuntu@ec2-18-195-144-88.eu-central-1.compute.amazonaws.com:/home/ubuntu/ /Users/tandav/Documents/hn-best/fuse/ -o reconnect,auto_cache,defer_permissions,noappledouble,Compression=no -ovolname=ubuntu-aws-hn-best'
 # alias hm='python3 ~/GoogleDrive/Notes/etc/htmlmap.py'
 # in order to run bm command (create blank map)
@@ -152,7 +152,7 @@ vid_and_audio() {
     ffmpeg -i $1 -i $2 -c:v copy -map 0:v:0 -map 1:a:0 -shortest out.mp4
 }
 
-airpods() {python ~/Documents/spaces/etc/airpods-reconnect/main.py}
+# airpods() {python ~/Documents/spaces/etc/airpods-reconnect/main.py}
 
 gupd() {
   git add .
@@ -170,7 +170,7 @@ ddg() { open "https://duckduckgo.com/?q=$1" }
 
 sshc() { s ~/.ssh/config }
 
-alias code='/Volumes/SanDisk64GB/apps/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
+# alias code='/Volumes/SanDisk64GB/apps/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
 
 bs() {
     open https://news.ycombinator.com
