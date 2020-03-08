@@ -6,8 +6,9 @@
 # - [A simple way to manage dotfiles with git without silly symlinks and special tools](https://gist.github.com/lonetwin/9636897)
 # - [Ask HN: What do you use to manage dotfiles? | Hacker News](https://news.ycombinator.com/item?id=11070797)
 
-ln -sf "$(pwd)/zshrc" ~/.zshrc
-ln -sf "$(pwd)/vimrc" ~/.vimrc
-ln -sf "$(pwd)/Preferences.sublime-settings" "$HOME/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings"
-ln -sf "$(pwd)/gitconfig" ~/.gitconfig
-ln -sf "$(pwd)/gitignore_global" ~/.gitignore_global
+cd ~
+ln -s $DOTFILES_DIR/.zshrc
+ln -s $DOTFILES_DIR/.gitconfig
+ln -s $DOTFILES_DIR/.gitignore_global
+ln -s $DOTFILES_DIR/.vimrc
+ln -s $DOTFILES_DIR/Preferences.sublime-settings" "$HOME/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings"
