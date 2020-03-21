@@ -1,11 +1,12 @@
 # zmodload zsh/zprof # run zprof to see what slows down zsh startup
 # export TERM="xterm-256color"
 # If you come from bash you might have to change your $PATH.
+export PATH=/usr/local/opt/python@3.8/bin:$PATH
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-# export PATH=${PATH}:/usr/local/miniconda3/bin
 # export PATH=${PATH}:/Users/tandav/Documents/spaces/contract-job
 # export PATH=${PATH}:/Users/tandav/Documents/spaces/python/my_modules
-export PYTHONPATH=~/Documents/spaces/python/my_modules
+export PYTHONPATH=~/Documents/GoogleDrive/entrypoint/knowledge/python/my_modules
+
 
 # Path to your oh-my-zsh installation.
 # export ZSH=/Users/tandav/.oh-my-zsh
@@ -14,6 +15,7 @@ export PYTHONPATH=~/Documents/spaces/python/my_modules
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 export DOTFILES_DIR='/Users/tandav/Documents/spaces/dotfiles'
+export PATH=$DOTFILES_DIR/bin:$PATH
 
 
 # for pyspark

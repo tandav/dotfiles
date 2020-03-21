@@ -1,33 +1,40 @@
-# apps & tools
+alias ls='ls -G'
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
-# alias subl='open -a Sublime\ Text'
 alias s='subl'
+
+d() {
+    cd ~
+    cd "$(grep $1 $DOTFILES_DIR/cd_mapping.csv | cut -d ' ' -f 2)"
+    echo $2
+    ls -hAlt
+    [ "$2" = 's' ] && s .
+}
+
+alias {p,python}='python3'
+alias ip='ipython'
+alias pip='python -m pip'
+
+
+# alias subl='open -a Sublime\ Text'
 
 alias sz='source ~/.zshrc'
 
 # export LSCOLORS="Gxfxcxdxbxegedabagacad" # maybe colors are better without that line
 # Take advantage of $LS_COLORS for completion as well.
-alias ls='ls -G'
 
 alias tmp='open http://localhost:8888/notebooks/Documents/tmp.ipynb'
-alias rp='python ~/Documents/spaces/dotfiles/random_password.py'
+# alias rp='python ~/Documents/spaces/dotfiles/random_password.py'
 alias sm='python ~/Documents/spaces/etc/send_email.py'
-alias gists='cd ~/Documents/spaces/etc/gists; s .'
+
+# c means content, f means files
+# todo: add fallback: grep -ir 'search query' . , find .
 alias rgc='rg . | fzf'
 alias rgf='rg . --files | fzf'
- 
+# ff = find filename
+# ff() { find . -iname "**$1**" }
+
+
 hpf() { rsync -azvhP ~/Documents/spaces/contract-job/ssh-vpn/code.sh 'or1:code.sh' }
-
-alias ut='python -c "from time import time; print(int(time() * 1000))"' # unix time
-
-# cd to folder
-alias doc='cd ~/Documents/'
-alias ds='cd ~/Documents/spaces'
-alias dt='cd ~/Desktop'
-alias dw='cd ~/Downloads'
-# alias u='cd ~/Documents/spaces/steth/ultrasonic-stethoscope'
-# alias uv='cd ~/Documents/Ultrasonic-Stethoscope && source .steth/bin/activate'
-alias dot='subl ~/Documents/spaces/dotfiles'
 
 uc() { python ~/Documents/spaces/etc/gists/clean_url.py $1 | tee /dev/tty | pbcopy }
 
@@ -57,7 +64,6 @@ alias bu='borgmatic --config /Users/tandav/Documents/spaces/dotfiles/borgmatic-c
 alias bl='borg list /Volumes/SanDisk64GB/borg-backup-repo'
 
 
-timestamp() { python -c 'from time import time; print(int(time() * 1000))' }
 
 lt() {
     cd ~/Documents/spaces/etc/716090045ddf6c076d7591dfe97bde23
@@ -80,11 +86,6 @@ sn() {
 
 alias o='open'
 
-alias python3='/usr/local/opt/python@3.8/bin/python3'
-alias python='python3'
-alias p='python3'
-alias pip='python -m pip'
-alias ip='ipython'
 
 
 
@@ -93,13 +94,9 @@ alias ip='ipython'
 alias rc='subl ~/.zshrc'
 alias al='subl ~/Documents/spaces/dotfiles/aliases.sh'
 
-alias d='python3  ~/Documents/spaces/brain-tools/finder-pro/dashboard/dashboard.py'
+alias ddd='python3  ~/Documents/spaces/brain-tools/finder-pro/dashboard/dashboard.py'
 
-# activate env/ virtualenv
-# alias ve='source env/bin/activate'
-# alias sd='source deactivate'
 
-# alias t='cd ~/Desktop && touch'
 rt() {
     if [ -z "$1" ]; then
         pic="$(openssl rand -hex 4).png"
@@ -152,7 +149,6 @@ vid_and_audio() {
     ffmpeg -i $1 -i $2 -c:v copy -map 0:v:0 -map 1:a:0 -shortest out.mp4
 }
 
-# airpods() {python ~/Documents/spaces/etc/airpods-reconnect/main.py}
 
 gupd() {
   git add .
@@ -165,12 +161,9 @@ hg() { history -99999 | grep $1 }
 # duck duck go search
 ddg() { open "https://duckduckgo.com/?q=$1" }
 
-# ff = find filename
-# ff() { find . -iname "**$1**" }
 
 sshc() { s ~/.ssh/config }
 
-# alias code='/Volumes/SanDisk64GB/apps/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
 
 bs() {
     open https://news.ycombinator.com
@@ -183,6 +176,11 @@ bs() {
     open http://http://130.61.63.6:5000/
 }
 
-
 # Show local ip:
-alias myip="ifconfig getifaddr en0"
+myip() { ifconfig en0 | grep }
+
+# airpods() {python ~/Documents/spaces/etc/airpods-reconnect/main.py}
+# activate env/ virtualenv
+# alias ve='source env/bin/activate'
+# alias sd='source deactivate'
+# alias t='cd ~/Desktop && touch'

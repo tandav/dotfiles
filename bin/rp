@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+'''
+random password
+'''
+
 import string
 import secrets
 import sys
