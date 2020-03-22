@@ -86,9 +86,6 @@ sn() {
 
 alias o='open'
 
-
-
-
 # also s -a or --add: Add folders to the current window
 # or s folder1 folder2: open many folders / files in one window
 alias rc='subl ~/.zshrc'
@@ -97,45 +94,36 @@ alias al='subl ~/Documents/spaces/dotfiles/aliases.sh'
 alias ddd='python3  ~/Documents/spaces/brain-tools/finder-pro/dashboard/dashboard.py'
 
 
+# rt() {
+#     if [ -z "$1" ]; then
+#         pic="$(openssl rand -hex 4).png"
+#     else
+#         pic=$1.png
+#     fi
+#     # echo $pic
+#     cd ~/Desktop
+#     cp "${DOTFILES_DIR}/README.png" $pic
+#     open $pic
+# }
+
 rt() {
-    if [ -z "$1" ]; then
-        pic="$(openssl rand -hex 4).png"
-    else
-        pic=$1.png
-    fi
-    # echo $pic
-    cd ~/Desktop
+    pic="$HOME/Desktop/$(rp 8).png"
     cp "${DOTFILES_DIR}/README.png" $pic
     open $pic
 }
 
 alias rand_music='python /Users/tandav/Documents/spaces/etc/gists/random_music_track.py'
 
-# alias jn='jupyter notebook'
-# alias jl='jupyter lab'
-# alias jnc='open https://colab.research.google.com/notebook#fileId=1tMXb4IXryuenlUvIBkRgZlSQmrlp5mUr&scrollTo=gXzvGiMJD4rQ' # temp colab notebook 
-# alias jna='open https://temp-tandav.notebooks.azure.com/nb//notebooks/temp.ipynb' # azure notebook
-alias bp='open ~/Documents/spaces/meta/big-pic/pics'
-# alias i='open -a IntelliJ\ IDEA'
-# alias aws='sshfs ubuntu@ec2-18-195-144-88.eu-central-1.compute.amazonaws.com:/home/ubuntu/ /Users/tandav/Documents/hn-best/fuse/ -o reconnect,auto_cache,defer_permissions,noappledouble,Compression=no -ovolname=ubuntu-aws-hn-best'
-# alias hm='python3 ~/GoogleDrive/Notes/etc/htmlmap.py'
-# in order to run bm command (create blank map)
-# export PATH=${PATH}:~/Documents/html-map
+
+jnh() { open -a $DOTFILES_DIR/OpenJupyter.app . }
 
 # websites
 alias wm='open https://www.youtube.com/playlist\?list\=PL4qBE1-4ZNC0Wam6r8MaZoUfZ8ektEVYe'
 alias dnb="open 'https://www.youtube.com/watch?v=OiuKZAkYqyE&index=4&list=PL4qBE1-4ZNC25bKGMcMICdIf9C2KqEcNv'"
 alias gist='open https://gist.github.com/tandav'
-alias wf='open https://workflowy.com'
 alias yt='open https://www.youtube.com'
-alias tj='python ~/Documents/spaces/etc/tj-vc-lite/tj.py'
-alias vc='python ~/Documents/spaces/etc/tj-vc-lite/vc.py'
 alias gh='open "https://github.com/tandav?tab=repositories"'
 
-# alias music='open https://github.com/tandav/life/tree/master/music'
-alias gmail='open https://mail.google.com'
-# alias h='open -a Safari file:///Users/tandav/Documents/meta/map/shortcuts.svg'
-alias h='open -a Safari http://localhost:4000/space/root'
 
 tm() {
   ssh $1 -t 'tmux -CC a -t my'
@@ -156,7 +144,11 @@ gupd() {
   git push
 }
 
-hg() { history -99999 | grep $1 }
+# https://stackoverflow.com/questions/26846738/zsh-history-is-too-short
+# alias hg='history 1 | grep'
+alias hg='history 1 | fzf'
+
+# hg() { history -99999 | grep $1 }
 
 # duck duck go search
 ddg() { open "https://duckduckgo.com/?q=$1" }
@@ -184,3 +176,20 @@ myip() { ifconfig en0 | grep }
 # alias ve='source env/bin/activate'
 # alias sd='source deactivate'
 # alias t='cd ~/Desktop && touch'
+# alias wf='open https://workflowy.com'
+# alias tj='python ~/Documents/spaces/etc/tj-vc-lite/tj.py'
+# alias vc='python ~/Documents/spaces/etc/tj-vc-lite/vc.py'
+# alias music='open https://github.com/tandav/life/tree/master/music'
+# alias gmail='open https://mail.google.com'
+# alias h='open -a Safari file:///Users/tandav/Documents/meta/map/shortcuts.svg'
+# alias h='open -a Safari http://localhost:4000/space/root'
+# alias jn='jupyter notebook'
+# alias jl='jupyter lab'
+# alias jnc='open https://colab.research.google.com/notebook#fileId=1tMXb4IXryuenlUvIBkRgZlSQmrlp5mUr&scrollTo=gXzvGiMJD4rQ' # temp colab notebook 
+# alias jna='open https://temp-tandav.notebooks.azure.com/nb//notebooks/temp.ipynb' # azure notebook
+# alias bp='open ~/Documents/spaces/meta/big-pic/pics'
+# alias i='open -a IntelliJ\ IDEA'
+# alias aws='sshfs ubuntu@ec2-18-195-144-88.eu-central-1.compute.amazonaws.com:/home/ubuntu/ /Users/tandav/Documents/hn-best/fuse/ -o reconnect,auto_cache,defer_permissions,noappledouble,Compression=no -ovolname=ubuntu-aws-hn-best'
+# alias hm='python3 ~/GoogleDrive/Notes/etc/htmlmap.py'
+# in order to run bm command (create blank map)
+# export PATH=${PATH}:~/Documents/html-map
