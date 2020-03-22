@@ -107,12 +107,10 @@ alias ddd='python3  ~/Documents/spaces/brain-tools/finder-pro/dashboard/dashboar
 # }
 
 rt() {
-    pic="$HOME/Desktop/$(rp 8).png"
-    cp "${DOTFILES_DIR}/README.png" $pic
+    pic=$HOME/Desktop/$RANDOM.png
+    cp $DOTFILES_DIR/README.png $pic
     open $pic
 }
-
-alias rand_music='python /Users/tandav/Documents/spaces/etc/gists/random_music_track.py'
 
 
 jnh() { open -a $DOTFILES_DIR/OpenJupyter.app . }
