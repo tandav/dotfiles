@@ -5,7 +5,6 @@ alias s='subl'
 d() {
     cd ~
     cd "$(grep -w $1 $DOTFILES_DIR/cd_mapping.csv | cut -d ' ' -f 2)"
-    echo $2
     ls -hAlt
     [ "$2" = 's' ] && s .
 }
