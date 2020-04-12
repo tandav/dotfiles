@@ -10,7 +10,7 @@ export DOTFILES_DIR=~/Documents/GoogleDrive/entrypoint/projects/dotfiles
 export PATH=$DOTFILES_DIR/bin:$PATH
 
 
-source "$DOTFILES_DIR/oh-my-zsh-aliases.sh"
+source "$DOTFILES_DIR/git_aliases.sh"
 source "$DOTFILES_DIR/aliases.sh"
 
 # -----------------------------------------------------------------------------------------------

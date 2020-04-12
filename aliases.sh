@@ -1,15 +1,17 @@
 alias ls='ls -G'
+alias l='ls -hAlt'
+alias md='mkdir -p'
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias s='subl'
 
 d() {
     cd ~
     cd "$(grep -w $1 $DOTFILES_DIR/cd_mapping.csv | cut -d ' ' -f 2)"
-    ls -hAlt
+    l
     [ "$2" = 's' ] && s .
 }
 
-recent() { ls -hAlt | head -10 }
+recent() { l | head -10 }
 
 alias {p,python}='python3'
 alias ip='ipython'

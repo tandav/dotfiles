@@ -1,23 +1,5 @@
-# directories aliases from https://github.com/robbyrussell/oh-my-zsh/blob/master/lib/directories.zsh
-
-# # Changing/making/removing directory
-# setopt auto_pushd
-# setopt pushd_ignore_dups
-# setopt pushdminus
-
-alias md='mkdir -p'
-alias l='ls -Alh'
-
-
-# git aliases from https://github.com/robbyrussell/oh-my-zsh/wiki/Cheatsheet#git https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/git/git.plugin.zsh 
-# dirty, compdef are commented, i dont need all these stuff
-# TODO: cleanup
-
-
-#
-# Aliases
-# (sorted alphabetically)
-#
+# mostly copied from oh-my-zsh
+#TODO: cleanup
 
 alias g='git'
 
