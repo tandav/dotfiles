@@ -9,6 +9,8 @@ d() {
     [ "$2" = 's' ] && s .
 }
 
+recent() { ls -hAlt | head -10 }
+
 alias {p,python}='python3'
 alias ip='ipython'
 alias pip='python -m pip'

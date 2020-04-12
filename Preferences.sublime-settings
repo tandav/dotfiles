@@ -1,7 +1,7 @@
 {
 	"animation_enabled": false,
 	"caret_style": "solid",
-	"color_scheme": "Packages/One Half Color Schemes/OneHalfLight.tmTheme",
+	"color_scheme": "Packages/Base16 Color Schemes/Themes/base16-tomorrow.tmTheme",
 	"ensure_newline_at_eof_on_save": true,
 	"fade_fold_buttons": false,
 	"font_face": "SF Mono",
@@ -14,12 +14,10 @@
 	"gravity_title_bar": true,
 	"ignored_packages":
 	[
-		"Anaconda",
-		"KiteSublime",
 		"Material Theme",
-		"rainbow_csv",
 		"Vintage"
 	],
 	"theme": "Reverse Gravity.sublime-theme",
-	"translate_tabs_to_spaces": true
+	"translate_tabs_to_spaces": true,
+	"word_wrap": "false"
 }

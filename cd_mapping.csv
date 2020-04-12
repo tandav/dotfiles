@@ -6,3 +6,5 @@ ep Documents/GoogleDrive/entrypoint
 doc Documents
 ds Documents/GoogleDrive/spaces
 dot Documents/spaces/dotfiles
+cj Documents/spaces/contract-job
+meta Documents/GoogleDrive/entrypoint/play

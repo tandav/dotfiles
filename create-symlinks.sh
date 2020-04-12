@@ -7,8 +7,8 @@
 # - [Ask HN: What do you use to manage dotfiles? | Hacker News](https://news.ycombinator.com/item?id=11070797)
 
 cd ~
-ln -s $DOTFILES_DIR/.zshrc
-ln -s $DOTFILES_DIR/.gitconfig
-ln -s $DOTFILES_DIR/.gitignore_global
-ln -s $DOTFILES_DIR/.vimrc
-ln -s $DOTFILES_DIR/Preferences.sublime-settings" "$HOME/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings"
+ln -sf $DOTFILES_DIR/.zshrc
+ln -sf $DOTFILES_DIR/.gitconfig
+ln -sf $DOTFILES_DIR/.gitignore_global
+ln -sf $DOTFILES_DIR/.vimrc
+ln -sf $DOTFILES_DIR/Preferences.sublime-settings "$HOME/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings"
