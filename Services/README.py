@@ -1,15 +1,6 @@
+'''
 # macOS Services
 you can use it from menubar/services or from right-click menu
-
-to install it run
-
-```py
-from pathlib import Path
-import os
-
-for service in Path.cwd().glob('*.workflow'):
-    os.symlink(service, Path.home() / 'Library/Services' / service.name)
-```
 
 
 <!-- >>>>> **FAIL** for some reason symlinks workflow is not shown if your 
@@ -22,4 +13,17 @@ in order to edit workflow
 which is not in `~/Library/Services`
 use right click -> open with Automator 
 instead of Automator installer (default double-click action)
+'''
+
+
+from pathlib import Path
+
+
+for service in Path.cwd().glob('*.workflow'):
+    symlink = Path.home() / 'Library/Services' / service.name
+    print(symlink, '->', service)
+    if symlink.exists() or symlink.is_symlink(): # bug
+        symlink.unlink()
+    symlink.symlink_to(service)
+
 

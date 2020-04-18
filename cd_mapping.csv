@@ -5,6 +5,6 @@ gists Documents/spaces/etc/gists
 ep Documents/GoogleDrive/entrypoint
 doc Documents
 ds Documents/GoogleDrive/spaces
-dot Documents/spaces/dotfiles
-cj Documents/spaces/contract-job
+dot Documents/GoogleDrive/entrypoint/projects/dotfiles
+cj Documents/GoogleDrive/entrypoint/contract-job
 meta Documents/GoogleDrive/entrypoint/play

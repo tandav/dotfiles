@@ -53,6 +53,7 @@
 					<key>fileNames</key>
 					<array>
 						<string>~/Desktop/tmp.md</string>
+						<string>~/Documents/GoogleDrive/entrypoint/projects/tmp_notes</string>
 					</array>
 				</dict>
 				<key>BundleIdentifier</key>
@@ -158,7 +159,7 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>appPath</key>
-					<string></string>
+					<string>/Applications/Sublime Text.app</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.Automator.OpenFinderItems</string>
@@ -219,7 +220,7 @@
 	</array>
 	<key>connectors</key>
 	<dict>
-		<key>DF29178C-56FE-4A03-BA84-1A0E8E9951BB</key>
+		<key>E3C6E55F-3864-4416-89B3-659CAB6939ED</key>
 		<dict>
 			<key>from</key>
 			<string>1E6C7817-19DA-4D03-9B8A-3EDC20C9BA0D - 1E6C7817-19DA-4D03-9B8A-3EDC20C9BA0D</string>

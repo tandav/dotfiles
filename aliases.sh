@@ -3,12 +3,17 @@ alias l='ls -hAlt'
 alias md='mkdir -p'
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias s='subl'
+alias o='open'
+
 
 d() {
+    [ -z "$1" ] && cat $DOTFILES_DIR/cd_mapping.csv && return 0
+    [ "$1" = 's' ] && s $DOTFILES_DIR/cd_mapping.csv && return 0
     cd ~
     cd "$(grep -w $1 $DOTFILES_DIR/cd_mapping.csv | cut -d ' ' -f 2)"
     l
     [ "$2" = 's' ] && s .
+    [ "$2" = 'o' ] && o .
 }
 
 recent() { l | head -10 }
@@ -74,12 +79,11 @@ sn() {
 
 
 
-alias o='open'
 
 # also s -a or --add: Add folders to the current window
 # or s folder1 folder2: open many folders / files in one window
 alias rc='subl ~/.zshrc'
-alias al='subl ~/Documents/spaces/dotfiles/aliases.sh'
+alias al='subl $DOTFILES_DIR/aliases.sh'
 
 alias ddd='python3  ~/Documents/spaces/brain-tools/finder-pro/dashboard/dashboard.py'
 
@@ -91,7 +95,10 @@ rt() {
 }
 
 
-jnh() { open -a $DOTFILES_DIR/OpenJupyter.app . }
+jnh() {
+    # open -a $DOTFILES_DIR/OpenJupyter.app . 
+    p $DOTFILES_DIR/jupyter_opener.py $PWD
+}
 
 # websites
 alias wm='open https://www.youtube.com/playlist\?list\=PL4qBE1-4ZNC0Wam6r8MaZoUfZ8ektEVYe'
@@ -100,13 +107,18 @@ alias gist='open https://gist.github.com/tandav'
 alias yt='open https://www.youtube.com'
 alias gh='open "https://github.com/tandav?tab=repositories"'
 
+alias tmp='s /Users/tandav/Documents/GoogleDrive/entrypoint/projects/tmp_notes'
 
 tm() {
   ssh $1 -t 'tmux -CC a -t my'
 }
 
+ytv() {
+    youtube-dl --no-playlist --output "/Users/tandav/Desktop/%(title)s.%(ext)s" $1
+}
+
 yta() {
-    youtube-dl -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 $1
+    youtube-dl --no-playlist -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --output "/Users/tandav/Desktop/%(title)s.%(ext)s" $1
 }
 
 vid_and_audio() {
