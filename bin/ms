@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+from pathlib import Path
+import sys
+
+q = sys.argv[1]
+# q = 'kala'
+
+
+class color:
+    BLACK     = lambda s: '\033[30m' + str(s) + '\033[0m'
+    RED       = lambda s: '\033[31m' + str(s) + '\033[0m'
+    GREEN     = lambda s: '\033[32m' + str(s) + '\033[0m'
+    YELLOW    = lambda s: '\033[33m' + str(s) + '\033[0m'
+    BLUE      = lambda s: '\033[34m' + str(s) + '\033[0m'
+    MAGENTA   = lambda s: '\033[35m' + str(s) + '\033[0m'
+    CYAN      = lambda s: '\033[36m' + str(s) + '\033[0m'
+    WHITE     = lambda s: '\033[37m' + str(s) + '\033[0m'
+    UNDERLINE = lambda s: '\033[4m'  + str(s) + '\033[0m'
+
+
+def highlight(string, phrase):
+    i = string.index(phrase)
+    normal = color.BLACK
+    print(normal(string[:i]), end='')
+    print(color.GREEN(phrase), end='')
+    print(normal(string[i + len(phrase):]))
+
+music = Path.home() / 'Documents/GoogleDrive/entrypoint/knowledge/music'
+
+for track in music.rglob('*.webloc'):
+    track_name = track.name.lower()
+    if q in track_name:
+        print(track.parent.absolute(), end='/')
+        highlight(track_name, q)
