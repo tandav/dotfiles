@@ -27,7 +27,7 @@ alias sz='source ~/.zshrc'
 # export LSCOLORS="Gxfxcxdxbxegedabagacad" # maybe colors are better without that line
 # Take advantage of $LS_COLORS for completion as well.
 
-alias sm='python ~/Documents/spaces/etc/send_email.py'
+alias sm='python ~/Documents/GoogleDrive/entrypoint/projects/gists/send_email.py'
 
 # c means content, f means files
 # todo: add fallback: grep -ir 'search query' . , find .
@@ -38,14 +38,13 @@ alias rgf='rg . --files | fzf'
 
 hpf() { rsync -azvhP ~/Documents/spaces/contract-job/ssh-vpn/code.sh 'or1:code.sh' }
 
-uc() { python ~/Documents/spaces/etc/gists/clean_url.py $1 | tee /dev/tty | pbcopy }
+uc() { python ~/Documents/GoogleDrive/entrypoint/projects/gists/clean_url.py $1 | tee /dev/tty | pbcopy }
 
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 alias pc='open -a PyCharm\ CE'
 
 
-alias wttr='curl wttr.in/voronezh'
-alias mtop='open /Applications/Utilities/Activity\ Monitor.app'
+alias mtop='open "/System/Applications/Utilities/Activity Monitor.app"'
 alias docker_size='du -h /Users/tandav/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/Docker.qcow2'
 alias yts='echo "document.getElementsByTagName(\"video\")[0].playbackRate = 3" | pbcopy'
 
@@ -134,7 +133,7 @@ gupd() {
 
 # https://stackoverflow.com/questions/26846738/zsh-history-is-too-short
 # alias hg='history 1 | grep'
-alias hg='history 1 | fzf'
+# alias hg='history 1 | fzf'
 
 # duck duck go search
 ddg() { open "https://duckduckgo.com/?q=$1" }

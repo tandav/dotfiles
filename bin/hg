@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+
+from pathlib import Path
+import sys
+import difflib
+
+def distance(a, b, cutoff):
+    s = difflib.SequenceMatcher()
+    s.set_seq2(a)
+    s.set_seq1(b)
+
+    r = s.real_quick_ratio()
+
+    if not r < cutoff:
+        r = s.quick_ratio()
+    if not r < cutoff:
+        r = s.ratio()
+    return r
+
+
+query = sys.argv[1]
+
+_ = Path.home() / '.zsh_history'
+_ = _.read_bytes()
+_ = _.decode('utf-8', errors='ignore')
+_ = _.splitlines()
+
+zsh_history = _
+
+seen = set()
+for _ in zsh_history:
+    close = _.startswith(query) or distance(_, query, 0.75) > 0.75
+    not_seen = _ not in seen
+    if close and not_seen:
+        print(_)
+        seen.add(_)
