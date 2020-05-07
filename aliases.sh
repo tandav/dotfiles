@@ -57,6 +57,10 @@ alias spark='echo "from pyspark.sql import SparkSession\nspark = SparkSession.bu
 alias bu='borgmatic --config /Users/tandav/Documents/spaces/dotfiles/borgmatic-config.yaml --verbosity 2'
 alias bl='borg list /Volumes/SanDisk64GB/borg-backup-repo'
 
+jn() { 
+    cd ~
+    docker run --rm -p 8888:8888 -v "$PWD":/home/jovyan jupyter/pyspark-notebook
+}
 
 
 lt() {
