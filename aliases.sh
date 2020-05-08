@@ -58,8 +58,7 @@ alias bu='borgmatic --config /Users/tandav/Documents/spaces/dotfiles/borgmatic-c
 alias bl='borg list /Volumes/SanDisk64GB/borg-backup-repo'
 
 jn() { 
-    cd ~
-    docker run --rm -p 8888:8888 -v $PWD:/home/jovyan jupyter/pyspark-notebook
+    docker run --rm -p 8888:8888 -v $HOME:/home/jovyan jupyter/pyspark-notebook
 }
 
 
