@@ -12,28 +12,40 @@ import subprocess
 
 def co(cmd, shell=False): print(subprocess.check_output(cmd, shell=shell, text=True))
 
-# cd ~
-# ln -sf $DOTFILES_DIR/.zshrc
-# ln -sf $DOTFILES_DIR/.gitconfig
-# ln -sf $DOTFILES_DIR/.gitignore_global
-# ln -sf $DOTFILES_DIR/.vimrc
-# ln -sf $DOTFILES_DIR/Preferences.sublime-settings "$HOME/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings"
+def symlink_override(symlink, original):
+    symlink = Path(symlink)
+    if symlink.exists():
+        symlink.unlink()
+    symlink.symlink_to(original)
+    print(symlink, '->', original)
 
-# ln -sf $pj/battery_stats/com.tandav.battery_stats.plist ~/Library/LaunchAgents
+DOTFILES_DIR = os.environ['DOTFILES_DIR']
 
+
+# ================================================================
+# various symlinks
+
+
+symlink_override(Path.home() / '.zshrc'           , f'{DOTFILES_DIR}/.zshrc')
+symlink_override(Path.home() / '.gitconfig'       , f'{DOTFILES_DIR}/.gitconfig')
+symlink_override(Path.home() / '.gitignore_global', f'{DOTFILES_DIR}/.gitignore_global')
+symlink_override(Path.home() / '.vimrc'           , f'{DOTFILES_DIR}/.zshrc')
+symlink_override(Path.home() / 'Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings', f'{DOTFILES_DIR}/Preferences.sublime-settings')
+
+
+# ================================================================
+# agents are launchctl jobs
 
 
 agents = [
-    f'{os.environ["pj"]}/battery_stats/com.tandav.battery_stats.plist',
+    # f'{os.environ["pj"]}/battery_stats/com.tandav.battery_stats.plist',
+    f'{os.environ["pj"]}/noise_level/com.tandav.noise_level.plist',
 ]
 
 def reload_agent(agent):
     agent = Path(agent)
     symlink = Path.home() / 'Library/LaunchAgents' / agent.name
-    if symlink.exists():
-        symlink.unlink()
-    print(symlink, '->', agent)
-    symlink.symlink_to(agent)
+    symlink_override(symlink, agent)
     co(('launchctl', 'unload', '-w', str(agent)))
     co(('launchctl', 'load', '-w', str(agent)))
 
@@ -43,14 +55,15 @@ for agent in agents:
 co('launchctl list | grep tandav', shell=True)
 
 
-
+# ================================================================
 # Quick Actions are workflows that may be added to Finder, Touch Bar and the Services menu. 
+
+
 quick_actions = [
 ]
 
 def reload_quick_actions():
     ...
-
 
 
 
@@ -63,3 +76,6 @@ def reload_quick_actions():
 #     if symlink.exists() or symlink.is_symlink(): # bug
 #         symlink.unlink()
 #     symlink.symlink_to(quick_action)
+
+
+# ================================================================
