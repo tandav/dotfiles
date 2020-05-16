@@ -18,18 +18,21 @@ def distance(a, b, cutoff):
     return r
 
 
-query = sys.argv[1]
+query = sys.argv[1].lower()
 
-_ = Path.home() / '.zsh_history'
-_ = _.read_bytes()
-_ = _.decode('utf-8', errors='ignore')
-_ = _.splitlines()
-
-zsh_history = _
+if len(sys.argv) == 3:
+    _ = Path(sys.argv[2]).read_text().splitlines()
+else:
+    _ = Path.home() / '.zsh_history'
+    _ = _.read_bytes()
+    _ = _.decode('utf-8', errors='ignore')
+    _ = _.splitlines()
+    
+_ = map(str.lower, _)
 
 seen = set()
-for _ in zsh_history:
-    close = _.startswith(query) or distance(_, query, 0.75) > 0.75
+for _ in _:
+    close = query in _ or distance(_, query, 0.75) > 0.75
     not_seen = _ not in seen
     if close and not_seen:
         print(_)

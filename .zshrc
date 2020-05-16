@@ -3,11 +3,9 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=/usr/local/opt/python@3.8/bin:$PATH
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-# export PATH=${PATH}:/Users/tandav/Documents/spaces/contract-job
-# export PATH=${PATH}:/Users/tandav/Documents/spaces/python/my_modules
-export PYTHONPATH=~/Documents/GoogleDrive/entrypoint/knowledge/python/my_modules
 export DOTFILES_DIR=~/Documents/GoogleDrive/entrypoint/projects/dotfiles
 export PATH=$DOTFILES_DIR/bin:$PATH
+export PYTHONPATH=$DOTFILES_DIR/bin
 
 
 source "$DOTFILES_DIR/git_aliases.sh"

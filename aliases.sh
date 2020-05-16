@@ -6,15 +6,32 @@ alias s='subl'
 alias o='open'
 
 
-d() {
-    [ -z "$1" ] && cat $DOTFILES_DIR/cd_mapping.csv && return 0
-    [ "$1" = 's' ] && s $DOTFILES_DIR/cd_mapping.csv && return 0
-    cd ~
-    cd "$(grep -w $1 $DOTFILES_DIR/cd_mapping.csv | cut -d ' ' -f 2)"
-    l
-    [ "$2" = 's' ] && s .
-    [ "$2" = 'o' ] && o .
-}
+# d() {
+#     [ -z "$1" ] && cat $DOTFILES_DIR/cd_mapping.csv && return 0
+#     [ "$1" = 's' ] && s $DOTFILES_DIR/cd_mapping.csv && return 0
+#     cd ~
+#     cd "$(grep -w $1 $DOTFILES_DIR/cd_mapping.csv | cut -d ' ' -f 2)"
+#     l
+#     [ "$2" = 's' ] && s .
+#     [ "$2" = 'o' ] && o .
+# }
+
+
+export dt=~/Desktop
+export dw=~/Downloads
+export gd=~/Documents/GoogleDrive
+export gists=~/Documents/spaces/etc/gists
+export ep=~/Documents/GoogleDrive/entrypoint
+export doc=~/Documents
+export ds=~/Documents/GoogleDrive/spaces
+export dot=~/Documents/GoogleDrive/entrypoint/projects/dotfiles
+export cj=~/Documents/GoogleDrive/entrypoint/contract-job
+export meta=~/Documents/GoogleDrive/entrypoint/play
+export ai=~/Documents/GoogleDrive/entrypoint/play/ai
+export pj=~/Documents/GoogleDrive/entrypoint/projects
+export kn=~/Documents/GoogleDrive/entrypoint/knowledge
+
+
 
 recent() { l | head -10 }
 
@@ -57,9 +74,8 @@ alias spark='echo "from pyspark.sql import SparkSession\nspark = SparkSession.bu
 alias bu='borgmatic --config /Users/tandav/Documents/spaces/dotfiles/borgmatic-config.yaml --verbosity 2'
 alias bl='borg list /Volumes/SanDisk64GB/borg-backup-repo'
 
-jn() { 
-    docker run --rm -p 8888:8888 -v $HOME:/home/jovyan jupyter/pyspark-notebook
-}
+jn () { cd ~ && jupyter notebook }
+jns() { docker run --rm -p 8888:8888 -v $HOME:/home/jovyan jupyter/pyspark-notebook }
 
 
 lt() {

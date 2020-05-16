@@ -59,7 +59,8 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string>open -a iTerm</string>
+					<string>export PYTHONPATH=/Users/tandav/Documents/GoogleDrive/entrypoint/projects/dotfiles/bin
+open -a iTerm</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>
