@@ -30,6 +30,7 @@ export meta=~/Documents/GoogleDrive/entrypoint/play
 export ai=~/Documents/GoogleDrive/entrypoint/play/ai
 export pj=~/Documents/GoogleDrive/entrypoint/projects
 export kn=~/Documents/GoogleDrive/entrypoint/knowledge
+export sc=~/Documents/GoogleDrive/entrypoint/knowledge/buffer/screens
 
 
 
@@ -143,6 +144,11 @@ vid_and_audio() {
     ffmpeg -i $1 -i $2 -c:v copy -map 0:v:0 -map 1:a:0 -shortest out.mp4
 }
 
+vid_for_twitter() {
+    ffmpeg -i $1 -c:v libx264 -crf 18 -c:a copy out.mp4
+    # If you get height not divisible by 2 (720x405) then add the crop filter:
+    # ffmpeg -i $1 -c:v libx264 -crf 18 -vf crop=iw:ih-1 -c:a copy out.mp4
+}
 
 gupd() {
   git add .
