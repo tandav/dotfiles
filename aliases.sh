@@ -19,22 +19,20 @@ alias o='open'
 
 export dt=~/Desktop
 export dw=~/Downloads
-export gd=~/Documents/GoogleDrive
-export gists=~/Documents/spaces/etc/gists
-export ep=~/Documents/GoogleDrive/entrypoint
+export gd=~/GoogleDrive
+export gists=~/GoogleDrive/projects/gists
 export doc=~/Documents
-export ds=~/Documents/GoogleDrive/spaces
-export dot=~/Documents/GoogleDrive/entrypoint/projects/dotfiles
-export cj=~/Documents/GoogleDrive/entrypoint/contract-job
-export meta=~/Documents/GoogleDrive/entrypoint/play
-export ai=~/Documents/GoogleDrive/entrypoint/play/ai
-export pj=~/Documents/GoogleDrive/entrypoint/projects
-export kn=~/Documents/GoogleDrive/entrypoint/knowledge
-export sc=~/Documents/GoogleDrive/entrypoint/knowledge/buffer/screens
+export dot=~/GoogleDrive/projects/dotfiles
+export cj=~/GoogleDrive/contract-job
+export meta=~/GoogleDrive/meta
+export ai=~/GoogleDrive/play/ai
+export bh=~/GoogleDrive/play/bhairava
+export pj=~/GoogleDrive/projects
+export kn=~/GoogleDrive/knowledge
+export sc=~/GoogleDrive/knowledge/buffer/screens
 
 
-
-recent() { l | head -10 }
+recent() { l | head -20 }
 
 alias {p,python}='python3'
 alias ip='ipython'
@@ -76,7 +74,8 @@ alias bu='borgmatic --config /Users/tandav/Documents/spaces/dotfiles/borgmatic-c
 alias bl='borg list /Volumes/SanDisk64GB/borg-backup-repo'
 
 jn () { cd ~ && jupyter notebook }
-jns() { docker run --rm -p 8888:8888 -v $HOME:/home/jovyan jupyter/pyspark-notebook }
+# jns() { docker run --rm -p 8888:8888 -v $HOME:/home/jovyan jupyter/pyspark-notebook }
+jns() { docker run --rm -p 8888:8888 -v $HOME:/home/jovyan -e GRANT_SUDO=yes --user root jupyter/pyspark-notebook }
 
 
 lt() {
@@ -124,28 +123,30 @@ alias wm='open https://www.youtube.com/playlist\?list\=PL4qBE1-4ZNC0Wam6r8MaZoUf
 alias dnb="open 'https://www.youtube.com/watch?v=OiuKZAkYqyE&index=4&list=PL4qBE1-4ZNC25bKGMcMICdIf9C2KqEcNv'"
 alias gist='open https://gist.github.com/tandav'
 alias yt='open https://www.youtube.com'
-alias gh='open "https://github.com/tandav?tab=repositories"'
+# alias gh='open "https://github.com/tandav?tab=repositories"'
+alias gh='chrome --app="https://github.com/tandav?tab=repositories" --kiosk'
 
 alias tmp='s /Users/tandav/Documents/GoogleDrive/entrypoint/projects/tmp_notes'
+
 
 tm() {
   ssh $1 -t 'tmux -CC a -t my'
 }
 
 ytv() {
-    youtube-dl --no-playlist --output "/Users/tandav/Desktop/%(title)s.%(ext)s" $1
+    youtube-dl --no-playlist -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' --output "$HOME/Desktop/%(title)s.%(ext)s" $1
 }
 
 yta() {
-    youtube-dl --no-playlist -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --output "/Users/tandav/Desktop/%(title)s.%(ext)s" $1
+    youtube-dl --no-playlist -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --output "$HOME/Desktop/%(title)s.%(ext)s" $1
 }
 
 vid_and_audio() {
-    ffmpeg -i $1 -i $2 -c:v copy -map 0:v:0 -map 1:a:0 -shortest out.mp4
-}
+    ffmpeg -i $1 -i $2 -c:v copy -map 0:v:0 -map 1:a:0 -shortest ~/Desktop/out.mp4
+}   
 
 vid_for_twitter() {
-    ffmpeg -i $1 -c:v libx264 -crf 18 -c:a copy out.mp4
+    ffmpeg -i $1 -c:v libx264 -crf 18 -c:a copy ~/Desktop/out.mp4
     # If you get height not divisible by 2 (720x405) then add the crop filter:
     # ffmpeg -i $1 -c:v libx264 -crf 18 -vf crop=iw:ih-1 -c:a copy out.mp4
 }
@@ -177,6 +178,12 @@ bs() {
     open http://http://130.61.63.6:5000/
 }
 
+
+
 # Show local ip:
-myip() { ifconfig en0 | grep inet }
+myip() { ifconfig en0 | grep -w inet | cut -d ' ' -f 2 }
+
+
+
+
 

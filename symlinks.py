@@ -12,25 +12,22 @@ import subprocess
 
 def co(cmd, shell=False): print(subprocess.check_output(cmd, shell=shell, text=True))
 
-def symlink_override(symlink, original):
-    symlink = Path(symlink)
-    if symlink.exists():
+def make_symlink(symlink: Path, original: Path, overwrite=True) -> None:
+    if overwrite and symlink.is_symlink():
         symlink.unlink()
-    symlink.symlink_to(original)
+    symlink.symlink_to(original) # raises FileExistsError if overwrite=False
     print(symlink, '->', original)
 
-DOTFILES_DIR = os.environ['DOTFILES_DIR']
-
+DOTFILES_DIR = Path(__file__).parent.absolute()
 
 # ================================================================
 # various symlinks
 
 
-symlink_override(Path.home() / '.zshrc'           , f'{DOTFILES_DIR}/.zshrc')
-symlink_override(Path.home() / '.gitconfig'       , f'{DOTFILES_DIR}/.gitconfig')
-symlink_override(Path.home() / '.gitignore_global', f'{DOTFILES_DIR}/.gitignore_global')
-symlink_override(Path.home() / '.vimrc'           , f'{DOTFILES_DIR}/.zshrc')
-symlink_override(Path.home() / 'Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings', f'{DOTFILES_DIR}/Preferences.sublime-settings')
+make_symlink(Path.home() / '.zshrc'           , DOTFILES_DIR / '.zshrc')
+make_symlink(Path.home() / '.gitconfig'       , DOTFILES_DIR / '.gitconfig')
+make_symlink(Path.home() / '.gitignore_global', DOTFILES_DIR / '.gitignore_global')
+make_symlink(Path.home() / 'Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings', DOTFILES_DIR / 'Preferences.sublime-settings')
 
 
 # ================================================================
@@ -38,22 +35,25 @@ symlink_override(Path.home() / 'Library/Application Support/Sublime Text 3/Packa
 
 
 agents = [
-    # f'{os.environ["pj"]}/battery_stats/com.tandav.battery_stats.plist',
-    f'{os.environ["pj"]}/noise_level/com.tandav.noise_level.plist',
+    f'{os.environ["pj"]}/battery_stats/com.tandav.battery_stats.plist',
+    # f'{os.environ["pj"]}/noise_level/com.tandav.noise_level.plist',
 ]
 
 def reload_agent(agent):
     agent = Path(agent)
     symlink = Path.home() / 'Library/LaunchAgents' / agent.name
-    symlink_override(symlink, agent)
+    make_symlink(symlink, agent)
     co(('launchctl', 'unload', '-w', str(agent)))
     co(('launchctl', 'load', '-w', str(agent)))
 
 
 for agent in agents:
     reload_agent(agent)
-co('launchctl list | grep tandav', shell=True)
-
+# co('launchctl list | grep tandav', shell=True)
+cmd = 'launchctl', 'list'
+_ = subprocess.check_output(cmd, text=True).splitlines()
+_ = [x for x in _ if 'tandav' in x]
+print('\n'.join(_))
 
 # ================================================================
 # Quick Actions are workflows that may be added to Finder, Touch Bar and the Services menu. 

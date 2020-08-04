@@ -3,7 +3,7 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=/usr/local/opt/python@3.8/bin:$PATH
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export DOTFILES_DIR=~/Documents/GoogleDrive/entrypoint/projects/dotfiles
+export DOTFILES_DIR=~/GoogleDrive/projects/dotfiles
 export PATH=$DOTFILES_DIR/bin:$PATH
 export PYTHONPATH=$DOTFILES_DIR/bin
 
