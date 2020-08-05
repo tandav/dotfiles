@@ -31,6 +31,14 @@ export pj=~/GoogleDrive/projects
 export kn=~/GoogleDrive/knowledge
 export sc=~/GoogleDrive/knowledge/buffer/screens
 
+lf() {
+    find $gd -type f | grep -v "^${gd}/files" > $gd/files/files.txt
+    git --git-dir $gd/files/.git --work-tree $gd/files diff --exit-code || 
+    git --git-dir $gd/files/.git --work-tree $gd/files add files.txt && 
+    git --git-dir $gd/files/.git --work-tree $gd/files commit -m '-' && 
+    git --git-dir $gd/files/.git --work-tree $gd/files push && 
+    echo 'Done'
+}
 
 recent() { l | head -20 }
 
@@ -43,7 +51,7 @@ alias sz='source ~/.zshrc'
 # export LSCOLORS="Gxfxcxdxbxegedabagacad" # maybe colors are better without that line
 # Take advantage of $LS_COLORS for completion as well.
 
-alias sm='python ~/Documents/GoogleDrive/entrypoint/projects/gists/send_email.py'
+alias sm='python ~/GoogleDrive/entrypoint/projects/gists/send_email.py'
 
 # c means content, f means files
 # todo: add fallback: grep -ir 'search query' . , find .
@@ -126,7 +134,7 @@ alias yt='open https://www.youtube.com'
 # alias gh='open "https://github.com/tandav?tab=repositories"'
 alias gh='chrome --app="https://github.com/tandav?tab=repositories" --kiosk'
 
-alias tmp='s /Users/tandav/Documents/GoogleDrive/entrypoint/projects/tmp_notes'
+alias tmp='s /Users/tandav/GoogleDrive/projects/tmp_notes'
 
 
 tm() {
