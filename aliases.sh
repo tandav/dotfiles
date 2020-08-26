@@ -33,12 +33,15 @@ export sc=~/GoogleDrive/knowledge/buffer/screens
 
 lf() {
     find $gd -type f | grep -v "^${gd}/files" > $gd/files/files.txt
-    git --git-dir $gd/files/.git --work-tree $gd/files diff --exit-code || 
-    git --git-dir $gd/files/.git --work-tree $gd/files add files.txt && 
-    git --git-dir $gd/files/.git --work-tree $gd/files commit -m '-' && 
-    git --git-dir $gd/files/.git --work-tree $gd/files push && 
+    git -C $gd/files diff --unified=0 --exit-code || 
+    git -C $gd/files add files.txt && 
+    git -C $gd/files commit -m '-' && 
+    git -C $gd/files push && 
     echo 'Done'
 }
+
+
+gitgrep() { git grep $1 $(git rev-list --all) }
 
 recent() { l | head -20 }
 
@@ -62,7 +65,7 @@ alias rgf='rg . --files | fzf'
 
 hpf() { rsync -azvhP ~/Documents/spaces/contract-job/ssh-vpn/code.sh 'or1:code.sh' }
 
-uc() { python ~/Documents/GoogleDrive/entrypoint/projects/gists/clean_url.py $1 | tee /dev/tty | pbcopy }
+uc() { python ~/GoogleDrive/projects/gists/clean_url.py $1 | tee /dev/tty | pbcopy }
 
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 alias pc='open -a PyCharm\ CE'

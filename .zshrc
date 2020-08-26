@@ -67,19 +67,10 @@ bindkey '^x^e' edit-command-line
 bindkey '^[[Z' reverse-menu-complete # enable shift tab backwards navigation
 
 
-EDITOR='subl -nw'
-
+#export EDITOR='subl -nw'
+export EDITOR='vim'
 setopt auto_cd
 
 # -----------------------------------------------------------------------------------------------
+bindkey -v # vim key bindings
 
-# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# source /Users/tandav/Library/Preferences/org.dystroy.broot/launcher/bash/br
-
-
-# for pyspark
-# export PYSPARK_PYTHON='/usr/local/bin/python3'
-# export PYSPARK_DRIVER_PYTHON='/usr/local/bin/python3'
-# export JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home' # Java 10 is problematic
-# export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES

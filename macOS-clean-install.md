@@ -110,9 +110,11 @@ brew install tldr
 - install macOS Services/workflows, make shortcuts for 'em (⌘⇧L to create symlink, ⌘E for eval bash script)
 - setup symlinks for dotfiles (`.zshrc`, `.gitconfig`, `.gitignore_global`)
 - change font for jupyter: `~/.jupyter/custom/custom.css` 
+
 ```css
-.CodeMirror pre, .output_text pre, bdi {
-    font-family: Menlo; font-size: 9pt;
+.CodeMirror-lines, .output_text pre, bdi {
+    font-family: 'SF Mono';
+    font-size: 9pt;
 }
 
 h1, h2, h3, h4, h5, h6 {
