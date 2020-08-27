@@ -111,8 +111,9 @@ sn() {
 
 # also s -a or --add: Add folders to the current window
 # or s folder1 folder2: open many folders / files in one window
-alias rc='subl ~/.zshrc'
-alias al='subl $DOTFILES_DIR/aliases.sh'
+#alias rc='subl ~/.zshrc'
+alias rc='$EDITOR ~/.zshrc'
+alias al='$EDITOR $DOTFILES_DIR/aliases.sh'
 
 alias ddd='python3  ~/Documents/spaces/brain-tools/finder-pro/dashboard/dashboard.py'
 
@@ -137,7 +138,7 @@ alias yt='open https://www.youtube.com'
 # alias gh='open "https://github.com/tandav?tab=repositories"'
 alias gh='chrome --app="https://github.com/tandav?tab=repositories" --kiosk'
 
-alias tmp='s /Users/tandav/GoogleDrive/projects/tmp_notes'
+alias tmp='$EDITOR /Users/tandav/GoogleDrive/projects/tmp_notes'
 
 
 tm() {
