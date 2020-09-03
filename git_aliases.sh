@@ -14,35 +14,9 @@ alias gbl='git blame -b -w'
 alias gc='git commit -v'
 alias gc!='git commit -v --amend'
 alias gcn!='git commit -v --no-edit --amend'
-alias gca='git commit -v -a'
-alias gca!='git commit -v -a --amend'
-alias gcan!='git commit -v -a --no-edit --amend'
-alias gcans!='git commit -v -a -s --no-edit --amend'
-alias gcam='git commit -a -m'
-alias gcsm='git commit -s -m'
-alias gcb='git checkout -b'
-alias gcf='git config --list'
 alias gcl='git clone --recursive'
-alias gclean='git clean -fd'
-alias gpristine='git reset --hard && git clean -dfx'
-alias gcm='git checkout master'
-alias gcd='git checkout develop'
-alias gcmsg='git commit -m'
 alias gco='git checkout'
-alias gcount='git shortlog -sn'
 
-alias gdca='git diff --cached'
-alias gdcw='git diff --cached --word-diff'
-alias gdct='git describe --tags `git rev-list --tags --max-count=1`'
-alias gdt='git diff-tree --no-commit-id --name-only -r'
-alias gdw='git diff --word-diff'
-
-# compdef _git gdv=git-diff
-
-
-
-
-alias gl='git pull'
 alias glg='git log --stat'
 alias glgp='git log --stat -p'
 alias glgg='git log --graph'
@@ -118,3 +92,7 @@ alias glum='git pull upstream master'
 
 alias gwch='git whatchanged -p --abbrev-commit --pretty=medium'
 alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify -m "--wip-- [skip ci]"'
+
+# my new
+alias gitdel='git log --diff-filter=D --summary'
+
