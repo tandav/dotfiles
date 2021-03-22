@@ -1,22 +1,22 @@
 #!/usr/bin/env python3
 
-from pathlib import Path
+import pathlib
 import random
-import plistlib
+import itertools
+import re
+import operator
 import webbrowser
-import sys
+from pipe import *
 
-if len(sys.argv) == 2:
-    music = Path(sys.argv[1])
-else:
-    music = Path('/Users/tandav/Documents/GoogleDrive/entrypoint/knowledge/music')
-
-print(music.absolute())
-
-tracks = list(music.rglob('*.webloc'))
-
-track = random.choice(tracks)
-print(track.relative_to(music))
-with open(track, 'rb') as fd:
-    url = plistlib.load(fd)['URL']
-webbrowser.open(url)
+(
+    pathlib.Path.home() / 'GoogleDrive/knowledge/music'
+    | Pipe(lambda x: x.rglob('*.md'))
+    | FlatMap(lambda p: open(p).read().splitlines())
+    | Map(lambda l: re.findall(r'\[(.+)\]\((.+)\)', l))
+    | Filter(bool)
+    | Map(operator.itemgetter(0))
+    | Map(operator.itemgetter(1))
+    | Pipe(list)
+    | Pipe(random.choice)
+    | Pipe(webbrowser.open)
+)

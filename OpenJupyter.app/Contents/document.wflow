@@ -59,7 +59,7 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string>/usr/local/opt/python@3.8/bin/python3 /Users/tandav/GoogleDrive/projects/dotfiles/jupyter_opener.py $1</string>
+					<string>/usr/local/opt/python@3.9/bin/python3 /Users/tandav/GoogleDrive/projects/dotfiles/jupyter_opener.py $1</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>

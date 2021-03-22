@@ -28,11 +28,11 @@ else:
     _ = _.decode('utf-8', errors='ignore')
     _ = _.splitlines()
     
-_ = map(str.lower, _)
+# _ = map(str.lower, _)
 
 seen = set()
 for _ in _:
-    close = query in _ or distance(_, query, 0.75) > 0.75
+    close = query in _.lower() or distance(_.lower(), query, 0.75) > 0.75
     not_seen = _ not in seen
     if close and not_seen:
         print(_)

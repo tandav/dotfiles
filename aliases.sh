@@ -4,7 +4,7 @@ alias md='mkdir -p'
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias s='subl'
 alias o='open'
-
+#alias vim='nvim'
 
 # d() {
 #     [ -z "$1" ] && cat $DOTFILES_DIR/cd_mapping.csv && return 0
@@ -16,7 +16,7 @@ alias o='open'
 #     [ "$2" = 'o' ] && o .
 # }
 
-
+alias crep="grep --color"
 export dt=~/Desktop
 export dw=~/Downloads
 export gd=~/GoogleDrive
@@ -31,8 +31,15 @@ export pj=~/GoogleDrive/projects
 export kn=~/GoogleDrive/knowledge
 export sc=~/GoogleDrive/knowledge/buffer/screens
 
+alias tree='s ~/GoogleDrive/meta/tree.txt'
+
 lf() {
-    find $gd -type f | grep -v "^${gd}/files" > $gd/files/files.txt
+    find $gd -type f | 
+    grep -v "^${gd}/files" |
+    grep -v .idea |
+    grep -v .ipynb_checkpoints |
+    grep -v .git |
+    grep -v __pycache__ > $gd/files/files.txt
     git -C $gd/files diff --unified=0 --exit-code || 
     git -C $gd/files add files.txt && 
     git -C $gd/files commit -m '-' && 
@@ -49,6 +56,10 @@ alias {p,python}='python3'
 alias ip='ipython'
 alias pip='python -m pip'
 
+alias p37='/usr/local/opt/python@3.7/bin/python3'
+alias p38='/usr/local/opt/python@3.8/bin/python3'
+alias p39='/usr/local/opt/python@3.9/bin/python3'
+
 alias sz='source ~/.zshrc'
 
 # export LSCOLORS="Gxfxcxdxbxegedabagacad" # maybe colors are better without that line
@@ -58,8 +69,8 @@ alias sm='python ~/GoogleDrive/entrypoint/projects/gists/send_email.py'
 
 # c means content, f means files
 # todo: add fallback: grep -ir 'search query' . , find .
-alias rgc='rg . | fzf'
-alias rgf='rg . --files | fzf'
+rgc() { rg --hidden --glob '!.git' . | fzf }
+rgf() { rg --hidden --glob '!.git' . --files | fzf }
 
 
 
@@ -84,7 +95,7 @@ alias spark='echo "from pyspark.sql import SparkSession\nspark = SparkSession.bu
 alias bu='borgmatic --config /Users/tandav/Documents/spaces/dotfiles/borgmatic-config.yaml --verbosity 2'
 alias bl='borg list /Volumes/SanDisk64GB/borg-backup-repo'
 
-jn () { cd ~ && jupyter notebook }
+jn () { cd ~ && p -m jupyter notebook }
 # jns() { docker run --rm -p 8888:8888 -v $HOME:/home/jovyan jupyter/pyspark-notebook }
 jns() { docker run --rm -p 8888:8888 -v $HOME:/home/jovyan -e GRANT_SUDO=yes --user root jupyter/pyspark-notebook }
 
@@ -144,6 +155,8 @@ alias tmp='$EDITOR /Users/tandav/GoogleDrive/projects/tmp_notes'
 tm() {
   ssh $1 -t 'tmux -CC a -t my'
 }
+
+alias youtube-dl='p -m youtube_dl'
 
 ytv() {
     youtube-dl --no-playlist -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' --output "$HOME/Desktop/%(title)s.%(ext)s" $1

@@ -64,6 +64,7 @@
 9. turn off screen lock (lock manually with ⌘⌃Q)
 9. use plain text mode by default in `TextEdit`
 9. iTunes/Preferences/Advanced/uncheck `Copy files to iTunes Media folder when adding to library`
+9. Key Repeat speed `fastest`, and delay until repeat `shortest`
 </details>
 
 <details>

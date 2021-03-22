@@ -1,15 +1,19 @@
 # zmodload zsh/zprof # run zprof to see what slows down zsh startup
 # export TERM="xterm-256color"
 # If you come from bash you might have to change your $PATH.
-export PATH=/usr/local/opt/python@3.8/bin:$PATH
+export PATH=/usr/local/opt/python@3.9/bin:$PATH
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export DOTFILES_DIR=~/GoogleDrive/projects/dotfiles
 export PATH=$DOTFILES_DIR/bin:$PATH
-export PYTHONPATH=$DOTFILES_DIR/bin
+export PYTHONPATH=$DOTFILES_DIR/bin:$PYTHONPATH
 
-
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=
 source "$DOTFILES_DIR/git_aliases.sh"
 source "$DOTFILES_DIR/aliases.sh"
+
+export PYTHONPATH=$pj/pipe21:$PYTHONPATH
 
 # -----------------------------------------------------------------------------------------------
 
@@ -67,10 +71,12 @@ bindkey '^x^e' edit-command-line
 bindkey '^[[Z' reverse-menu-complete # enable shift tab backwards navigation
 
 
-#export EDITOR='subl -nw'
-export EDITOR='vim'
+# export EDITOR="subl -nw"
+export EDITOR="subl"
+#export EDITOR='vim'
+#export EDITOR='nvim'
 setopt auto_cd
 
 # -----------------------------------------------------------------------------------------------
-bindkey -v # vim key bindings
+# bindkey -v # vim key bindings
 
