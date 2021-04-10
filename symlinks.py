@@ -38,6 +38,7 @@ make_symlink(Path.home() / 'Library/Application Support/Sublime Text 3/Packages/
 
 agents = [
     f'{os.environ["pj"]}/battery_stats/com.tandav.battery_stats.plist',
+    f'{os.environ["pj"]}/n_tabs/com.tandav.n_tabs.plist',
     # f'{os.environ["pj"]}/noise_level/com.tandav.noise_level.plist',
 ]
 

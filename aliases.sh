@@ -74,7 +74,7 @@ rgf() { rg --hidden --glob '!.git' . --files | fzf }
 
 
 
-hpf() { rsync -azvhP ~/Documents/spaces/contract-job/ssh-vpn/code.sh 'or1:code.sh' }
+hpf() { rsync -azvhP ~/GoogleDrive/contract-job/ssh-vpn/code.sh 'or1:code.sh' }
 
 uc() { python ~/GoogleDrive/projects/gists/clean_url.py $1 | tee /dev/tty | pbcopy }
 
@@ -117,6 +117,10 @@ sn() {
     open http://localhost:4000/space/root
 }
 
+killport() {
+    kill $(lsof -ti:$1)
+}
+
 
 
 
@@ -153,7 +157,7 @@ alias tmp='$EDITOR /Users/tandav/GoogleDrive/projects/tmp_notes'
 
 
 tm() {
-  ssh $1 -t 'tmux -CC a -t my'
+  ssh -vvv $1 -t 'tmux -CC a -t my'
 }
 
 alias youtube-dl='p -m youtube_dl'
