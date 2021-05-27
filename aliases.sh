@@ -32,6 +32,8 @@ export kn=~/GoogleDrive/knowledge
 export sc=~/GoogleDrive/knowledge/buffer/screens
 
 alias tree='s ~/GoogleDrive/meta/tree.txt'
+alias mt="open $meta/meta.key"
+
 
 lf() {
     find $gd -type f | 
@@ -79,10 +81,10 @@ hpf() { rsync -azvhP ~/GoogleDrive/contract-job/ssh-vpn/code.sh 'or1:code.sh' }
 uc() { python ~/GoogleDrive/projects/gists/clean_url.py $1 | tee /dev/tty | pbcopy }
 
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
-alias pc='open -a PyCharm\ CE'
+alias pc='open -a "PyCharm CE"'
 
 
-alias mtop='open "/System/Applications/Utilities/Activity Monitor.app"'
+alias mtop='open -a "Activity Monitor.app"'
 alias docker_size='du -h /Users/tandav/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/Docker.qcow2'
 alias yts='echo "document.getElementsByTagName(\"video\")[0].playbackRate = 3" | pbcopy'
 
@@ -151,10 +153,11 @@ alias dnb="open 'https://www.youtube.com/watch?v=OiuKZAkYqyE&index=4&list=PL4qBE
 alias gist='open https://gist.github.com/tandav'
 alias yt='open https://www.youtube.com'
 # alias gh='open "https://github.com/tandav?tab=repositories"'
-alias gh='chrome --app="https://github.com/tandav?tab=repositories" --kiosk'
+alias gh='chrome --app="https://github.com/tandav?tab=repositories"'
 
 alias tmp='$EDITOR /Users/tandav/GoogleDrive/projects/tmp_notes'
 
+# alias ping='ping -c 5'
 
 tm() {
   ssh -vvv $1 -t 'tmux -CC a -t my'
@@ -212,7 +215,16 @@ bs() {
 # Show local ip:
 myip() { ifconfig en0 | grep -w inet | cut -d ' ' -f 2 }
 
+# jump into container
+dsh() { docker exec -it $1 /bin/bash }
 
 
-
-
+# change directory (in terminal) to the current Finder directory
+function cdf() {
+    target=`osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)'`
+    if [ "$target" != "" ]; then
+        cd "$target"; pwd
+    else
+        echo 'No Finder window found' >&2
+    fi
+}
