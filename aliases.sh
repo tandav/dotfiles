@@ -16,42 +16,38 @@ alias ls='ls -G'
 alias l='ls -hAlt'
 alias md='mkdir -p'
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
-alias s='subl'
-alias o='open'
-alias {p,python}='python3'
-alias ip='ipython'
+alias s=subl
+alias o=open
+alias {p,python}=python3
+alias ip=ipython
 alias pip='python -m pip'
 alias sz='source ~/.zshrc'
-alias sm='python ~/GoogleDrive/entrypoint/projects/gists/send_email.py'
+alias sm="python $gists/send_email.py"
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 alias pc='open -a "PyCharm CE"'
 alias mtop='open -a "Activity Monitor.app"'
-alias docker_size='du -h /Users/tandav/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/Docker.qcow2'
-alias yts='echo "document.getElementsByTagName(\"video\")[0].playbackRate = 3" | pbcopy'
 alias np='echo "import numpy as np\nimport matplotlib.pyplot as plt" | pbcopy'
 alias spark='echo "from pyspark.sql import SparkSession\nspark = SparkSession.builder.enableHiveSupport().getOrCreate()" | pbcopy'
-alias rc='$EDITOR ~/.zshrc'
-alias al='$EDITOR $DOTFILES_DIR/aliases.sh'
-alias ddd='python3  ~/Documents/spaces/brain-tools/finder-pro/dashboard/dashboard.py'
-alias wm='open https://www.youtube.com/playlist\?list\=PL4qBE1-4ZNC0Wam6r8MaZoUfZ8ektEVYe'
+alias rc="$EDITOR ~/.zshrc"
+alias al="$EDITOR $DOTFILES_DIR/aliases.sh"
+alias ddd="p $ai/brain-tools/finder-pro/dashboard/dashboard.py"
+alias wm="open 'https://www.youtube.com/playlist?list=PL4qBE1-4ZNC0Wam6r8MaZoUfZ8ektEVYe'"
 alias dnb="open 'https://www.youtube.com/watch?v=OiuKZAkYqyE&index=4&list=PL4qBE1-4ZNC25bKGMcMICdIf9C2KqEcNv'"
-alias gist='open https://gist.github.com/tandav'
 alias gh='chrome --app="https://github.com/tandav?tab=repositories"'
-alias tmp='$EDITOR /Users/tandav/GoogleDrive/projects/tmp_notes'
+alias tmp="$EDITOR $pj/tmp_notes/tmp.md"
 alias youtube-dl='p -m youtube_dl'
-alias tree='$EDITOR ~/GoogleDrive/meta/tree.txt'
+alias tree="$EDITOR $meta/tree.txt"
 alias mt="open $meta/meta.key"
-
 
 
 # c means content, f means files
 # todo: add fallback: grep -ir 'search query' . , find .
-rgc() { rg --hidden --glob '!.git' . | fzf }
+rgc() { rg --hidden --glob '!.git' .         | fzf }
 rgf() { rg --hidden --glob '!.git' . --files | fzf }
 
+recent() { l | head -20 }
 malware() {launchctl list | grep -v com.apple} # thirdparty agents/threads
 gitgrep() { git grep $1 $(git rev-list --all) }
-recent() { l | head -20 }
 jn () { cd ~ && p -m jupyter notebook }
 jns() { docker run --rm -p 8888:8888 -v $HOME:/home/jovyan -e GRANT_SUDO=yes --user root jupyter/pyspark-notebook }
 killport() { kill $(lsof -ti:$1) }
@@ -144,4 +140,5 @@ lf() {
 #     open http://localhost:4000/space/root
 # }
 
+# alias yts='echo "document.getElementsByTagName(\"video\")[0].playbackRate = 3" | pbcopy'
 

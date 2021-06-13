@@ -2,7 +2,6 @@
 
 import pathlib
 import random
-import itertools
 import re
 import operator
 import webbrowser
