@@ -42,6 +42,13 @@ alias mt="open $meta/meta.key"
 
 # c means content, f means files
 # todo: add fallback: grep -ir 'search query' . , find .
+# find files which names that contains `abc` (case-insensitive) 
+# ```shell
+# find . -iname '*abc*'
+# ```
+
+# use any wildcsards you want
+# (`.` is root node, then it searches recursevly)
 rgc() { rg --hidden --glob '!.git' .         | fzf }
 rgf() { rg --hidden --glob '!.git' . --files | fzf }
 
