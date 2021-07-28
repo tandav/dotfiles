@@ -2,7 +2,6 @@ export dt=~/Desktop
 export dw=~/Downloads
 export gd=~/GoogleDrive
 export gists=~/GoogleDrive/projects/gists
-export doc=~/Documents
 export dot=~/GoogleDrive/projects/dotfiles
 export cj=~/GoogleDrive/contract-job
 export meta=~/GoogleDrive/meta
@@ -31,7 +30,8 @@ alias spark='echo "from pyspark.sql import SparkSession\nspark = SparkSession.bu
 alias rc="$EDITOR ~/.zshrc"
 alias al="$EDITOR $DOTFILES_DIR/aliases.sh"
 alias ddd="p $ai/brain-tools/finder-pro/dashboard/dashboard.py"
-alias wm="open 'https://www.youtube.com/playlist?list=PL4qBE1-4ZNC0Wam6r8MaZoUfZ8ektEVYe'"
+# alias wm="open 'https://www.youtube.com/playlist?list=PL4qBE1-4ZNC0Wam6r8MaZoUfZ8ektEVYe'"
+alias wm="open 'https://www.youtube.com/playlist?list=UU45Wdr3wPy1qR2WLUCTsFKg'"
 alias dnb="open 'https://www.youtube.com/watch?v=OiuKZAkYqyE&index=4&list=PL4qBE1-4ZNC25bKGMcMICdIf9C2KqEcNv'"
 alias gh='chrome --app="https://github.com/tandav?tab=repositories"'
 alias tmp="$EDITOR $pj/tmp_notes/tmp.md"
@@ -53,9 +53,9 @@ rgc() { rg --hidden --glob '!.git' .         | fzf }
 rgf() { rg --hidden --glob '!.git' . --files | fzf }
 
 recent() { l | head -20 }
-malware() {launchctl list | grep -v com.apple} # thirdparty agents/threads
+malware() {launchctl list | grep -v com.apple | sort --key=3 } # thirdparty agents/threads
 gitgrep() { git grep $1 $(git rev-list --all) }
-jn () { cd ~ && p -m jupyter notebook }
+jn () { cd ~ && p -m jupyter notebook --ip='*' }
 jns() { docker run --rm -p 8888:8888 -v $HOME:/home/jovyan -e GRANT_SUDO=yes --user root jupyter/pyspark-notebook }
 killport() { kill $(lsof -ti:$1) }
 
