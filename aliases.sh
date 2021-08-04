@@ -115,6 +115,13 @@ lf() {
     echo 'Done'
 }
 
+pserver() {
+    link="http://$(myip):8000"
+    echo "$link"
+    python $gists/send_email.py "$link" # send link to my gmail
+    python -m http.server
+}
+
 # ================================ ARCHIVE ================================
 # alias ping='ping -c 5'
 # hpf() { rsync -azvhP ~/GoogleDrive/contract-job/ssh-vpn/code.sh 'or1:code.sh' }
