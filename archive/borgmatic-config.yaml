@@ -14,7 +14,8 @@ location:
     # identity file or port.
     repositories:
         - /Volumes/SanDisk64GB/borg-backup-repo
-        # - /Volumes/MyPassport/borg-backup-repo
+        - /Volumes/MyPassport/borg-backup-repo
+        # - or2:borg-backup-repo
 
     # Any paths matching these patterns are excluded from backups. Globs and tildes
     # are expanded. See the output of "borg help patterns" for more details.
@@ -24,6 +25,8 @@ location:
         - '*/node_modules'
         - '*/spark-warehouse'
         - '*/.ipynb_checkpoints'
+        - '~/Documents/spaces/contract-job/cluster'
+        - '~/Documents/spaces/contract-job/hp-laptop-fuse'
 
 storage:
     # The standard output of this command is used to unlock the encryption key. Only

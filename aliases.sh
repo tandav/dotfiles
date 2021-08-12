@@ -4,12 +4,12 @@ export gd=~/GoogleDrive
 export gists=~/GoogleDrive/projects/gists
 export dot=~/GoogleDrive/projects/dotfiles
 export cj=~/GoogleDrive/contract-job
-export meta=~/GoogleDrive/meta
+export meta=~/GoogleDrive/knowledge/_meta
 export ai=~/GoogleDrive/play/ai
-export bh=~/GoogleDrive/play/bhairava
+export bh=~/GoogleDrive/projects/bhairava
 export pj=~/GoogleDrive/projects
 export kn=~/GoogleDrive/knowledge
-export sc=~/GoogleDrive/knowledge/buffer/screens
+export sc=~/GoogleDrive/knowledge/_etc/screens
 
 alias ls='ls -G'
 alias l='ls -hAlt'
@@ -51,6 +51,11 @@ alias mt="open $meta/meta.key"
 # (`.` is root node, then it searches recursevly)
 rgc() { rg --hidden --glob '!.git' .         | fzf }
 rgf() { rg --hidden --glob '!.git' . --files | fzf }
+
+# search notes:
+# rg --glob '*.md' search_query . 
+# grep -ir --include="*.md" search_query .
+
 
 recent() { l | head -20 }
 malware() {launchctl list | grep -v com.apple | sort --key=3 } # thirdparty agents/threads
@@ -121,6 +126,8 @@ pserver() {
     python $gists/send_email.py "$link" # send link to my gmail
     python -m http.server
 }
+
+# adb connect 192.168.1.179
 
 # ================================ ARCHIVE ================================
 # alias ping='ping -c 5'

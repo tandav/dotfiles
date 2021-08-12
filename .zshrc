@@ -12,6 +12,7 @@ export PATH=/usr/local/opt/python@3.9/bin:$PATH
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export DOTFILES_DIR=~/GoogleDrive/projects/dotfiles
 export PATH=$DOTFILES_DIR/bin:$PATH
+export PATH="/usr/local/sbin:$PATH" # brew recommendation
 export PYTHONPATH=$DOTFILES_DIR/bin:$PYTHONPATH
 
 export LC_ALL=en_US.UTF-8
