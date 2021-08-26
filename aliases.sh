@@ -1,15 +1,15 @@
 export dt=~/Desktop
 export dw=~/Downloads
 export gd=~/GoogleDrive
-export gists=~/GoogleDrive/projects/gists
-export dot=~/GoogleDrive/projects/dotfiles
-export cj=~/GoogleDrive/contract-job
-export meta=~/GoogleDrive/knowledge/_meta
-export ai=~/GoogleDrive/play/ai
-export bh=~/GoogleDrive/projects/bhairava
-export pj=~/GoogleDrive/projects
-export kn=~/GoogleDrive/knowledge
-export sc=~/GoogleDrive/knowledge/_etc/screens
+export pj=$gd/projects
+export kn=$gd/knowledge
+export gists=$pj/gists
+export dot=$pj/dotfiles
+export cj=$gd/contract-job
+export meta=$kn/_meta
+export ai=$kn/math/ai
+export bh=$pj/bhairava
+export sc=$kn/_etc/screens
 
 alias ls='ls -G'
 alias l='ls -hAlt'
@@ -45,6 +45,7 @@ alias mt="open $meta/meta.key"
 # find files which names that contains `abc` (case-insensitive) 
 # ```shell
 # find . -iname '*abc*'
+# ff() { find . -iname "**$1**" } # ff means find filename
 # ```
 
 # use any wildcsards you want
@@ -128,38 +129,3 @@ pserver() {
 }
 
 # adb connect 192.168.1.179
-
-# ================================ ARCHIVE ================================
-# alias ping='ping -c 5'
-# hpf() { rsync -azvhP ~/GoogleDrive/contract-job/ssh-vpn/code.sh 'or1:code.sh' }
-
-# https://stackoverflow.com/questions/26846738/zsh-history-is-too-short
-# alias hg='history 1 | grep'
-# alias hg='history 1 | fzf'
-
-# alias backup='rsync --info=all4 --delete -arR --exclude="**node_modules**" --exclude="**lib/python**" --files-from=/Users/tandav/GoogleDrive/Notes/etc/backup-dirs.txt ~ /Volumes/MyPassport/backup --log-file=/Volumes/MyPassport/backup/latest-backup.log'
-# alias bu='borgmatic --config /Users/tandav/Documents/spaces/dotfiles/borgmatic-config.yaml --verbosity 2'
-# alias bl='borg list /Volumes/SanDisk64GB/borg-backup-repo'
-# alias ns='osascript ~/Documents/spaces/etc/night_shift/open_night_shift.applescript'
-# d() {
-#     [ -z "$1" ] && cat $DOTFILES_DIR/cd_mapping.csv && return 0
-#     [ "$1" = 's' ] && s $DOTFILES_DIR/cd_mapping.csv && return 0
-#     cd ~
-#     cd "$(grep -w $1 $DOTFILES_DIR/cd_mapping.csv | cut -d ' ' -f 2)"
-#     l
-#     [ "$2" = 's' ] && s .
-#     [ "$2" = 'o' ] && o .
-# }
-
-# sn() {
-#     cd ~/Documents/space-notes
-#     serve -s gui/build -p 4000 & 
-#     FLASK_APP=server.py flask run --port 5001 &
-#     jupyter notebook --no-browser --notebook-dir=~ &
-#     # jupyter lab --no-browser --notebook-dir=~ &
-#     sleep 2
-#     open http://localhost:4000/space/root
-# }
-
-# alias yts='echo "document.getElementsByTagName(\"video\")[0].playbackRate = 3" | pbcopy'
-

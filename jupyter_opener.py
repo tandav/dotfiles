@@ -1,7 +1,4 @@
 import sys
-import subprocess
+import webbrowser
 
-_  = sys.argv[1].split('/Users/tandav')[1]
-_ = 'http://localhost:8888/notebooks' + _
-
-subprocess.run(['open', _])
+webbrowser.open('http://localhost:8888/notebooks' + sys.argv[1].split('/Users/tandav')[1])
