@@ -19,6 +19,7 @@ alias gsb='git status -sb'
 alias gsps='git show --pretty=short --show-signature'
 alias gss='git status -s'
 alias gst='git status'
+alias glstats='git shortlog --summary --numbered --email --all --no-merges' # https://stackoverflow.com/a/9839491/4204843
 
 # my new
 alias gitdel='git log --diff-filter=D --summary'

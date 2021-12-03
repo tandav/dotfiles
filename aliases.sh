@@ -11,34 +11,40 @@ export ai=$kn/math/ai
 export bh=$pj/bhairava
 export sc=$kn/_etc/screens
 
-alias ls='ls -G'
-alias l='ls -hAlt'
+
+# alias ls='ls -G'
+# alias l='ls -hAlt'
+alias vim='nvim'
+alias ls='exa --long --header --git --group-directories-first'
+alias l='exa --long --header --git --group-directories-first --all'
+#alias rm='rm -i'
 alias md='mkdir -p'
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias s=subl
 alias o=open
-alias {p,python}=python3
+alias {p,python}=python3.10
 alias ip=ipython
 alias pip='python -m pip'
 alias sz='source ~/.zshrc'
 alias sm="python $gists/send_email.py"
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
-alias pc='open -a "PyCharm CE"'
+# alias pc='open -a "PyCharm CE"'
+alias pc='open -a PyCharm'
 alias mtop='open -a "Activity Monitor.app"'
 alias np='echo "import numpy as np\nimport matplotlib.pyplot as plt" | pbcopy'
 alias spark='echo "from pyspark.sql import SparkSession\nspark = SparkSession.builder.enableHiveSupport().getOrCreate()" | pbcopy'
 alias rc="$EDITOR ~/.zshrc"
 alias al="$EDITOR $DOTFILES_DIR/aliases.sh"
 alias ddd="p $ai/brain-tools/finder-pro/dashboard/dashboard.py"
-# alias wm="open 'https://www.youtube.com/playlist?list=PL4qBE1-4ZNC0Wam6r8MaZoUfZ8ektEVYe'"
-alias wm="open 'https://www.youtube.com/playlist?list=UU45Wdr3wPy1qR2WLUCTsFKg'"
+alias wm="open 'https://www.youtube.com/playlist?list=PL4qBE1-4ZNC0Wam6r8MaZoUfZ8ektEVYe'"
+# alias wm="open 'https://www.youtube.com/playlist?list=UU45Wdr3wPy1qR2WLUCTsFKg'"
 alias dnb="open 'https://www.youtube.com/watch?v=OiuKZAkYqyE&index=4&list=PL4qBE1-4ZNC25bKGMcMICdIf9C2KqEcNv'"
 alias gh='chrome --app="https://github.com/tandav?tab=repositories"'
 alias tmp="$EDITOR $pj/tmp_notes/tmp.md"
 alias youtube-dl='p -m youtube_dl'
 alias tree="$EDITOR $meta/tree.txt"
 alias mt="open $meta/meta.key"
-
+alias lg=lazygit
 
 # c means content, f means files
 # todo: add fallback: grep -ir 'search query' . , find .
@@ -52,15 +58,17 @@ alias mt="open $meta/meta.key"
 # (`.` is root node, then it searches recursevly)
 rgc() { rg --hidden --glob '!.git' .         | fzf }
 rgf() { rg --hidden --glob '!.git' . --files | fzf }
+rgext() { rg --hidden --glob "*.$1" . | fzf } # search inside jupyter notebooks
 
 # search notes:
 # rg --glob '*.md' search_query . 
 # grep -ir --include="*.md" search_query .
 
 
-recent() { l | head -20 }
+recent() { /bin/ls -hAlt . | head -20 }
 malware() {launchctl list | grep -v com.apple | sort --key=3 } # thirdparty agents/threads
 gitgrep() { git grep $1 $(git rev-list --all) }
+# gitgrep() { git grep $1 $(git rev-list --all) *.py } # specific extension
 jn () { cd ~ && p -m jupyter notebook --ip='*' }
 jns() { docker run --rm -p 8888:8888 -v $HOME:/home/jovyan -e GRANT_SUDO=yes --user root jupyter/pyspark-notebook }
 killport() { kill $(lsof -ti:$1) }
@@ -73,9 +81,11 @@ rt() {
 }
 
 
-jnh() {
+jh() {
     # open -a $DOTFILES_DIR/OpenJupyter.app . 
-    p $DOTFILES_DIR/jupyter_opener.py $PWD
+    # p $DOTFILES_DIR/jupyter_opener.py $PWD
+    # open "http://localhost:8888/notebooks$(echo $PWD | sed "s|$HOME||")" # https://stackoverflow.com/a/23134318/4204843
+    open "http://localhost:8888/notebooks${PWD#$HOME}" # https://stackoverflow.com/a/20615306/4204843
 }
 
 # websites

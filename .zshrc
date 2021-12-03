@@ -8,7 +8,7 @@ export EDITOR="subl"
 #export EDITOR='nvim'
 
 
-export PATH=/usr/local/opt/python@3.9/bin:$PATH
+export PATH=/usr/local/opt/python@3.10/bin:$PATH
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export DOTFILES_DIR=~/GoogleDrive/projects/dotfiles
 export PATH=$DOTFILES_DIR/bin:$PATH
@@ -79,6 +79,7 @@ bindkey '^x^e' edit-command-line
 bindkey '^[[Z' reverse-menu-complete # enable shift tab backwards navigation
 
 setopt auto_cd
+bindkey '^R' history-incremental-search-backward
 
 # -----------------------------------------------------------------------------------------------
 # bindkey -v # vim key bindings
