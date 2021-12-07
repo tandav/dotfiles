@@ -3,12 +3,12 @@
 import macos
 import datetime
 from pathlib import Path
+import os
 
-
-filename = Path.home() / f"Desktop/tabs-{str(datetime.datetime.now()).split('.')[0].replace(':', '-').replace(' ', '_')}.md"
+filename = Path(os.environ['gd']) / f"raw-links/tabs-{str(datetime.datetime.now()).split('.')[0].replace(':', '-').replace(' ', '_')}.md"
 
 with open(filename, 'w') as f:
-    for window in macos.tabs():
+    for window in macos.tabs(browser='Brave Browser'):
         for title, url in window:
             print(f'- [{title}]({url})', file=f)
         print('\n' + '-' * 60 + '\n', file=f)

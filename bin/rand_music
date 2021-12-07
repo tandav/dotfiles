@@ -5,7 +5,7 @@ import random
 import re
 import operator
 import webbrowser
-from pipe import *
+from pipe21 import *
 
 (
     pathlib.Path.home() / 'GoogleDrive/knowledge/music'

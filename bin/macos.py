@@ -38,7 +38,7 @@ def n_tabs(browser='Google Chrome', n_windows=False):
 
 def tabs(browser='Google Chrome'):
     js_code = string.Template('''
-    let browser = Application('Google Chrome')
+    let browser = Application('$browser')
     let tabs = []
     for (let i = 0; i < browser.windows.length; i++) {
         let window = []
