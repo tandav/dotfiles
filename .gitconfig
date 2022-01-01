@@ -1,9 +1,9 @@
 [core]
-    editor = subl -nw
+    # editor = subl -nw
     excludesfile = ~/.gitignore_global
 [user]
     name = Alexander Rodionov
     email = alx1dr@gmail.com
-    signingkey = 1B3BFBDAF8CE4C4D03EA54CCB2C7907DC94DA8F5
+    signingKey = ~/.ssh/github_ed25519
 [commit]
-    gpgsign = true
+    # gpgsign = true

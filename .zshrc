@@ -3,9 +3,9 @@
 # If you come from bash you might have to change your $PATH.
 
 # export EDITOR="subl -nw"
-export EDITOR="subl"
+#export EDITOR="subl"
 #export EDITOR='vim'
-#export EDITOR='nvim'
+export EDITOR='nvim'
 
 
 export PATH=/usr/local/opt/python@3.10/bin:$PATH
@@ -13,6 +13,7 @@ export PATH=/usr/local/opt/python@3.10/bin:$PATH
 export DOTFILES_DIR=~/GoogleDrive/projects/dotfiles
 export PATH=$DOTFILES_DIR/bin:$PATH
 export PATH="/usr/local/sbin:$PATH" # brew recommendation
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
 export PYTHONPATH=$DOTFILES_DIR/bin:$PYTHONPATH
 
 export LC_ALL=en_US.UTF-8
@@ -80,7 +81,36 @@ bindkey '^[[Z' reverse-menu-complete # enable shift tab backwards navigation
 
 setopt auto_cd
 bindkey '^R' history-incremental-search-backward
+bindkey -v # vim key bindings
 
 # -----------------------------------------------------------------------------------------------
-# bindkey -v # vim key bindings
 
+# # >>> conda initialize >>>
+# # !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+#         . "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# # <<< conda initialize <<<
+
+# -----------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+#ulimit -n 4096
+#sudo sysctl -w kern.maxfiles=100000
+#sudo sysctl -w kern.maxfilesperproc=50000
+
+
+export PATH="$HOME/.poetry/bin:$PATH"

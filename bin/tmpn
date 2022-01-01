@@ -20,5 +20,5 @@ with notes.open('a') as f:
     f.write('\n' + '-' * 64 + '\n\n')
     f.write(datetime.datetime.now().strftime('%Y %b %d %H:%M:%S %a') + '\n\n')
 
-subprocess.run(('vim', '+ normal GA', str(notes)))
-#subprocess.run(('subl', f'{notes}:999999999'))
+# subprocess.run(('vim', '+ normal GA', str(notes)))
+subprocess.run(('subl', f'{notes}:999999999'))

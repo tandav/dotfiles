@@ -42,7 +42,6 @@ alias dnb="open 'https://www.youtube.com/watch?v=OiuKZAkYqyE&index=4&list=PL4qBE
 alias gh='chrome --app="https://github.com/tandav?tab=repositories"'
 alias tmp="$EDITOR $pj/tmp_notes/tmp.md"
 alias youtube-dl='p -m youtube_dl'
-alias tree="$EDITOR $meta/tree.txt"
 alias mt="open $meta/meta.key"
 alias lg=lazygit
 
@@ -51,8 +50,9 @@ alias lg=lazygit
 # find files which names that contains `abc` (case-insensitive) 
 # ```shell
 # find . -iname '*abc*'
-# ff() { find . -iname "**$1**" } # ff means find filename
 # ```
+
+ff() { find . -iname "**$1**" } # ff means find filename
 
 # use any wildcsards you want
 # (`.` is root node, then it searches recursevly)

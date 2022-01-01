@@ -16,7 +16,8 @@ set hlsearch
 set encoding=utf-8
 set hlsearch
 set incsearch
-set mouse=a
+set clipboard=unnamedplus
+"set mouse=a
 set nowrap
 set sw=4
 set tabstop=4
@@ -42,3 +43,4 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+nmap ; :

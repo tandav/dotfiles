@@ -5,3 +5,5 @@
 node_modules
 notes
 .idea
+.pytest_cache
+.hypothesis
