@@ -3,7 +3,7 @@
     excludesfile = ~/.gitignore_global
 [user]
     name = Alexander Rodionov
-    email = alx1dr@gmail.com
+    email = tandav@tandav.me 
     signingKey = ~/.ssh/github_ed25519
 [commit]
     # gpgsign = true

@@ -9,7 +9,7 @@ import subprocess
 filename = Path(os.environ['gd']) / f"raw-links/tabs-{str(datetime.datetime.now()).split('.')[0].replace(':', '-').replace(' ', '_')}.md"
 
 with open(filename, 'w') as f:
-    for window in macos.tabs(browser='Brave Browser'):
+    for window in macos.tabs(browser=os.environ['BROWSER']):
         for title, url in window:
             print(f'- [{title}]({url})', file=f)
         print('\n' + '-' * 60 + '\n', file=f)

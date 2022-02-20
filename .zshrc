@@ -6,6 +6,7 @@
 #export EDITOR="subl"
 #export EDITOR='vim'
 export EDITOR='nvim'
+export BROWSER='Chromium' # Brave Browser, Google Chrome. If change, change also in $pj/n_tabs/com.tandav.n_tabs.plist
 
 
 export PATH=/usr/local/opt/python@3.10/bin:$PATH

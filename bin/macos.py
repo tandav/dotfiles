@@ -39,19 +39,27 @@ def n_tabs(browser='Google Chrome', n_windows=False):
 def tabs(browser='Google Chrome'):
     js_code = string.Template('''
     let browser = Application('$browser')
-    let tabs = []
-    for (let i = 0; i < browser.windows.length; i++) {
-        let window = []
-        for (let j = 0; j < browser.windows[i].tabs.length; j++) {
-            let tab_name = browser.windows[i].tabs[j].name()
-            let tab_url  = browser.windows[i].tabs[j].url()
-            window.push([tab_name, tab_url])
+    if (browser.running()) {
+        let tabs = []
+        for (let i = 0; i < browser.windows.length; i++) {
+            let window = []
+            for (let j = 0; j < browser.windows[i].tabs.length; j++) {
+                let tab_name = browser.windows[i].tabs[j].name()
+                let tab_url  = browser.windows[i].tabs[j].url()
+                window.push([tab_name, tab_url])
+            }
+            tabs.push(window)
         }
-        tabs.push(window)
+        out = JSON.stringify(tabs)
+    } else {
+        out = "application is not running"
     }
-    out = JSON.stringify(tabs)
     ''').substitute(browser=browser)
     
     cmd = 'osascript', '-l', 'JavaScript', '-e', js_code
-    tabs = json.loads(subprocess.check_output(cmd, text=True))
+    out = subprocess.check_output(cmd, text=True).strip()
+    if out == 'application is not running':
+        print(browser, out)
+        return []
+    tabs = json.loads(out)
     return tabs
