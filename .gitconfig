@@ -4,6 +4,14 @@
 [user]
     name = Alexander Rodionov
     email = tandav@tandav.me 
-    signingKey = ~/.ssh/github_ed25519
+    signingKey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMQVZOLIDfzKcHKFs7/+gTQJKaWym+israuy0eQGqX1i tandav@mbp16.local
 [commit]
-    # gpgsign = true
+    #gpgsign = true
+[gpg]
+  format = ssh
+[gpg "ssh"]
+  allowedSignersFile = ~/.ssh/allowed_signers
+  # echo "tandav@tandav.me ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMQVZOLIDfzKcHKFs7/+gTQJKaWym+israuy0eQGqX1i" > ~/.ssh/allowed_signers
+  # echo "tandav@tandav.me ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMQVZOLIDfzKcHKFs7/+gTQJKaWym+israuy0eQGqX1i" > ~/.ssh/authorized_signatures
+
+# https://calebhearth.com/sign-git-with-ssh

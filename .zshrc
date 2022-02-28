@@ -1,29 +1,49 @@
-# zmodload zsh/zprof # run zprof to see what slows down zsh startup
-# export TERM="xterm-256color"
-# If you come from bash you might have to change your $PATH.
+export dt=~/Desktop
+export dw=~/Downloads
+export gd=~/GoogleDrive
+export pj=$gd/projects
+export kn=$gd/knowledge
+export gists=$pj/gists
+export dot=$pj/dotfiles
+export cj=$gd/contract-job
+export meta=$kn/_meta
+export ai=$kn/math/ai
+export bh=$pj/bhairava
+export sc=$kn/_etc/screens
 
 # export EDITOR="subl -nw"
 #export EDITOR="subl"
 #export EDITOR='vim'
 export EDITOR='nvim'
-export BROWSER='Chromium' # Brave Browser, Google Chrome. If change, change also in $pj/n_tabs/com.tandav.n_tabs.plist
+export BROWSER='Safari' # Chromium,  Brave Browser, Google Chrome. If change, change also in $pj/n_tabs/com.tandav.n_tabs.plist
 
-
+export PATH=/usr/local/opt/python@3.7/bin:$PATH
+export PATH=/usr/local/opt/python@3.8/bin:$PATH
+export PATH=/usr/local/opt/python@3.9/bin:$PATH
 export PATH=/usr/local/opt/python@3.10/bin:$PATH
+export PATH="/Users/tandav/Library/Python/3.10/bin:$PATH"
+export PATH=/usr/local/opt/python@3.10/Frameworks/Python.framework/Versions/3.10/bin:$PATH
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export DOTFILES_DIR=~/GoogleDrive/projects/dotfiles
-export PATH=$DOTFILES_DIR/bin:$PATH
+
+# export DOTFILES_DIR=~/GoogleDrive/projects/dotfiles
+export PATH=$dot/bin:$PATH
 export PATH="/usr/local/sbin:$PATH" # brew recommendation
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
-export PYTHONPATH=$DOTFILES_DIR/bin:$PYTHONPATH
+
+export PYTHONPATH=$dot/bin:$PYTHONPATH
+export PYTHONBREAKPOINT=ipdb.set_trace
+
+# coreutils: macOS -> gnu
+export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=
-source "$DOTFILES_DIR/git_aliases.sh"
-source "$DOTFILES_DIR/aliases.sh"
 
-export PYTHONPATH=$pj/pipe21:$PYTHONPATH
+source "$dot/git_aliases.sh"
+source "$dot/aliases.sh"
+
 
 # -----------------------------------------------------------------------------------------------
 
@@ -82,31 +102,13 @@ bindkey '^[[Z' reverse-menu-complete # enable shift tab backwards navigation
 
 setopt auto_cd
 bindkey '^R' history-incremental-search-backward
-bindkey -v # vim key bindings
+#bindkey -v # vim key bindings
 
-# -----------------------------------------------------------------------------------------------
-
-# # >>> conda initialize >>>
-# # !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-#         . "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# # <<< conda initialize <<<
-
-# -----------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------
 
 
-
-
-
+export PKG_CONFIG_PATH="/usr/local/opt/openssl@3/lib/pkgconfig"  
+export PATH="/usr/local/opt/openssl@3/bin:$PATH"
 
 
 #ulimit -n 4096
@@ -114,4 +116,7 @@ bindkey -v # vim key bindings
 #sudo sysctl -w kern.maxfilesperproc=50000
 
 
-export PATH="$HOME/.poetry/bin:$PATH"
+#export PATH="$HOME/.poetry/bin:$PATH"
+
+
+
