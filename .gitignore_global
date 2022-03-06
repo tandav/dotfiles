@@ -9,4 +9,4 @@ notes
 .hypothesis
 .venv
 .coverage
-
+.*swp

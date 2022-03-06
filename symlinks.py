@@ -29,6 +29,7 @@ make_symlink(Path.home() / '.gitconfig'       , DOTFILES_DIR / '.gitconfig')
 make_symlink(Path.home() / '.gitignore_global', DOTFILES_DIR / '.gitignore_global')
 make_symlink(Path.home() / '.vimrc', DOTFILES_DIR / '.vimrc')
 make_symlink(Path.home() / '.tmux.conf', DOTFILES_DIR / '.tmux.conf')
+make_symlink(Path.home() / '.config/ranger', DOTFILES_DIR / 'ranger')
 make_symlink(Path.home() / 'Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings', DOTFILES_DIR / 'Preferences.sublime-settings')
 make_symlink(Path.home() / 'Library/Application Support/Sublime Text 3/Packages/User/horisontal-line.sublime-snippet', DOTFILES_DIR / 'Snippets/horisontal-line.sublime-snippet')
 
