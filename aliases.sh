@@ -16,13 +16,14 @@ alias ip=ipython
 alias pip='python -m pip'
 alias sz='source ~/.zshrc'
 alias sm="python $gists/send_email.py"
-alias pc='open -a PyCharm' # "PyCharm CE"
+#alias pc='open -a "PyCharm CE"'
+alias pc='open -a PyCharm'
 alias rc="$EDITOR ~/.zshrc"
 alias al="$EDITOR $dot/aliases.sh"
 alias ddd="p $ai/brain-tools/finder-pro/dashboard/dashboard.py"
 alias wm="open 'https://www.youtube.com/playlist?list=PL4qBE1-4ZNC0Wam6r8MaZoUfZ8ektEVYe'"
 alias dnb="open 'https://www.youtube.com/watch?v=OiuKZAkYqyE&index=4&list=PL4qBE1-4ZNC25bKGMcMICdIf9C2KqEcNv'"
-alias gh='chrome --app="https://github.com/tandav?tab=repositories"'
+alias gh='open "https://github.com/tandav?tab=repositories"'
 alias tmp="$EDITOR $pj/tmp_notes/tmp.md"
 # alias youtube-dl='p -m youtube_dl'
 alias mt="open $meta/meta.key"
@@ -55,7 +56,7 @@ gitgrep() { git grep $1 $(git rev-list --all) }
 # gitgrep() { git grep $1 $(git rev-list --all) *.py } # specific extension
 jn () { cd ~ && p -m jupyter notebook --ip='*' }
 jns() { docker run --rm -p 8888:8888 -v $HOME:/home/jovyan -e GRANT_SUDO=yes --user root jupyter/pyspark-notebook }
-killport() { kill $(lsof -ti:$1) }
+killport() { kill -9 $(lsof -ti:$1) }
 
 
 rt() {
@@ -74,7 +75,7 @@ jh() {
 
 # websites
 # alias gh='open "https://github.com/tandav?tab=repositories"'
-tm() { ssh -vvv $1 -t 'tmux -CC a -t my' }
+# tm() { ssh -vvv $1 -t 'tmux -CC a -t my' }
 
 # ytv() { youtube-dl --no-playlist -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' --output "$HOME/Desktop/%(title)s.%(ext)s" $1 }
 # yta() { youtube-dl --no-playlist -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --output "$HOME/Desktop/%(title)s.%(ext)s" $1 }
@@ -88,14 +89,14 @@ vid_for_twitter() {
     # ffmpeg -i $1 -c:v libx264 -crf 18 -vf crop=iw:ih-1 -c:a copy out.mp4
 }
 
-gupd() { git add . && git commit -m '_' && git push }
+gupd() { git add . && git commit -m '_' && git push origin HEAD }
 ddg() { open "https://duckduckgo.com/?q=$1" } # duck duck go search
 sshc() { $EDITOR ~/.ssh/config }
 myip() { 
     echo -n "LAN: "
     ifconfig en0 | grep -w inet | cut -d ' ' -f 2
     echo -n "WAN: "
-    curl checkip.amazonaws.com
+    curl checkip.amazonaws.com # ifconfig.me
 }
 dsh() { docker exec -it $1 /bin/bash } # jump into container
 
@@ -144,3 +145,8 @@ pipup() {
 }
 
 android_sync() { rsync -rauLvhP --delete xi:~/storage/dcim ~/Downloads/android/dcim }
+android_syncw() {
+    echo "Android is single source of truth, macOS extra will be deleted"
+    rsync -rauLvhP --delete xiw:~/storage/dcim ~/Downloads/android/dcim
+    open ~/Downloads/android/dcim
+}
