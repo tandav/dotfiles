@@ -1,0 +1,3 @@
+# crontab $dot/crontab to update crontab with this file
+*/5 * * * * scp or3:~/tandav.github.io/private/notes.db /Users/tandav/GoogleDrive/projects/notes/notes.db
+*/3 * * * * zsh -c "source $HOME/.zshrc; dump_tabs tmp"

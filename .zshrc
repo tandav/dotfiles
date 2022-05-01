@@ -15,7 +15,8 @@ export sc=$kn/_etc/screens
 #export EDITOR="subl"
 #export EDITOR='vim'
 export EDITOR='nvim'
-export BROWSER='Safari' # Chromium,  Brave Browser, Google Chrome. If change, change also in $pj/n_tabs/com.tandav.n_tabs.plist
+#'Safari'  Chromium,  Brave Browser, Google Chrome. If change, change also in $pj/n_tabs/com.tandav.n_tabs.plist
+export BROWSER='Google Chrome'
 
 export PATH=/usr/local/opt/python@3.7/bin:$PATH
 export PATH=/usr/local/opt/python@3.8/bin:$PATH
@@ -43,6 +44,7 @@ export LANGUAGE=
 
 source "$dot/git_aliases.sh"
 source "$dot/aliases.sh"
+source "$dot/private.sh"
 
 
 # -----------------------------------------------------------------------------------------------
@@ -53,6 +55,7 @@ source "$dot/aliases.sh"
 NEWLINE=$'\n'
 # PROMPT="%B%F{green}%~%b${NEWLINE}$ %f"
 # PROMPT="%B%F{green}%~%b${NEWLINE}ॐ  %f"
+# PROMPT="%B%F{red}% return code: $? ${NEWLINE}%B%F{green}%~%b%f${NEWLINE}"
 PROMPT="%B%F{green}%~%b%f${NEWLINE}"
 #local host_name="%{$fg[cyan]%}$"
 #local path_string="%{$fg[yellow]%}%~"
@@ -117,6 +120,7 @@ export PATH="/usr/local/opt/openssl@3/bin:$PATH"
 
 
 #export PATH="$HOME/.poetry/bin:$PATH"
+
 
 
 

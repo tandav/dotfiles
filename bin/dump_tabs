@@ -4,9 +4,18 @@ import macos
 import datetime
 from pathlib import Path
 import os
+import sys
+import shlex
 import subprocess
 
-filename = Path(os.environ['gd']) / f"raw-links/tabs-{str(datetime.datetime.now()).split('.')[0].replace(':', '-').replace(' ', '_')}.md"
+filename = Path(os.environ['gd']) / 'raw-links'
+
+is_tmp = len(sys.argv) == 2 and sys.argv[1] == 'tmp'
+
+if is_tmp:
+    filename = filename / 'tmp/README.md'
+else:
+    filename = filename / f"tabs-{str(datetime.datetime.now()).split('.')[0].replace(':', '-').replace(' ', '_')}.md"
 
 with open(filename, 'w') as f:
     for window in macos.tabs(browser=os.environ['BROWSER']):
@@ -14,4 +23,10 @@ with open(filename, 'w') as f:
             print(f'- [{title}]({url})', file=f)
         print('\n' + '-' * 60 + '\n', file=f)
 
-subprocess.run(('open', filename))
+
+if is_tmp:
+    subprocess.check_call(shlex.split('git add .'), cwd=filename.parent)
+    subprocess.check_call(shlex.split('git commit --amend -m _'), cwd=filename.parent)
+    subprocess.check_call(shlex.split('git push --force origin HEAD'), cwd=filename.parent)
+else:
+    subprocess.run(('open', filename))

@@ -5,12 +5,12 @@
     name = Alexander Rodionov
     email = tandav@tandav.me 
     signingKey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMQVZOLIDfzKcHKFs7/+gTQJKaWym+israuy0eQGqX1i tandav@mbp16.local
-[commit]
+# [commit]
     #gpgsign = true
-[gpg]
-  format = ssh
-[gpg "ssh"]
-  allowedSignersFile = ~/.ssh/allowed_signers
+# [gpg]
+  # format = ssh
+# [gpg "ssh"]
+  # allowedSignersFile = ~/.ssh/allowed_signers
   # echo "tandav@tandav.me ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMQVZOLIDfzKcHKFs7/+gTQJKaWym+israuy0eQGqX1i" > ~/.ssh/allowed_signers
   # echo "tandav@tandav.me ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMQVZOLIDfzKcHKFs7/+gTQJKaWym+israuy0eQGqX1i" > ~/.ssh/authorized_signatures
 
