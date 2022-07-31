@@ -1,3 +1,5 @@
 # crontab $dot/crontab to update crontab with this file
 */5 * * * * scp or3:~/tandav.github.io/private/notes.db /Users/tandav/GoogleDrive/projects/notes/notes.db
+*/5 * * * * scp or3:gitea/gitea/gitea/gitea.db /Users/tandav/GoogleDrive/projects/gitea.db
 */3 * * * * zsh -c "source $HOME/.zshrc; dump_tabs tmp"
+*/5 * * * * zsh -c "source $HOME/.zshrc; sh /Users/tandav/GoogleDrive/projects/notes/backup.sh"

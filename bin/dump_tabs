@@ -4,8 +4,10 @@ import macos
 import datetime
 from pathlib import Path
 import os
+import io
 import sys
 import shlex
+import requests
 import subprocess
 
 filename = Path(os.environ['gd']) / 'raw-links'
@@ -13,20 +15,30 @@ filename = Path(os.environ['gd']) / 'raw-links'
 is_tmp = len(sys.argv) == 2 and sys.argv[1] == 'tmp'
 
 if is_tmp:
-    filename = filename / 'tmp/README.md'
+    # filename = filename / 'tmp/README.md'
+    f = io.StringIO()
+    print('# tabs dump', file=f)
 else:
     filename = filename / f"tabs-{str(datetime.datetime.now()).split('.')[0].replace(':', '-').replace(' ', '_')}.md"
+    f = open(filename, 'w')
 
-with open(filename, 'w') as f:
-    for window in macos.tabs(browser=os.environ['BROWSER']):
-        for title, url in window:
-            print(f'- [{title}]({url})', file=f)
-        print('\n' + '-' * 60 + '\n', file=f)
+for window in macos.tabs(browser=os.environ['BROWSER']):
+    for title, url in window:
+        if not title:
+            title = url
+        print(f'- [{title}]({url})', file=f)
+    print('\n' + '-' * 60 + '\n', file=f)
 
 
 if is_tmp:
-    subprocess.check_call(shlex.split('git add .'), cwd=filename.parent)
-    subprocess.check_call(shlex.split('git commit --amend -m _'), cwd=filename.parent)
-    subprocess.check_call(shlex.split('git push --force origin HEAD'), cwd=filename.parent)
+    r = requests.post('http://0.0.0.0:5003/notes/144/edit/', json={"text": f.getvalue(), "url": None, "tags": ['tools']})
+    assert r.ok, r.json()
+
+    git_dir = filename / 'tmp'
+    (git_dir / 'README.md').write_text(f.getvalue())
+    subprocess.check_call(shlex.split('git add .'), cwd=git_dir)
+    subprocess.check_call(shlex.split('git commit --amend -m _'), cwd=git_dir)
+    subprocess.check_call(shlex.split('git push --force origin HEAD'), cwd=git_dir)
 else:
+    f.close()
     subprocess.run(('open', filename))

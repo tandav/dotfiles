@@ -1,5 +1,6 @@
 # copied from oh-my-zsh (and cleaned)
 alias gc='git commit -v'
+alias gcn='git commit -v --no-verify'
 alias gcl='git clone --recursive'
 alias gco='git checkout'
 alias glg='git log --stat'
@@ -17,10 +18,14 @@ alias gloga='git log --oneline --decorate --graph --all'
 alias gpoat='git push origin --all && git push origin --tags'
 alias gsb='git status -sb'
 alias gsps='git show --pretty=short --show-signature'
-alias gss='git status -s'
 alias gst='git status'
 alias glstats='git shortlog --summary --numbered --email --all --no-merges' # https://stackoverflow.com/a/9839491/4204843
 
 # my new
 alias gitdel='git log --diff-filter=D --summary'
 
+gupd() { 
+    git add -v . &&
+    git commit -v -m '_' &&
+    git push -v origin HEAD 
+}

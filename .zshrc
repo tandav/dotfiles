@@ -13,8 +13,8 @@ export sc=$kn/_etc/screens
 
 # export EDITOR="subl -nw"
 #export EDITOR="subl"
-#export EDITOR='vim'
-export EDITOR='nvim'
+export EDITOR='vim'
+# export EDITOR='nvim'
 #'Safari'  Chromium,  Brave Browser, Google Chrome. If change, change also in $pj/n_tabs/com.tandav.n_tabs.plist
 export BROWSER='Google Chrome'
 

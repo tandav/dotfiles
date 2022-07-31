@@ -64,3 +64,17 @@ export PATH=${PATH}:~/Documents/html-map
 # }
 
 # alias yts='echo "document.getElementsByTagName(\"video\")[0].playbackRate = 3" | pbcopy'
+
+pserver() {
+    link="http://$(myip):8000"
+    echo "$link"
+    python $gists/send_email.py "$link" # send link to my gmail
+    python -m http.server
+}
+
+
+pipup() {
+    # -n1 flag for xargs that prevents stopping everything, if updating one package fails.
+    python -m pip list --outdated --format=freeze | cut -d = -f 1 | xargs -n1 pip3 install -U
+}
+malware() {launchctl list | grep -v com.apple | sort --key=3 } # thirdparty agents/threads
