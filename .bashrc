@@ -23,6 +23,10 @@ HISTFILESIZE=10000000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+# After each command, append to the history file and reread it
+# https://unix.stackexchange.com/questions/1288/preserve-bash-history-in-multiple-terminal-windows
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
+
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
 #shopt -s globstar

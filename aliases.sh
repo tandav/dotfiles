@@ -145,3 +145,8 @@ android_syncw() {
     rsync -rauLvhP --delete xiw:~/storage/dcim ~/Downloads/android/dcim
     open ~/Downloads/android/dcim
 }
+
+pip_add() {
+    pip install $1
+    pip freeze | grep $1 >> requirements.txt
+}
