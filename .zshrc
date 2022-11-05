@@ -1,23 +1,3 @@
-export dt=~/Desktop
-export dw=~/Downloads
-export gd=~/GoogleDrive
-export pj=$gd/projects
-export kn=$gd/knowledge
-export gists=$pj/gists
-export dot=$pj/dotfiles
-export cj=$gd/contract-job
-export meta=$kn/_meta
-export ai=$kn/math/ai
-export bh=$pj/bhairava
-export sc=$kn/_etc/screens
-
-# export EDITOR="subl -nw"
-#export EDITOR="subl"
-export EDITOR='vim'
-# export EDITOR='nvim'
-#'Safari'  Chromium,  Brave Browser, Google Chrome. If change, change also in $pj/n_tabs/com.tandav.n_tabs.plist
-export BROWSER='Google Chrome'
-
 export PATH=/usr/local/opt/python@3.7/bin:$PATH
 export PATH=/usr/local/opt/python@3.8/bin:$PATH
 export PATH=/usr/local/opt/python@3.9/bin:$PATH

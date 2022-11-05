@@ -4,7 +4,7 @@
 	"color_scheme": "auto",
 	"ensure_newline_at_eof_on_save": true,
 	"fade_fold_buttons": false,
-	"font_face": "Menlo",
+	"font_face": "SF Mono",
 	"font_size": 11,
 	"theme": "Adaptive.sublime-theme",
 	"translate_tabs_to_spaces": true,
@@ -21,5 +21,5 @@
 		"Material Theme"
 	],
 	"dark_color_scheme": "Mariana.sublime-color-scheme",
-	"light_color_scheme": "Breakers.sublime-color-scheme",
+	"light_color_scheme": "Sixteen.sublime-color-scheme",
 }

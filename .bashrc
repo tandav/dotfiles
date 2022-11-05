@@ -25,7 +25,7 @@ shopt -s checkwinsize
 
 # After each command, append to the history file and reread it
 # https://unix.stackexchange.com/questions/1288/preserve-bash-history-in-multiple-terminal-windows
-PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
+# PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
@@ -100,30 +100,26 @@ fi
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
+# if ! shopt -oq posix; then
+#   if [ -f /usr/share/bash-completion/bash_completion ]; then
+#     . /usr/share/bash-completion/bash_completion
+#   elif [ -f /etc/bash_completion ]; then
+#     . /etc/bash_completion
+#   fi
+# fi
 
+export PATH=/usr/local/opt/python@3.10/bin:$PATH
 export PATH=/usr/bin:$PATH
 export PATH=$HOME/.poetry/bin:$PATH
-export DOCKER_HOST=unix:///run/user/1000/docker.sock
+# export DOCKER_HOST=unix:///run/user/1000/docker.sock
 export GITLAB_HOME=/home/tandav/gitlab
+# export EDITOR="subl -nw"
+#export EDITOR="subl"
+# export EDITOR='nvim'
 export EDITOR=vim
 
 # >>> conda initialize >>>
@@ -148,16 +144,33 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=
 
+#'Safari'  Chromium,  Brave Browser, Google Chrome. If change, change also in $pj/n_tabs/com.tandav.n_tabs.plist
+# export BROWSER='Google Chrome'
 
 export dt=~/Desktop
 export dw=~/Downloads
 export gd=~/docs
-export kn=$gd/knowledge
-export gists=$gd/gists
 export dot=$gd/dotfiles
 export cj=$gd/job
 export bh=$gd/bhairava
 
+
 source "$dot/git_aliases.sh"
 source "$dot/aliases.sh"
 source "$dot/private.sh"
+export PATH=$dot/bin:$PATH
+
+# nvidia toolkit
+export PATH=/usr/local/cuda-11.7/bin:$PATH
+# export LD_LIBRARY_PATH=/usr/local/cuda-11.7/lib64:$LD_LIBRARY_PATH
+# , or, add /usr/local/cuda-11.7/lib64 to /etc/ld.so.conf and run ldconfig as root
+
+export WORKON_HOME=~/.virtualenvs
+# export VIRTUALENVWRAPPER_PYTHON=/usr/local/opt/python@3.10/bin/python3.10
+export VIRTUALENVWRAPPER_PYTHON="/Library/Frameworks/Python.framework/Versions/3.11/bin/python3.11"
+# source ~/.local/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper.sh
+shopt -s direxpand # https://askubuntu.com/a/136633/1594515
+
+
+source $dot/macos.sh

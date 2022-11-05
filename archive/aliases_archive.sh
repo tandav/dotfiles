@@ -28,6 +28,7 @@ alias bp='open ~/Documents/spaces/meta/big-pic/pics'
 alias i='open -a IntelliJ\ IDEA'
 alias aws='sshfs ubuntu@ec2-18-195-144-88.eu-central-1.compute.amazonaws.com:/home/ubuntu/ /Users/tandav/Documents/hn-best/fuse/ -o reconnect,auto_cache,defer_permissions,noappledouble,Compression=no -ovolname=ubuntu-aws-hn-best'
 alias hm='python3 ~/GoogleDrive/Notes/etc/htmlmap.py'
+alias tmp="$EDITOR $pj/tmp_notes/tmp.md"
 # in order to run bm command (create blank map)
 export PATH=${PATH}:~/Documents/html-map
 

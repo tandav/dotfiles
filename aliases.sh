@@ -26,7 +26,6 @@ alias rc="$EDITOR ~/.bashrc"
 alias al="$EDITOR $dot/aliases.sh"
 alias ddd="p $ai/brain-tools/finder-pro/dashboard/dashboard.py"
 alias gh='open "https://github.com/tandav?tab=repositories"'
-alias tmp="$EDITOR $pj/tmp_notes/tmp.md"
 #alias openvpn
 # alias youtube-dl='p -m youtube_dl'
 alias mt="open $meta/meta.key"
@@ -39,18 +38,11 @@ alias spark='echo "from pyspark.sql import SparkSession\nspark = SparkSession.bu
 
 function pc() {
     #~/Downloads/pycharm-2022.1.3/bin/pycharm.sh "$1" > /dev/null 2>&1 &
-    charm $1 > /dev/null 2>&1 &
+    # charm $1 > /dev/null 2>&1 &
+    # open -a PyCharm $1
+    open -a "PyCharm CE" $1
 }
-alias va='. .venv/bin/activate'
-function vr() {
-    touch requirements.txt
-    touch requirements-dev.txt
-    rm -rf .venv
-    virtualenv .venv
-    . .venv/bin/activate
-    pip install -r requirements.txt
-    pip install -r requirements-dev.txt
-}
+
 
 alias lg='/home/tandav/miniconda3/bin/lazygit'
 alias pf="fzf --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
@@ -69,6 +61,7 @@ ff() { find . -iname "**$1**"; } # ff means find filename
 
 # use any wildcsards you want
 # (`.` is root node, then it searches recursevly)
+# TODO: exclude .venv
 rgc() { rg --hidden --glob '!.git' .         | fzf; }
 rgf() { rg --hidden --glob '!.git' . --files | fzf; }
 rgext() { rg --hidden --glob "*.$1" . | fzf; } # search inside jupyter notebooks
@@ -81,9 +74,9 @@ rgext() { rg --hidden --glob "*.$1" . | fzf; } # search inside jupyter notebooks
 recent() { /bin/ls -hAlt . | head -20; }
 gitgrep() { git grep $1 $(git rev-list --all); }
 # gitgrep() { git grep $1 $(git rev-list --all) *.py; } # specific extension
-jn () { cd ~ && p -m jupyter notebook --ip='*'; }
+jn () { cd ~ && p -m jupyter notebook --ip=*; }
 jns() { docker run --rm -p 8888:8888 -v $HOME:/home/jovyan -e GRANT_SUDO=yes --user root jupyter/pyspark-notebook; }
-killport() { kill -9 $(lsof -ti:$1); }
+killport() { kill -9 $(lsof -ti :$1); }
 
 
 rt() {
@@ -146,7 +139,40 @@ android_syncw() {
     open ~/Downloads/android/dcim
 }
 
+
+# python ============================================
+
+mkkernel() {
+    if [ -n "$1" ]; then
+        KERNEL_NAME=$1
+    elif [ -z "$VIRTUAL_ENV" ]; then
+        echo "Pass either kernel name as argument or activate virtualenv"
+        return 1
+    else [ -z "$1" ]
+        KERNEL_NAME="$(basename $VIRTUAL_ENV)"
+        echo "No kernel name provided, using name from virtualenv $KERNEL_NAME"
+    fi
+    pip install ipykernel
+    python -m ipykernel install --user --name=$KERNEL_NAME
+}
+
+lskernel() { 
+    # ls ~/.local/share/jupyter/kernels; 
+    find ~/.local/share/jupyter/kernels -type d
+}
+
 pip_add() {
     pip install $1
     pip freeze | grep $1 >> requirements.txt
+}
+
+alias va='. .venv/bin/activate'
+function vr() {
+    touch requirements.txt
+    touch requirements-dev.txt
+    rm -rf .venv
+    virtualenv .venv
+    . .venv/bin/activate
+    pip install -r requirements.txt
+    pip install -r requirements-dev.txt
 }

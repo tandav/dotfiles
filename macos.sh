@@ -1,5 +1,3 @@
-#alias pc='open -a "PyCharm CE"'
-alias pc='open -a PyCharm'
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
 # change directory (in terminal) to the current Finder directory
@@ -18,3 +16,10 @@ brewup() {
     brew cleanup --prune-prefix
     brew doctor
 }
+
+export PATH="/usr/local/bin:${PATH}" # homebrew binaries
+
+# for GNU Bash
+# https://formulae.brew.sh/formula/bash-completion@2
+# https://superuser.com/a/1393343/1129682
+. "/usr/local/etc/profile.d/bash_completion.sh"

@@ -1,6 +1,6 @@
 filetype on
 syntax on
-set number
+set nonumber
 set nocompatible
 "set relativenumber
 set wildmenu
