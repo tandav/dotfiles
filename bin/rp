@@ -14,6 +14,7 @@ else:
     length = 32
 
 alphabet = string.ascii_letters + string.digits
+alphabet = ''.join(set(alphabet) - set('O0Il')) # base58: remove all the easily mistakable characters like 0, O, l and I.
 
 password = ''.join(
     secrets.choice(alphabet) 
