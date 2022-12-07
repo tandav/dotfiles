@@ -4,13 +4,19 @@ import json
 
 
 def notification(text, title=None, subtitle=None, sound=False):
+    """
+    https://developer.apple.com/library/archive/documentation/LanguagesUtilities/Conceptual/MacAutomationScriptingGuide/DisplayNotifications.html
+    you can also use `say hello`
+    """
     code = f'display notification "{text}"'
     if title:
         code += f'with title "{title}"'
     if subtitle:
         code += f'subtitle "{subtitle}"'
     if sound:
-        code += 'sound name "Glass"' # more sounds: ls /System/Library/Sounds
+        # more sounds: ls /System/Library/Sounds
+        # code += 'sound name "Glass"' 
+        code += 'sound name "only_bad_soundname_works_for_some_reason"' # breaks after Catalina -> Ventura update
     cmd  = 'osascript', '-e', code
     subprocess.run(cmd)
 

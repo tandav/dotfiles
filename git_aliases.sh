@@ -29,3 +29,14 @@ gupd() {
     git commit -v -m '_' &&
     git push -v origin HEAD 
 }
+
+gupda() { 
+    git add -v . &&
+    git commit -v --amend --no-edit &&
+    git push -v --force origin HEAD 
+}
+
+gpp() {
+    git push -v
+    git push -v --tags
+}

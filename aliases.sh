@@ -34,13 +34,14 @@ alias grep='grep --color=auto'
 alias va='source .venv/bin/activate'
 alias tc='clear; tmux clear-history; clear'
 alias spark='echo "from pyspark.sql import SparkSession\nspark = SparkSession.builder.getOrCreate()" | pbcopy'
-
+alias k='kubectl'
+alias fixssh='eval $(tmux showenv -s SSH_AUTH_SOCK)'
 
 function pc() {
     #~/Downloads/pycharm-2022.1.3/bin/pycharm.sh "$1" > /dev/null 2>&1 &
     # charm $1 > /dev/null 2>&1 &
-    # open -a PyCharm $1
-    open -a "PyCharm CE" $1
+    open -a PyCharm $1
+    # open -a "PyCharm CE" $1
 }
 
 
@@ -165,6 +166,13 @@ pip_add() {
     pip install $1
     pip freeze | grep $1 >> requirements.txt
 }
+
+pipd() {
+    pip install -e .[dev]
+}
+
+
+
 
 alias va='. .venv/bin/activate'
 function vr() {

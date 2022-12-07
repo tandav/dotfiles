@@ -8,9 +8,7 @@ case $- in
       *) return;;
 esac
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
+HISTCONTROL=ignoredups
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -18,6 +16,8 @@ shopt -s histappend
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=10000000
 HISTFILESIZE=10000000
+HISTTIMEFORMAT="%F %T: "
+HISTFILE=~/.bash_history
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -79,22 +79,17 @@ esac
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
+    # alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
+    alias grep='grep -E --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
 
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# some more ls aliases
-# alias ll='ls -alF'
-# alias la='ls -A'
-# alias l='ls -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -111,10 +106,8 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 #     . /etc/bash_completion
 #   fi
 # fi
-
 export PATH=/usr/local/opt/python@3.10/bin:$PATH
 export PATH=/usr/bin:$PATH
-export PATH=$HOME/.poetry/bin:$PATH
 # export DOCKER_HOST=unix:///run/user/1000/docker.sock
 export GITLAB_HOME=/home/tandav/gitlab
 # export EDITOR="subl -nw"
@@ -122,20 +115,6 @@ export GITLAB_HOME=/home/tandav/gitlab
 # export EDITOR='nvim'
 export EDITOR=vim
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/tandav/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/tandav/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/tandav/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/tandav/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 
 export JAVA_HOME='/usr/lib/jvm/java-8-openjdk-amd64'
 
@@ -157,7 +136,7 @@ export bh=$gd/bhairava
 
 source "$dot/git_aliases.sh"
 source "$dot/aliases.sh"
-source "$dot/private.sh"
+source "$dot/private/private.sh"
 export PATH=$dot/bin:$PATH
 
 # nvidia toolkit
@@ -167,10 +146,21 @@ export PATH=/usr/local/cuda-11.7/bin:$PATH
 
 export WORKON_HOME=~/.virtualenvs
 # export VIRTUALENVWRAPPER_PYTHON=/usr/local/opt/python@3.10/bin/python3.10
+# export VIRTUALENVWRAPPER_PYTHON=/usr/local/opt/python@3.11/bin/python3.11
 export VIRTUALENVWRAPPER_PYTHON="/Library/Frameworks/Python.framework/Versions/3.11/bin/python3.11"
+# mktmpenv --python /usr/local/opt/python@3.10/bin/python3.10
+# mkvirtualenv myenv --python /usr/local/opt/python@3.10/bin/python3.10
+
 # source ~/.local/bin/virtualenvwrapper.sh
 source /usr/local/bin/virtualenvwrapper.sh
 shopt -s direxpand # https://askubuntu.com/a/136633/1594515
 
 
+
 source $dot/macos.sh
+
+# export PATH=$HOME/.poetry/bin:$PATH
+# alias poetry="~/.local/bin/poetry"
+# alias poetry="~/Library/Application\ Support/pypoetry/venv/bin/poetry"
+export PATH=$HOME/.local/bin:$PATH
+# curl -sSL https://install.python-poetry.org | python3.10 - --version 1.1.15
