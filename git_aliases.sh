@@ -38,5 +38,5 @@ gupda() {
 
 gpp() {
     git push -v
-    git push -v --tags
+    git push --tags
 }

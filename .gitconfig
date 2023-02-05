@@ -3,12 +3,20 @@
     excludesfile = ~/.gitignore_global
 	quotepath = false
 
-[includeIf "gitdir:~/docs/"]
-  path = .gitconfig-personal
+# [includeIf "gitdir:~/docs/"]
+#   path = .gitconfig-personal
+
+[user]
+    name = Alexander Rodionov
+    email = tandav@tandav.me
+    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMQVZOLIDfzKcHKFs7/+gTQJKaWym+israuy0eQGqX1i
+[commit]
+    gpgsign = true
+[gpg]
+    format = ssh
 
 [includeIf "gitdir:~/docs/job/"]
   path = .gitconfig-job
-
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
@@ -17,3 +25,6 @@
 	required = true
 [init]
 	defaultBranch = master # suppres default branch hints on git init
+
+[push]
+    autoSetupRemote = true

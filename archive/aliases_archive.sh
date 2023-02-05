@@ -29,10 +29,28 @@ alias i='open -a IntelliJ\ IDEA'
 alias aws='sshfs ubuntu@ec2-18-195-144-88.eu-central-1.compute.amazonaws.com:/home/ubuntu/ /Users/tandav/Documents/hn-best/fuse/ -o reconnect,auto_cache,defer_permissions,noappledouble,Compression=no -ovolname=ubuntu-aws-hn-best'
 alias hm='python3 ~/GoogleDrive/Notes/etc/htmlmap.py'
 alias tmp="$EDITOR $pj/tmp_notes/tmp.md"
+alias spark='echo "from pyspark.sql import SparkSession\nspark = SparkSession.builder.getOrCreate()" | pbcopy'
+alias sm="python $gists/send_email.py"
+# alias ls='ls -G'
+# alias l='ls -hAlt'
+# alias ip=ipython
+# alias pip='python -m pip'
+# alias {p,python}=python3.10
+# alias sz='source ~/.zshrc'
+# alias rc="$EDITOR ~/.zshrc"
+# alias vim='nvim'
+# alias rm='rm -i'
+# alias md='mkdir -p'
 # in order to run bm command (create blank map)
 export PATH=${PATH}:~/Documents/html-map
 
 # ================================ ARCHIVE ================================
+
+# search notes:
+# rg --glob '*.md' search_query . 
+# grep -ir --include="*.md" search_query .
+
+
 # alias ping='ping -c 5'
 # hpf() { rsync -azvhP ~/GoogleDrive/contract-job/ssh-vpn/code.sh 'or1:code.sh' }
 
@@ -65,6 +83,16 @@ export PATH=${PATH}:~/Documents/html-map
 # }
 
 # alias yts='echo "document.getElementsByTagName(\"video\")[0].playbackRate = 3" | pbcopy'
+# ytv() { youtube-dl --no-playlist -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' --output "$HOME/Desktop/%(title)s.%(ext)s" $1 }
+# yta() { youtube-dl --no-playlist -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --output "$HOME/Desktop/%(title)s.%(ext)s" $1 }
+# tm() { ssh -vvv $1 -t 'tmux -CC a -t my' }
+
+vid_for_twitter() {
+    ffmpeg -i $1 -c:v libx264 -crf 18 -c:a copy ~/Desktop/out.mp4
+    # If you get height not divisible by 2 (720x405) then add the crop filter:
+    # ffmpeg -i $1 -c:v libx264 -crf 18 -vf crop=iw:ih-1 -c:a copy out.mp4
+}
+
 
 pserver() {
     link="http://$(myip):8000"
@@ -79,3 +107,38 @@ pipup() {
     python -m pip list --outdated --format=freeze | cut -d = -f 1 | xargs -n1 pip3 install -U
 }
 malware() {launchctl list | grep -v com.apple | sort --key=3 } # thirdparty agents/threads
+
+alias va='. .venv/bin/activate'
+function vr() {
+    touch requirements.txt
+    touch requirements-dev.txt
+    rm -rf .venv
+    virtualenv .venv
+    . .venv/bin/activate
+    pip install -r requirements.txt
+    pip install -r requirements-dev.txt
+}
+
+
+lf() {
+    find $gd -type f | 
+    grep -v "^${pj}/files" |
+    grep -v .idea |
+    grep -v .ipynb_checkpoints |
+    grep -v .git |
+    grep -v __pycache__ > $pj/files/files.txt
+    git -C $pj/files diff --unified=0 --exit-code || 
+    git -C $pj/files add files.txt && 
+    git -C $pj/files commit -m '-' && 
+    git -C $pj/files push && 
+    echo 'Done'
+}
+
+android_sync() { rsync -rauLvhP --delete xi:~/storage/dcim ~/Downloads/android/dcim; }
+android_syncw() {
+    echo "Android is single source of truth, macOS extra will be deleted"
+    rsync -rauLvhP --delete xiw:~/storage/dcim ~/Downloads/android/dcim
+    open ~/Downloads/android/dcim
+}
+
+dsh() { docker exec -it $1 /bin/bash; } # jump into container
