@@ -23,3 +23,8 @@ export PATH="/usr/local/bin:${PATH}" # homebrew binaries
 # https://formulae.brew.sh/formula/bash-completion@2
 # https://superuser.com/a/1393343/1129682
 . "/usr/local/etc/profile.d/bash_completion.sh"
+
+
+# coreutils: macOS -> gnu
+# export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"

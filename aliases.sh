@@ -10,8 +10,10 @@ alias req='touch requirements.txt'
 alias grep='grep --color=auto'
 alias va='source .venv/bin/activate'
 alias tc='clear; tmux clear-history; clear'
-alias k='kubectl'
 alias fixssh='eval $(tmux showenv -s SSH_AUTH_SOCK)'
+
+
+path() { echo $PATH | tr : "\n"; }
 
 function pc() {
     #~/Downloads/pycharm-2022.1.3/bin/pycharm.sh "$1" > /dev/null 2>&1 &

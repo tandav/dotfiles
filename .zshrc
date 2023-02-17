@@ -1,31 +1,10 @@
-export PATH=/usr/local/opt/python@3.7/bin:$PATH
-export PATH=/usr/local/opt/python@3.8/bin:$PATH
-export PATH=/usr/local/opt/python@3.9/bin:$PATH
-export PATH=/usr/local/opt/python@3.10/bin:$PATH
-export PATH="/Users/tandav/Library/Python/3.10/bin:$PATH"
-export PATH=/usr/local/opt/python@3.10/Frameworks/Python.framework/Versions/3.10/bin:$PATH
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# export DOTFILES_DIR=~/GoogleDrive/projects/dotfiles
-export PATH=$dot/bin:$PATH
 export PATH="/usr/local/sbin:$PATH" # brew recommendation
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
 
 export PYTHONPATH=$dot/bin:$PYTHONPATH
 export PYTHONBREAKPOINT=ipdb.set_trace
-
-# coreutils: macOS -> gnu
-export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
-
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-export LANGUAGE=
-
-source "$dot/git_aliases.sh"
-source "$dot/aliases.sh"
-source "$dot/private.sh"
-
 
 # -----------------------------------------------------------------------------------------------
 

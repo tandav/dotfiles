@@ -61,7 +61,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -106,6 +106,13 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 #     . /etc/bash_completion
 #   fi
 # fi
+
+
+# =====================================================================================
+
+shopt -s direxpand # https://askubuntu.com/a/136633/1594515
+
+
 export PATH=/usr/local/opt/python@3.10/bin:$PATH
 export PATH=/usr/bin:$PATH
 # export DOCKER_HOST=unix:///run/user/1000/docker.sock
@@ -139,10 +146,8 @@ source "$dot/aliases.sh"
 source "$dot/private/private.sh"
 export PATH=$dot/bin:$PATH
 
-# nvidia toolkit
-export PATH=/usr/local/cuda-11.7/bin:$PATH
-# export LD_LIBRARY_PATH=/usr/local/cuda-11.7/lib64:$LD_LIBRARY_PATH
-# , or, add /usr/local/cuda-11.7/lib64 to /etc/ld.so.conf and run ldconfig as root
+
+
 
 export WORKON_HOME=~/.virtualenvs
 # export VIRTUALENVWRAPPER_PYTHON=/usr/local/opt/python@3.10/bin/python3.10
@@ -150,17 +155,23 @@ export WORKON_HOME=~/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON="/Library/Frameworks/Python.framework/Versions/3.11/bin/python3.11"
 # mktmpenv --python /usr/local/opt/python@3.10/bin/python3.10
 # mkvirtualenv myenv --python /usr/local/opt/python@3.10/bin/python3.10
+# mkvirtualenv libmv-dagops --python python3.11
 
 # source ~/.local/bin/virtualenvwrapper.sh
 source /usr/local/bin/virtualenvwrapper.sh
-shopt -s direxpand # https://askubuntu.com/a/136633/1594515
-
 
 
 source $dot/macos.sh
+# source $dot/nvidia.sh
+
 
 # export PATH=$HOME/.poetry/bin:$PATH
 # alias poetry="~/.local/bin/poetry"
 # alias poetry="~/Library/Application\ Support/pypoetry/venv/bin/poetry"
 export PATH=$HOME/.local/bin:$PATH
 # curl -sSL https://install.python-poetry.org | python3.10 - --version 1.1.15
+
+# kubectl
+alias k='kubectl'
+source <(kubectl completion bash)
+complete -o default -F __start_kubectl k

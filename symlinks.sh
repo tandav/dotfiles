@@ -9,7 +9,7 @@ ln -sf "$DOTFILES_DIR/.tmux.conf" ~
 ln -sf "$DOTFILES_DIR/.vimrc" ~
 ln -sf "$DOTFILES_DIR/.bashrc" ~
 ln -sf "$DOTFILES_DIR/.bash_profile" ~
-ln -sf "$DOTFILES_DIR/.bash_history" ~
+# ln -sf "$DOTFILES_DIR/.bash_history" ~
 ln -sf "$DOTFILES_DIR/private/.pypirc" ~
 
 mkdir -p "$HOME/.config/pip"
