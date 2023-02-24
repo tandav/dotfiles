@@ -142,3 +142,12 @@ android_syncw() {
 }
 
 dsh() { docker exec -it $1 /bin/bash; } # jump into container
+
+venvs_upgrade_pip() {
+    # 1. list all venv directories in ~/.virtualenvs
+    # 2. add suffix /bin/python for each directory
+    # 3. run `python -m pip install --upgrade pip` for each python
+    find ~/.virtualenvs -type d -mindepth 1 -maxdepth 1 |
+    sed 's/$/\/bin\/python/' |
+    xargs -I _ bash -c "_ -m pip install --upgrade pip"
+}

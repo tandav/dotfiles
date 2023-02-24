@@ -147,6 +147,7 @@ source "$dot/private/private.sh"
 export PATH=$dot/bin:$PATH
 
 
+export KEEPASS_DB=$dot/private/tandav.kdbx
 
 
 export WORKON_HOME=~/.virtualenvs

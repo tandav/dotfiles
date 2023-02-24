@@ -36,3 +36,19 @@ end tell
 
 subprocess.run(['osascript', '-e', set_wallpaper])
 subprocess.run(['killall', 'Dock']) # sometimes you need this
+
+
+# from PIL import Image, ImageFilter
+
+# # (
+# #     Image.open('/Users/tandav/Desktop/23.png')
+# #     # .filter(ImageFilter.GaussianBlur(radius=60))
+# #     .filter(ImageFilter.GaussianBlur(radius=1.85))
+# #     .save('/Users/tandav/Desktop/23-blurred.png')
+# # )
+
+# file = 'fffff.jpg'
+# im = Image.open(file)
+# # im_blurred = im.filter(ImageFilter.GaussianBlur(radius=60))
+# im_blurred = im.filter(ImageFilter.GaussianBlur(radius=100))
+# im_blurred.save('blurred-' + file)
