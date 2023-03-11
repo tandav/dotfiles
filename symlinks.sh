@@ -1,15 +1,14 @@
-DOTFILES_DIR=$HOME/docs/dotfiles
-echo $DOTFILES_DIR
+echo $dot
 
-ln -sf "$DOTFILES_DIR/git/.gitconfig" ~
-ln -sf "$DOTFILES_DIR/git/.gitconfig-personal" ~
-ln -sf "$DOTFILES_DIR/private/.gitconfig-job" ~
-ln -sf "$DOTFILES_DIR/git/.gitignore_global" ~
-ln -sf "$DOTFILES_DIR/.tmux.conf" ~
-ln -sf "$DOTFILES_DIR/.vimrc" ~
-ln -sf "$DOTFILES_DIR/.bashrc" ~
-ln -sf "$DOTFILES_DIR/.bash_profile" ~
-ln -sf "$DOTFILES_DIR/private/.pypirc" ~
+ln -sfv "$dot/git/.gitconfig" ~
+ln -sfv "$dot/git/.gitconfig-personal" ~
+ln -sfv "$dot/git/.gitignore_global" ~
+ln -sfv "$dot/private/.gitconfig-job" ~
+ln -sfv "$dot/.tmux.conf" ~
+ln -sfv "$dot/.vimrc" ~
+ln -sfv "$dot/.bashrc" ~
+ln -sfv "$dot/.bash_profile" ~
+ln -sfv "$dot/private/.pypirc" ~
 
 mkdir -p "$HOME/.config/pip"
-ln -sf "$DOTFILES_DIR/private/pip.conf" "$HOME/.config/pip/pip.conf"
+ln -sfv "$dot/private/pip.conf" "$HOME/.config/pip/pip.conf"
