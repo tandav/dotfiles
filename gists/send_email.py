@@ -22,8 +22,8 @@ PASSWORD = 'twzj nxti aovi hzil' # https://myaccount.google.com/apppasswords
 message = MIMEMultipart()
 message['From'] = FROM
 message['To'] = TO
-message['Subject'] = "Email from MacBook"
-body = "This is an email with attachment sent from Python"
+message['Subject'] = 'Email from MacBook'
+body = 'This is an email with attachment sent from Python'
 
 
 if len(sys.argv) == 2:
@@ -64,7 +64,7 @@ else:
     # message.attach(MIMEText(text, 'plain'))
     message.attach(MIMEText(html, 'html'))
 
-with smtplib.SMTP(host="smtp.gmail.com", port=587) as server:
+with smtplib.SMTP(host='smtp.gmail.com', port=587) as server:
     server.starttls(context=ssl.create_default_context())
     server.login(FROM, PASSWORD)
     server.sendmail(FROM, TO, message.as_string())

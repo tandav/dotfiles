@@ -3,7 +3,7 @@ body {
     flex-direction: row-reverse;
     justify-content: flex-end;
     flex-wrap: wrap-reverse;
-    
+
     background: #f6f8fa;
     background: rgba(0,0,0,0.15);
     /*margin: 10px 100px 0 100px;*/
@@ -90,4 +90,3 @@ img {
     max-width:100%;
     max-height:100%;
 }
-

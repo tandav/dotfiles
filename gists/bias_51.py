@@ -9,7 +9,7 @@ def biased_coin(bias=0.51): return random.random() < bias
 
 def count_brokes(n_simulations):
     brokes = collections.Counter()
-    
+
     for _ in tqdm.tqdm(range(n_simulations)):
         alice = 100
         bob   = 100
@@ -24,7 +24,7 @@ def count_brokes(n_simulations):
 
         if alice == 0: brokes['alice'] += 1
         else: brokes['bob'] += 1
-        
+
     return brokes
 
 if __name__ == '__main__':

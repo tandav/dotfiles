@@ -23,9 +23,9 @@ def compress_dimensions(min_dist, n_neighbors):
         metric       ='jaccard',
         # metric       ='hamming',
     ).fit(X)
-    
+
     e = u.transform(X)
-    
+
     centroid = e.mean(axis=0)
     dist = np.linalg.norm(e - centroid, axis=1)
     medoid_key = np.argmin(dist)
@@ -47,15 +47,15 @@ def compress_dimensions(min_dist, n_neighbors):
     medoid_by_most_common_key = np.argmin(jaccards_by_most_common)
     medoid_by_most_common = e[medoid_by_most_common_key]
 
-    
-    
+
+
     img_bytes = io.BytesIO()
-    
+
     fig, ax = plt.subplots(figsize=(5, 5), frameon=False, dpi=100)
     fig.subplots_adjust(left=0, bottom=0, right=1, top=1, wspace=None, hspace=None)
     ax.grid(False)
     ax.axis('off')
-    
+
     ax.scatter(*e.T, s=0.4, color='b')
     ax.plot(*centroid, 'go')
     ax.plot(*medoid, 'r+', markersize=30, markeredgewidth=2)
@@ -64,7 +64,7 @@ def compress_dimensions(min_dist, n_neighbors):
 
 
     dt_minutes = round((time.time() - t) / 60, 1)
-    
+
     title = 'min_dist:{}   n_neighbors:{}\nn={} {} {} minutes'.format(min_dist, n_neighbors, X.shape[0], medoid_subs, dt_minutes)
     ax.text(.5, .9, title, horizontalalignment='center', transform=ax.transAxes, fontsize=18)
     #ax.set_title(title, fontsize=20)

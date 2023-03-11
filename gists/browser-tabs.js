@@ -1,4 +1,4 @@
-// run from Terminal: 
+// run from Terminal:
 // osascript -l JavaScript myscript.js
 
 
@@ -24,7 +24,7 @@ for (let i = 0; i < browser.windows.length; i++) {
         let tab_url  = browser.windows[i].tabs[j].url()
         let tab = ''
         tab += '<li>'
-        hostname = /^(?:\w+\:\/\/)?([^\/]+)(.*)$/.exec(tab_url)[1] // todo: make it more beautiful 
+        hostname = /^(?:\w+\:\/\/)?([^\/]+)(.*)$/.exec(tab_url)[1] // todo: make it more beautiful
         tab += '<img align="center" src="https://s2.googleusercontent.com/s2/favicons?domain=' + hostname + '">'
         tab += '<a href="' + tab_url + '">'
         tab += tab_name

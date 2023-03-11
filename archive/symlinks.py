@@ -61,7 +61,7 @@ _ = [x for x in _ if 'tandav' in x]
 print('\n'.join(_))
 
 # ================================================================
-# Quick Actions are workflows that may be added to Finder, Touch Bar and the Services menu. 
+# Quick Actions are workflows that may be added to Finder, Touch Bar and the Services menu.
 
 
 quick_actions = [

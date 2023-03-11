@@ -1,0 +1,19 @@
+ci:
+  autofix_prs: false
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-yaml
+      - id: check-json
+      - id: check-ast
+      - id: check-byte-order-marker
+      - id: check-case-conflict
+      - id: end-of-file-fixer
+        exclude: README.png
+      - id: mixed-line-ending
+        exclude: README.png
+      - id: trailing-whitespace
+      - id: detect-private-key
+      - id: double-quote-string-fixer

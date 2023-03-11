@@ -24,16 +24,16 @@ alias glstats='git shortlog --summary --numbered --email --all --no-merges' # ht
 # my new
 alias gitdel='git log --diff-filter=D --summary'
 
-gupd() { 
+gupd() {
     git add -v . &&
     git commit -v -m '_' &&
-    git push -v origin HEAD 
+    git push -v origin HEAD
 }
 
-gupda() { 
+gupda() {
     git add -v . &&
     git commit -v --amend --no-edit &&
-    git push -v --force origin HEAD 
+    git push -v --force origin HEAD
 }
 
 gpp() {

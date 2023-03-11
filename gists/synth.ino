@@ -21,15 +21,15 @@ void setup() {
 }
 
 void loop()  {
-  
+
   for (int i = 0; i < 8; i++) {
     sw.playTone(note(melody[i]), _16);
     delay(_16);
     sw.playTone(Sa, _16);
     delay(_16);
-    
-    
-    
+
+
+
 //    Serial.println(note(i));
 //    Serial.println(1/12);
 //    sw.playTone2(Sa, note(i), 1000);

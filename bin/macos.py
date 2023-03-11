@@ -15,7 +15,7 @@ def notification(text, title=None, subtitle=None, sound=False):
         code += f'subtitle "{subtitle}"'
     if sound:
         # more sounds: ls /System/Library/Sounds
-        # code += 'sound name "Glass"' 
+        # code += 'sound name "Glass"'
         code += 'sound name "only_bad_soundname_works_for_some_reason"' # breaks after Catalina -> Ventura update
     cmd  = 'osascript', '-e', code
     subprocess.run(cmd)
@@ -29,13 +29,13 @@ def n_tabs(browser='Google Chrome', n_windows=False):
     for (let i = 0; i < n_windows; i++)
         n_tabs += browser.windows[i].tabs.length
     '''
-    
+
     # final value, returned to the caller
     if n_windows:
         js_code += 'out = [n_tabs, n_windows]\n'
         cmd = 'osascript', '-l', 'JavaScript', '-e', js_code
         return [int(x) for x in  subprocess.check_output(cmd, text=True).strip().split(', ')]
-        
+
     else:
         js_code += 'out = n_tabs\n'
         cmd = 'osascript', '-l', 'JavaScript', '-e', js_code
@@ -61,7 +61,7 @@ def tabs(browser='Google Chrome'):
         out = "application is not running"
     }
     ''').substitute(browser=browser)
-    
+
     cmd = 'osascript', '-l', 'JavaScript', '-e', js_code
     out = subprocess.check_output(cmd, text=True).strip()
     if out == 'application is not running':

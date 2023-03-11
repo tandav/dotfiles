@@ -1,7 +1,7 @@
-есть функция `get_random_number`  
-которая даёт значения от 0 до 5  
+есть функция `get_random_number`
+которая даёт значения от 0 до 5
 
-Используя только ее, сделать функцию `get_random_extended`  
+Используя только ее, сделать функцию `get_random_extended`
 которая возвращает рандомное число от 0 до 7
 
 ```
@@ -46,4 +46,3 @@ plt.show()
 
 
 ![output_5_0](https://user-images.githubusercontent.com/5549677/46347122-16afb800-c653-11e8-87ae-f3c2c701e114.png)
-

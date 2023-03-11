@@ -28,10 +28,4 @@ if [ $connected = 'Yes' ]; then
 
 else
     osascript -e 'display notification "borg" with title "On battery, backup skipped" sound name "Pong"'
-fi    
-
-
-
-
-
-
+fi

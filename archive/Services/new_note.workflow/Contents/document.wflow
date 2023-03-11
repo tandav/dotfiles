@@ -59,7 +59,7 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string>note=$1/$RANDOM.md 
+					<string>note=$1/$RANDOM.md
 touch $note
 open $note</string>
 					<key>CheckedForUserDefaultShell</key>

@@ -69,7 +69,7 @@ bindkey '^R' history-incremental-search-backward
 # ----------------------------------------------------------------
 
 
-export PKG_CONFIG_PATH="/usr/local/opt/openssl@3/lib/pkgconfig"  
+export PKG_CONFIG_PATH="/usr/local/opt/openssl@3/lib/pkgconfig"
 export PATH="/usr/local/opt/openssl@3/bin:$PATH"
 
 
@@ -79,7 +79,3 @@ export PATH="/usr/local/opt/openssl@3/bin:$PATH"
 
 
 #export PATH="$HOME/.poetry/bin:$PATH"
-
-
-
-

@@ -29,7 +29,7 @@ class AmenityListHandler(osmium.SimpleHandler):
                 wkb = wkbfab.create_multipolygon(a)
                 poly = wkblib.loads(wkb, hex=True)
                 centroid = poly.representative_point()
-        
+
                 self.areas.append((a.tags.get('name'), centroid.x, centroid.y))
                 la = len(self.areas)
                 if la % 100 == 0:

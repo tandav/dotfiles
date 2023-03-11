@@ -18,12 +18,12 @@ def to_markdown_link(title: str, url: str) -> str:
 
 def clean(url, allowed_params=('q', 'tbm'), drop_https=True, pass_no_google=False):
     o = urlparse(url)
-    
+
     if o.netloc != 'www.google.com':
         if pass_no_google:
             return url
         raise ValueError('pass google search url or set pass_no_google=True')
-    
+
     params = parse_qs(o.query)
     clean_params = {p: params[p] for p in params.keys() & allowed_params}
     clean_url = urlunparse(o._replace(query=urlencode(clean_params, doseq=True)))
@@ -70,5 +70,3 @@ elif len(sys.argv) == 3:
     print('done')
 else:
     raise ValueError('wrong arguments, pass either url or -f file')
-
-

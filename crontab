@@ -8,6 +8,6 @@
 # https://serverfault.com/questions/141773/what-is-archive-mode-in-rsync#141778
 0 * * * * rsync -a --delete /media/tandav/sg8tb1/ /media/tandav/sg8tb2
 
-# copying to exfat: https://serverfault.com/a/141778/548704 
+# copying to exfat: https://serverfault.com/a/141778/548704
 # TODO: fix weird unsupported filenames
 # 0 * * * * rsync -rlt --delete /media/tandav/sg8tb1/ /media/tandav/mypassport/hdd-mirror

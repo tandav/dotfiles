@@ -21,11 +21,11 @@ while True:
 
     status = tmp[2]
     connection = tmp[-1]
-    
+
     print(datetime.datetime.now(), connection, status)
 
     if (
-        connection == WIFI_NAME 
+        connection == WIFI_NAME
         and status == 'connected'
         and subprocess.call(['ping', 'google.com', '-c', '1']) == 0
     ):

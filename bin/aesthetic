@@ -4,13 +4,13 @@ import sys
 def aesthetic(s: str) -> None:
     '''
     A E S T H E T I C
-    E E              
-    S   S            
-    T     T          
-    H       H        
-    E         E      
-    T           T    
-    I             I  
+    E E
+    S   S
+    T     T
+    H       H
+    E         E
+    T           T
+    I             I
     C               C
     '''
     s = s.upper()
@@ -22,6 +22,6 @@ def aesthetic(s: str) -> None:
         line[0] = c
         line[i] = c
         print(' '.join(line))
-    
+
 # aesthetic('aesthetic')
 aesthetic(sys.argv[1])

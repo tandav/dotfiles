@@ -17,7 +17,7 @@ def ago(e):
     elif t < 45: return str(t) + ' seconds ago'
     elif t < 90: return          'a minute ago'
     elif n < 45: return str(n) + ' minutes ago'
-    elif n < 90: return           'an hour ago' 
+    elif n < 90: return           'an hour ago'
     elif r < 24: return str(r) +   ' hours ago'
     elif r < 36: return             'a day ago'
     elif o < 30: return str(o) +    ' days ago'
@@ -42,7 +42,7 @@ class color:
 now = datetime.datetime.now()
 
 
-site = 'tjournal'
+site = 'vc'
 if len(sys.argv) == 2:
     site = sys.argv[1] # dtf, vc
 
@@ -54,7 +54,7 @@ for post in x:
         continue
     # print('-' * 80)
     # print(color.GREEN(f"{post['commentsCount']:>3} {post['title']}"), '\n', '    ' + post['url'], sep='')
-    
+
     try:
         url = re.match(r'https://tjournal.ru/[a-z]+/[0-9]+', post['url']).group()
     except:
@@ -69,5 +69,3 @@ for post in x:
 #pattern = re.compile('(?<=<h2 class="content-header__title l-island-a">).*?(?=</h2>)', re.DOTALL)
 #for title in re.findall(pattern, html):
 #    print(title.strip())
-
-

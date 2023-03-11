@@ -12,4 +12,4 @@ if len(sys.argv) == 1:
 if len(sys.argv) == 2:
 
     for webloc in glob(sys.argv[1] + '**.webloc'):
-        print(plistlib.readPlist(webloc)["URL"])
+        print(plistlib.readPlist(webloc)['URL'])

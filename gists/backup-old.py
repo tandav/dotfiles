@@ -27,11 +27,10 @@ for disk in disks:
     if os.path.exists(disk):
         destination = disk + '/backups'
         logfile = destination + '/latest-backup.log'
-        
+
         print('backing up to', destination)
         for dir in dirs:
             run(['rsync', '-a', '--delete', '--verbose', '--log-file', logfile, dir, destination])
 
     else:
         print(f'disk {disk} is not connected')
-

@@ -31,7 +31,7 @@ for window in macos.tabs(browser=os.environ['BROWSER']):
 
 
 if is_tmp:
-    r = requests.post('http://0.0.0.0:5003/notes/144/edit/', json={"text": f.getvalue(), "url": None, "tags": ['tools']})
+    r = requests.post('http://0.0.0.0:5003/notes/144/edit/', json={'text': f.getvalue(), 'url': None, 'tags': ['tools']})
     assert r.ok, r.json()
 
     git_dir = filename / 'tmp'

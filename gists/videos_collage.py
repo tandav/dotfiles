@@ -55,7 +55,7 @@ cmd += (
     '-c:v', 'h264_videotoolbox',
     '-framerate', '30',
     '-b:v', '10M',
-    '-t', '60', 
+    '-t', '60',
     'noaudio.mp4',
 )
 
@@ -64,7 +64,7 @@ cmd += (
 subprocess.run(cmd)
 
 subprocess.run((
-    'ffmpeg', '-y', '-i', 'noaudio.mp4', '-i', AUDIO_FILE, 
+    'ffmpeg', '-y', '-i', 'noaudio.mp4', '-i', AUDIO_FILE,
     '-c:v', 'copy',
     '-map', '0:v',
     '-map', '1:a',

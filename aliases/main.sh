@@ -22,7 +22,7 @@ function pc() {
 
 # c means content, f means files
 # todo: add fallback: grep -ir 'search query' . , find .
-# find files which names that contains `abc` (case-insensitive) 
+# find files which names that contains `abc` (case-insensitive)
 # ```shell
 # find . -iname '*abc*'
 # ```
@@ -47,7 +47,7 @@ rt() {
 
 
 jh() {
-    # open -a $dot/OpenJupyter.app . 
+    # open -a $dot/OpenJupyter.app .
     # p $dot/jupyter_opener.py $PWD
     # open "http://localhost:8888/notebooks$(echo $PWD | sed "s|$HOME||")" # https://stackoverflow.com/a/23134318/4204843
     open "http://localhost:8888/notebooks${PWD#$HOME}" # https://stackoverflow.com/a/20615306/4204843
@@ -58,7 +58,7 @@ yta() { yt-dlp --no-playlist -f bestaudio --extract-audio --audio-format mp3 --a
 vid_and_audio() { ffmpeg -i $1 -i $2 -c:v copy -map 0:v:0 -map 1:a:0 -shortest ~/Desktop/out.mp4; }
 
 sshc() { $EDITOR ~/.ssh/config; }
-myip() { 
+myip() {
     echo -n "LAN: "
     ifconfig en0 | grep -w inet | cut -d ' ' -f 2
     echo -n "WAN: "
@@ -84,7 +84,7 @@ mkkernel() {
     python -m ipykernel install --user --name=$KERNEL_NAME
 }
 
-lskernel() { 
+lskernel() {
     find $KERNELS_DIR -type d -mindepth 1 -maxdepth 1
 }
 

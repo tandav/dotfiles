@@ -28,18 +28,18 @@ def percent_less_than_mean(x: list):
     mean = s / n
     less = filter(lambda i: i <= mean, x)
     n_less = sum(1 for _ in less)
-    
+
     return n_less / n
 
 def score_items(
-    s     : set        , 
+    s     : set        ,
     score : Callable   ,
     frac  : float = 0.9,
     n_iter: int   = 100,
 ):
     item_scores = dict.fromkeys(s, 0)
     item_scores = collections.Counter(item_scores)
-    
+
     n_sample = int(frac * len(s))
     for i in tqdm.trange(n_iter):
         sample = random.sample(s, n_sample)
@@ -47,12 +47,12 @@ def score_items(
         item_score = _score / n_sample
         for item in sample:
             item_scores[item] += item_score
-        
+
     return item_scores
 
 
 def score_items_parallel(
-    s     : set        , 
+    s     : set        ,
     score : Callable   ,
     frac  : float = 0.9,
     n_iter: int   = 100,

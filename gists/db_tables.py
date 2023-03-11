@@ -9,8 +9,8 @@ def db_tables(db):
         .splitlines()
         [1:] # first row is 'tab_name'
     )
-    
+
     with concurrent.futures.ThreadPoolExecutor() as pool:
         info = pool.map(lambda t: (t, spark.table(db + '.' + t).columns), tables)
-        
+
     return dict(info)

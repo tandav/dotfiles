@@ -11,4 +11,3 @@ node_modules
 .*swp
 *.egg-info
 .env
-

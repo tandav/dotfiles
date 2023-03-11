@@ -22,7 +22,7 @@ alias h='open -a Safari file:///Users/tandav/Documents/meta/map/shortcuts.svg'
 alias h='open -a Safari http://localhost:4000/space/root'
 alias jn='jupyter notebook'
 alias jl='jupyter lab'
-alias jnc='open https://colab.research.google.com/notebook#fileId=1tMXb4IXryuenlUvIBkRgZlSQmrlp5mUr&scrollTo=gXzvGiMJD4rQ' # temp colab notebook 
+alias jnc='open https://colab.research.google.com/notebook#fileId=1tMXb4IXryuenlUvIBkRgZlSQmrlp5mUr&scrollTo=gXzvGiMJD4rQ' # temp colab notebook
 alias jna='open https://temp-tandav.notebooks.azure.com/nb//notebooks/temp.ipynb' # azure notebook
 alias bp='open ~/Documents/spaces/meta/big-pic/pics'
 alias i='open -a IntelliJ\ IDEA'
@@ -47,7 +47,7 @@ export PATH=${PATH}:~/Documents/html-map
 # ================================ ARCHIVE ================================
 
 # search notes:
-# rg --glob '*.md' search_query . 
+# rg --glob '*.md' search_query .
 # grep -ir --include="*.md" search_query .
 
 
@@ -74,7 +74,7 @@ export PATH=${PATH}:~/Documents/html-map
 
 # sn() {
 #     cd ~/Documents/space-notes
-#     serve -s gui/build -p 4000 & 
+#     serve -s gui/build -p 4000 &
 #     FLASK_APP=server.py flask run --port 5001 &
 #     jupyter notebook --no-browser --notebook-dir=~ &
 #     # jupyter lab --no-browser --notebook-dir=~ &
@@ -121,16 +121,16 @@ function vr() {
 
 
 lf() {
-    find $gd -type f | 
+    find $gd -type f |
     grep -v "^${pj}/files" |
     grep -v .idea |
     grep -v .ipynb_checkpoints |
     grep -v .git |
     grep -v __pycache__ > $pj/files/files.txt
-    git -C $pj/files diff --unified=0 --exit-code || 
-    git -C $pj/files add files.txt && 
-    git -C $pj/files commit -m '-' && 
-    git -C $pj/files push && 
+    git -C $pj/files diff --unified=0 --exit-code ||
+    git -C $pj/files add files.txt &&
+    git -C $pj/files commit -m '-' &&
+    git -C $pj/files push &&
     echo 'Done'
 }
 
