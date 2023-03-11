@@ -40,3 +40,7 @@ gpp() {
     git push -v
     git push --tags
 }
+
+gl() { git log --oneline --decorate --color | fzf --ansi --preview 'git show $(echo {} | cut -d" " -f1)'; }
+gitgrep() { git grep $1 $(git rev-list --all); }
+# gitgrep() { git grep $1 $(git rev-list --all) *.py; } # specific extension

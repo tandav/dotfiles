@@ -10,7 +10,7 @@ alias nk='open -a IntelliJ\ IDEA & docker start -a netcracker_db'
 alias nks='docker stop netcracker_db'
 airpods() {python ~/Documents/spaces/etc/airpods-reconnect/main.py}
 # activate env/ virtualenv
-alias ve='source env/bin/activate'
+alias va='source .venv/bin/activate'
 alias sd='source deactivate'
 alias t='cd ~/Desktop && touch'
 alias wf='open https://workflowy.com'
@@ -150,4 +150,13 @@ venvs_upgrade_pip() {
     find ~/.virtualenvs -type d -mindepth 1 -maxdepth 1 |
     sed 's/$/\/bin\/python/' |
     xargs -I _ bash -c "_ -m pip install --upgrade pip"
+}
+
+jn () { cd ~ && p -m jupyter notebook --ip=*; }
+jns() { docker run --rm -p 8888:8888 -v $HOME:/home/jovyan -e GRANT_SUDO=yes --user root jupyter/pyspark-notebook; }
+
+
+pip_add() {
+    pip install $1
+    pip freeze | grep $1 >> requirements.txt
 }

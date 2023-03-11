@@ -141,9 +141,11 @@ export cj=$gd/job
 export bh=$gd/bhairava
 
 
-source "$dot/aliases.sh"
-source "$dot/git/git_aliases.sh"
-source "$dot/private/private.sh"
+source $dot/aliases/main.sh
+source $dot/aliases/git.sh
+source $dot/aliases/macos.sh
+source $dot/private/private.sh
+
 export PATH=$dot/bin:$PATH
 
 
@@ -162,7 +164,6 @@ export VIRTUALENVWRAPPER_PYTHON="/Library/Frameworks/Python.framework/Versions/3
 source /usr/local/bin/virtualenvwrapper.sh
 
 
-source $dot/macos.sh
 # source $dot/nvidia.sh
 
 

@@ -4,13 +4,11 @@ alias s=subl
 alias o=open
 alias p=python
 alias sz='source ~/.bashrc'
-alias rc="$EDITOR ~/.bashrc"
-alias al="$EDITOR $dot/aliases.sh"
 alias req='touch requirements.txt'
 alias grep='grep --color=auto'
-alias va='source .venv/bin/activate'
 alias tc='clear; tmux clear-history; clear'
 alias fixssh='eval $(tmux showenv -s SSH_AUTH_SOCK)'
+alias pf="fzf --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
 
 
 path() { echo $PATH | tr : "\n"; }
@@ -21,10 +19,6 @@ function pc() {
     open -a PyCharm $1
     # open -a "PyCharm CE" $1
 }
-
-
-alias pf="fzf --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
-gl() { git log --oneline --decorate --color | fzf --ansi --preview 'git show $(echo {} | cut -d" " -f1)'; }
 
 # c means content, f means files
 # todo: add fallback: grep -ir 'search query' . , find .
@@ -41,10 +35,7 @@ rgext() { rg --hidden --glob "*.$1" . | fzf; } # search inside jupyter notebooks
 ff() { find . -iname "**$1**"; } # ff means find filename
 
 recent() { /bin/ls -hAlt . | head -20; }
-gitgrep() { git grep $1 $(git rev-list --all); }
-# gitgrep() { git grep $1 $(git rev-list --all) *.py; } # specific extension
-jn () { cd ~ && p -m jupyter notebook --ip=*; }
-jns() { docker run --rm -p 8888:8888 -v $HOME:/home/jovyan -e GRANT_SUDO=yes --user root jupyter/pyspark-notebook; }
+
 killport() { kill -9 $(lsof -ti :$1); }
 
 
@@ -105,7 +96,6 @@ rmkernel() {
     rm -rf "$KERNELS_DIR/$1"
 }
 
-
 jtrust() {
     if [ -z "$1" ]; then
         echo "pass root folder to trust"
@@ -115,12 +105,6 @@ jtrust() {
 }
 
 
-pip_add() {
-    pip install $1
-    pip freeze | grep $1 >> requirements.txt
-}
-
 pipd() {
     pip install -e .[dev]
 }
-
