@@ -74,7 +74,10 @@ myip() {
     curl checkip.amazonaws.com # ifconfig.me
 }
 
-# python ============================================
+# ===================== python =======================
+
+# KERNELS_DIR=~/.local/share/jupyter/kernels # linux
+KERNELS_DIR=~/Library/Jupyter/kernels # macos
 
 mkkernel() {
     if [ -n "$1" ]; then
@@ -91,18 +94,15 @@ mkkernel() {
 }
 
 lskernel() { 
-    # ls ~/.local/share/jupyter/kernels; 
-    # find ~/.local/share/jupyter/kernels -type d
-    find ~/Library/Jupyter/kernels -type d
+    find $KERNELS_DIR -type d -mindepth 1 -maxdepth 1
 }
 
-pip_add() {
-    pip install $1
-    pip freeze | grep $1 >> requirements.txt
-}
-
-pipd() {
-    pip install -e .[dev]
+rmkernel() {
+    if [ -z "$1" ]; then
+        echo "pass kernel name as argument"
+        return 1
+    fi
+    rm -rf "$KERNELS_DIR/$1"
 }
 
 
@@ -115,4 +115,12 @@ jtrust() {
 }
 
 
+pip_add() {
+    pip install $1
+    pip freeze | grep $1 >> requirements.txt
+}
+
+pipd() {
+    pip install -e .[dev]
+}
 

@@ -5,7 +5,7 @@ import sys
 
 
 if len(sys.argv) != 2:
-    print('pass transform functions')
+    print("pass transform functions, example: ls -l | pipe '| Map(len)'")
     raise SystemExit(1)
 
 # print(sys.stdin | Map(len) | Pipe(list))

@@ -141,8 +141,8 @@ export cj=$gd/job
 export bh=$gd/bhairava
 
 
-source "$dot/git_aliases.sh"
 source "$dot/aliases.sh"
+source "$dot/git/git_aliases.sh"
 source "$dot/private/private.sh"
 export PATH=$dot/bin:$PATH
 

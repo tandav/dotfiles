@@ -3,5 +3,11 @@
 */5 * * * * scp or3:gitea/gitea/gitea/gitea.db /Users/tandav/GoogleDrive/projects/gitea.db
 */3 * * * * zsh -c "source $HOME/.zshrc; dump_tabs tmp"
 */5 * * * * zsh -c "source $HOME/.zshrc; sh /Users/tandav/GoogleDrive/projects/notes/backup.sh"
-0 * * * * rsync -a --delete /media/tandav/sg8tb1/ /media/tandav/sg8tb2 # sudo
+
+# sudo (sudo crontab -e)
 # https://serverfault.com/questions/141773/what-is-archive-mode-in-rsync#141778
+0 * * * * rsync -a --delete /media/tandav/sg8tb1/ /media/tandav/sg8tb2
+
+# copying to exfat: https://serverfault.com/a/141778/548704 
+# TODO: fix weird unsupported filenames
+# 0 * * * * rsync -rlt --delete /media/tandav/sg8tb1/ /media/tandav/mypassport/hdd-mirror
