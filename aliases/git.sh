@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # copied from oh-my-zsh (and cleaned)
 alias gc='git commit -v'
 alias gcn='git commit -v --no-verify'
@@ -26,14 +28,14 @@ alias gitdel='git log --diff-filter=D --summary'
 
 gupd() {
     git add -v . &&
-    git commit -v -m '_' &&
-    git push -v origin HEAD
+        git commit -v -m '_' &&
+        git push -v origin HEAD
 }
 
 gupda() {
     git add -v . &&
-    git commit -v --amend --no-edit &&
-    git push -v --force origin HEAD
+        git commit -v --amend --no-edit &&
+        git push -v --force origin HEAD
 }
 
 gpp() {
@@ -41,6 +43,6 @@ gpp() {
     git push --tags
 }
 
-gl() { git log --oneline --decorate --color | fzf --ansi --preview 'git show $(echo {} | cut -d" " -f1)'; }
-gitgrep() { git grep $1 $(git rev-list --all); }
-# gitgrep() { git grep $1 $(git rev-list --all) *.py; } # specific extension
+gl() { git log --oneline --decorate --color | fzf --ansi --preview "git show $(echo {} | cut -d' ' -f1)"; }
+gitgrep() { git grep "$1" "$(git rev-list --all)"; }
+# gitgrep() { git grep "$1" "$(git rev-list --all)" *.py; } # specific extension

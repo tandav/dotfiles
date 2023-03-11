@@ -1,5 +1,6 @@
-source ~/.bashrc
+#!/bin/bash
 
+source ~/.bashrc
 
 # # >>> conda initialize >>>
 # # !! Contents within this block are managed by 'conda init' !!
@@ -15,7 +16,6 @@ source ~/.bashrc
 # fi
 # unset __conda_setup
 # # <<< conda initialize <<<
-
 
 # Setting PATH for Python 3.11
 # The original version is saved in .bash_profile.pysave

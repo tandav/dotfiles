@@ -1,4 +1,6 @@
-echo $dot
+#!/bin/bash
+
+echo "$dot"
 
 ln -sfv "$dot/git/.gitconfig" ~
 ln -sfv "$dot/git/.gitconfig-personal" ~

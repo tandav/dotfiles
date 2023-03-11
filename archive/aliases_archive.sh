@@ -1,15 +1,14 @@
+#!/bin/bash
+
 alias subl='open -a Sublime\ Text'
 alias tmp='open http://localhost:8888/notebooks/Documents/tmp.ipynb'
 alias net='sudo tshark -i en0 -T fields -e frame.time -e ip.src -e dns.qry.name -Y 'dns.flags.response eq 0''
 alias net='sudo tshark -i en0 -T fields -e frame.number -e frame.time -e ip.src -e dns.qry.name -Y 'dns.flags.response eq 0''
 alias net='sudo tshark -i en0 -T fields -e frame.number -e ip.src -e dns.qry.name -Y 'dns.flags.response eq 0''
-netcracker/oracle
 alias sqlcl='/Applications/SQLDeveloper.app/Contents/Resources/sqldeveloper/sqldeveloper/bin/sql'
 alias nk_cli='sqlcl system/oracle@localhost:1521:xe'
 alias nk='open -a IntelliJ\ IDEA & docker start -a netcracker_db'
-alias nks='docker stop netcracker_db'
-airpods() {python ~/Documents/spaces/etc/airpods-reconnect/main.py}
-# activate env/ virtualenv
+airpods() { python ~/Documents/spaces/etc/airpods-reconnect/main.py; }
 alias va='source .venv/bin/activate'
 alias sd='source deactivate'
 alias t='cd ~/Desktop && touch'
@@ -23,14 +22,14 @@ alias h='open -a Safari http://localhost:4000/space/root'
 alias jn='jupyter notebook'
 alias jl='jupyter lab'
 alias jnc='open https://colab.research.google.com/notebook#fileId=1tMXb4IXryuenlUvIBkRgZlSQmrlp5mUr&scrollTo=gXzvGiMJD4rQ' # temp colab notebook
-alias jna='open https://temp-tandav.notebooks.azure.com/nb//notebooks/temp.ipynb' # azure notebook
+alias jna='open https://temp-tandav.notebooks.azure.com/nb//notebooks/temp.ipynb'                                          # azure notebook
 alias bp='open ~/Documents/spaces/meta/big-pic/pics'
 alias i='open -a IntelliJ\ IDEA'
 alias aws='sshfs ubuntu@ec2-18-195-144-88.eu-central-1.compute.amazonaws.com:/home/ubuntu/ /Users/tandav/Documents/hn-best/fuse/ -o reconnect,auto_cache,defer_permissions,noappledouble,Compression=no -ovolname=ubuntu-aws-hn-best'
 alias hm='python3 ~/GoogleDrive/Notes/etc/htmlmap.py'
-alias tmp="$EDITOR $pj/tmp_notes/tmp.md"
+alias tmp='$EDITOR $pj/tmp_notes/tmp.md'
 alias spark='echo "from pyspark.sql import SparkSession\nspark = SparkSession.builder.getOrCreate()" | pbcopy'
-alias sm="python $gists/send_email.py"
+alias sm='python $gists/send_email.py'
 # alias ls='ls -G'
 # alias l='ls -hAlt'
 # alias ip=ipython
@@ -49,7 +48,6 @@ export PATH=${PATH}:~/Documents/html-map
 # search notes:
 # rg --glob '*.md' search_query .
 # grep -ir --include="*.md" search_query .
-
 
 # alias ping='ping -c 5'
 # hpf() { rsync -azvhP ~/GoogleDrive/contract-job/ssh-vpn/code.sh 'or1:code.sh' }
@@ -88,25 +86,23 @@ export PATH=${PATH}:~/Documents/html-map
 # tm() { ssh -vvv $1 -t 'tmux -CC a -t my' }
 
 vid_for_twitter() {
-    ffmpeg -i $1 -c:v libx264 -crf 18 -c:a copy ~/Desktop/out.mp4
+    ffmpeg -i "$1" -c:v libx264 -crf 18 -c:a copy ~/Desktop/out.mp4
     # If you get height not divisible by 2 (720x405) then add the crop filter:
     # ffmpeg -i $1 -c:v libx264 -crf 18 -vf crop=iw:ih-1 -c:a copy out.mp4
 }
 
-
 pserver() {
     link="http://$(myip):8000"
     echo "$link"
-    python $gists/send_email.py "$link" # send link to my gmail
+    python "$gists/send_email.py" "$link" # send link to my gmail
     python -m http.server
 }
-
 
 pipup() {
     # -n1 flag for xargs that prevents stopping everything, if updating one package fails.
     python -m pip list --outdated --format=freeze | cut -d = -f 1 | xargs -n1 pip3 install -U
 }
-malware() {launchctl list | grep -v com.apple | sort --key=3 } # thirdparty agents/threads
+malware() { launchctl list | grep -v com.apple | sort --key=3; } # thirdparty agents/threads
 
 alias va='. .venv/bin/activate'
 function vr() {
@@ -119,19 +115,18 @@ function vr() {
     pip install -r requirements-dev.txt
 }
 
-
 lf() {
-    find $gd -type f |
-    grep -v "^${pj}/files" |
-    grep -v .idea |
-    grep -v .ipynb_checkpoints |
-    grep -v .git |
-    grep -v __pycache__ > $pj/files/files.txt
-    git -C $pj/files diff --unified=0 --exit-code ||
-    git -C $pj/files add files.txt &&
-    git -C $pj/files commit -m '-' &&
-    git -C $pj/files push &&
-    echo 'Done'
+    find "$gd" -type f |
+        grep -v "^${pj}/files" |
+        grep -v .idea |
+        grep -v .ipynb_checkpoints |
+        grep -v .git |
+        grep -v __pycache__ > "$pj/files/files.txt"
+    git -C "$pj/files" diff --unified=0 --exit-code ||
+        git -C "$pj/files" add files.txt &&
+        git -C "$pj/files" commit -m '-' &&
+        git -C "$pj/files" push &&
+        echo 'Done'
 }
 
 android_sync() { rsync -rauLvhP --delete xi:~/storage/dcim ~/Downloads/android/dcim; }
@@ -141,22 +136,25 @@ android_syncw() {
     open ~/Downloads/android/dcim
 }
 
-dsh() { docker exec -it $1 /bin/bash; } # jump into container
+dsh() { docker exec -it "$1" /bin/bash; } # jump into container
 
 venvs_upgrade_pip() {
     # 1. list all venv directories in ~/.virtualenvs
     # 2. add suffix /bin/python for each directory
     # 3. run `python -m pip install --upgrade pip` for each python
     find ~/.virtualenvs -type d -mindepth 1 -maxdepth 1 |
-    sed 's/$/\/bin\/python/' |
-    xargs -I _ bash -c "_ -m pip install --upgrade pip"
+        sed 's/$/\/bin\/python/' |
+        xargs -I _ bash -c "_ -m pip install --upgrade pip"
 }
 
-jn () { cd ~ && p -m jupyter notebook --ip=*; }
-jns() { docker run --rm -p 8888:8888 -v $HOME:/home/jovyan -e GRANT_SUDO=yes --user root jupyter/pyspark-notebook; }
-
+jn() { cd ~ && p -m jupyter notebook --ip=*; }
+jns() { docker run --rm -p 8888:8888 -v "$HOME:/home/jovyan" -e GRANT_SUDO=yes --user root jupyter/pyspark-notebook; }
 
 pip_add() {
-    pip install $1
-    pip freeze | grep $1 >> requirements.txt
+    pip install "$1"
+    pip freeze | grep "$1" >> requirements.txt
+}
+
+change_ttl() {
+    sudo sysctl -w net.inet.ip.ttl=65
 }

@@ -17,3 +17,17 @@ repos:
       - id: trailing-whitespace
       - id: detect-private-key
       - id: double-quote-string-fixer
+      - id: check-executables-have-shebangs
+      - id: check-shebang-scripts-are-executable
+
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.9.0.2
+    hooks:
+    - id: shellcheck
+      args: [-e, SC2154, -e, SC1091, -e, SC1090]
+
+  - repo: https://github.com/scop/pre-commit-shfmt
+    rev: v3.6.0-1
+    hooks:
+      - id: shfmt  # requires Go to build
+        args: [-i, '4', -ci, -sr, -w, -s]

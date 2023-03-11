@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -5,7 +7,7 @@
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
-      *) return;;
+    *) return ;;
 esac
 
 HISTCONTROL=ignoredups
@@ -35,13 +37,13 @@ shopt -s checkwinsize
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+if [ -z "${debian_chroot-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
+    xterm-color | *-256color) color_prompt=yes ;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -51,12 +53,12 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+        # We have color support; assume it's compliant with Ecma-48
+        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+        # a case would tend to support setf rather than setaf.)
+        color_prompt=yes
     else
-	color_prompt=
+        color_prompt=
     fi
 fi
 
@@ -69,15 +71,15 @@ unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
+    xterm* | rxvt*)
+        PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+        ;;
+    *) ;;
 esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
+    # shellcheck disable=SC2015
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     # alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
@@ -95,7 +97,6 @@ fi
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -107,11 +108,9 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 #   fi
 # fi
 
-
 # =====================================================================================
 
 shopt -s direxpand # https://askubuntu.com/a/136633/1594515
-
 
 export PATH=/usr/local/opt/python@3.10/bin:$PATH
 export PATH=/usr/bin:$PATH
@@ -122,9 +121,7 @@ export GITLAB_HOME=/home/tandav/gitlab
 # export EDITOR='nvim'
 export EDITOR=vim
 
-
 export JAVA_HOME='/usr/lib/jvm/java-8-openjdk-amd64'
-
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -140,7 +137,6 @@ export dot=$gd/dotfiles
 export cj=$gd/job
 export bh=$gd/bhairava
 
-
 source $dot/aliases/main.sh
 source $dot/aliases/git.sh
 source $dot/aliases/macos.sh
@@ -148,9 +144,7 @@ source $dot/private/private.sh
 
 export PATH=$dot/bin:$PATH
 
-
 export KEEPASS_DB=$dot/private/tandav.kdbx
-
 
 export WORKON_HOME=~/.virtualenvs
 # export VIRTUALENVWRAPPER_PYTHON=/usr/local/opt/python@3.10/bin/python3.10
@@ -163,9 +157,7 @@ export VIRTUALENVWRAPPER_PYTHON="/Library/Frameworks/Python.framework/Versions/3
 # source ~/.local/bin/virtualenvwrapper.sh
 source /usr/local/bin/virtualenvwrapper.sh
 
-
 # source $dot/nvidia.sh
-
 
 # export PATH=$HOME/.poetry/bin:$PATH
 # alias poetry="~/.local/bin/poetry"
