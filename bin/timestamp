@@ -1,8 +1,0 @@
-#!/usr/bin/env python3
-
-from time import time
-print(int(time() * 1000))
-
-# better way:
-# date +%s
-# date -r 1559591041
