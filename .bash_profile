@@ -23,7 +23,19 @@ PATH="/Library/Frameworks/Python.framework/Versions/3.11/bin:${PATH}"
 export PATH
 
 # The next line updates PATH for Yandex Cloud CLI.
-if [ -f '/Users/tandav/yandex-cloud/path.bash.inc' ]; then source '/Users/tandav/yandex-cloud/path.bash.inc'; fi
+# macos
+# if [ -f '/Users/tandav/yandex-cloud/path.bash.inc' ]; then source '/Users/tandav/yandex-cloud/path.bash.inc'; fi
+# linux
+if [ -f '/home/tandav/yandex-cloud/path.bash.inc' ]; then source '/home/tandav/yandex-cloud/path.bash.inc'; fi
 
 # The next line enables shell command completion for yc.
-if [ -f '/Users/tandav/yandex-cloud/completion.bash.inc' ]; then source '/Users/tandav/yandex-cloud/completion.bash.inc'; fi
+# macos
+# if [ -f '/Users/tandav/yandex-cloud/completion.bash.inc' ]; then source '/Users/tandav/yandex-cloud/completion.bash.inc'; fi
+# linux
+if [ -f '/home/tandav/yandex-cloud/completion.bash.inc' ]; then source '/home/tandav/yandex-cloud/completion.bash.inc'; fi
+
+if [ -f "/home/tandav/miniconda3/etc/profile.d/mamba.sh" ]; then
+    . "/home/tandav/miniconda3/etc/profile.d/mamba.sh"
+fi
+
+. "$HOME/.cargo/env"
