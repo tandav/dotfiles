@@ -11,6 +11,7 @@ ln -sfv "$dot/.vimrc" ~
 ln -sfv "$dot/.bashrc" ~
 ln -sfv "$dot/.bash_profile" ~
 ln -sfv "$dot/private/.pypirc" ~
+ln -sfv "$gd/selfhosted/jupyter/jupyter_notebook_config.py" ~/.jupyter/jupyter_notebook_config.py
 
 mkdir -p "$HOME/.config/pip"
 ln -sfv "$dot/private/pip.conf" "$HOME/.config/pip/pip.conf"

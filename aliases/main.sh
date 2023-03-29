@@ -46,13 +46,6 @@ rt() {
     open "$pic"
 }
 
-jh() {
-    # open -a $dot/OpenJupyter.app .
-    # p $dot/jupyter_opener.py $PWD
-    # open "http://localhost:8888/notebooks$(echo $PWD | sed "s|$HOME||")" # https://stackoverflow.com/a/23134318/4204843
-    open "http://localhost:8888/notebooks${PWD#"$HOME"}" # https://stackoverflow.com/a/20615306/4204843
-}
-
 ytv() { yt-dlp --no-playlist -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' --output "$HOME/Desktop/%(title)s.%(ext)s" "$1"; }
 yta() { yt-dlp --no-playlist -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --output "$HOME/Desktop/%(title)s.%(ext)s" "$1"; }
 vid_and_audio() { ffmpeg -i "$1" -i "$2" -c:v copy -map 0:v:0 -map 1:a:0 -shortest ~/Desktop/out.mp4; }
@@ -106,4 +99,11 @@ jtrust() {
 
 pipd() {
     pip install -e .[dev]
+}
+
+jh() {
+    # open -a $dot/OpenJupyter.app .
+    # p $dot/jupyter_opener.py $PWD
+    # open "http://localhost:8888/notebooks$(echo $PWD | sed "s|$HOME||")" # https://stackoverflow.com/a/23134318/4204843
+    open "http://localhost:8888/notebooks${PWD#"$HOME"}" # https://stackoverflow.com/a/20615306/4204843
 }
