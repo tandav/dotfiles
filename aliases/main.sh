@@ -58,6 +58,24 @@ myip() {
     curl checkip.amazonaws.com # ifconfig.me
 }
 
+# ====================== tmux ========================
+
+tm() {
+    tmux new-session -d -s main
+
+    # tmux new-window -d -n jupyter -c "$HOME"
+    # tmux send-keys -t main:jupyter "workon jupyter" C-m "jupyter notebook --no-browser" C-m
+
+    tmux new-window -d -n notes -c "$HOME/docs/notes"
+    tmux send-keys -t main:notes "workon notes" C-m "make" C-m
+
+    tmux attach -t main
+}
+
+tk() {
+    tmux kill-server
+}
+
 # ===================== python =======================
 
 # KERNELS_DIR=~/.local/share/jupyter/kernels # linux

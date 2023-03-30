@@ -115,7 +115,6 @@ shopt -s direxpand # https://askubuntu.com/a/136633/1594515
 export PATH=/usr/local/opt/python@3.10/bin:$PATH
 export PATH=/usr/bin:$PATH
 # export DOCKER_HOST=unix:///run/user/1000/docker.sock
-export GITLAB_HOME=/home/tandav/gitlab
 # export EDITOR="subl -nw"
 #export EDITOR="subl"
 # export EDITOR='nvim'
@@ -136,6 +135,7 @@ export gd=~/docs
 export dot=$gd/dotfiles
 export cj=$gd/job
 export bh=$gd/bhairava
+export s1=/media/tandav/sg8tb1
 
 source $dot/aliases/main.sh
 source $dot/aliases/git.sh

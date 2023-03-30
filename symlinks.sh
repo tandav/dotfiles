@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euxo pipefail
+
 echo "$dot"
 
 ln -sfv "$dot/git/.gitconfig" ~
