@@ -64,8 +64,8 @@ myip() {
 tm() {
     tmux new-session -d -s main
 
-    # tmux new-window -d -n jupyter -c "$HOME"
-    # tmux send-keys -t main:jupyter "workon jupyter" C-m "jupyter notebook --no-browser" C-m
+    tmux new-window -d -n jupyter -c "$HOME"
+    tmux send-keys -t main:jupyter "workon jupyter" C-m "jupyter notebook --no-browser" C-m
 
     tmux new-window -d -n notes -c "$HOME/docs/notes"
     tmux send-keys -t main:notes "workon notes" C-m "make" C-m

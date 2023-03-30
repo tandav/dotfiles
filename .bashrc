@@ -139,7 +139,7 @@ export s1=/media/tandav/sg8tb1
 
 source $dot/aliases/main.sh
 source $dot/aliases/git.sh
-# source $dot/aliases/macos.sh
+source $dot/aliases/macos.sh
 source $dot/private/private.sh
 
 export PATH=$dot/bin:$PATH
@@ -149,14 +149,14 @@ export KEEPASS_DB=$dot/private/tandav.kdbx
 export WORKON_HOME=~/.cache/.virtualenvs
 # export VIRTUALENVWRAPPER_PYTHON=/usr/local/opt/python@3.10/bin/python3.10
 # export VIRTUALENVWRAPPER_PYTHON=/usr/local/opt/python@3.11/bin/python3.11
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.11
-# export VIRTUALENVWRAPPER_PYTHON="/Library/Frameworks/Python.framework/Versions/3.11/bin/python3.11"
+# export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.11
+export VIRTUALENVWRAPPER_PYTHON="/Library/Frameworks/Python.framework/Versions/3.11/bin/python3.11"
 # mktmpenv --python /usr/local/opt/python@3.10/bin/python3.10
 # mkvirtualenv myenv --python /usr/local/opt/python@3.10/bin/python3.10
 # mkvirtualenv libmv-dagops --python python3.11
 
-source ~/.local/bin/virtualenvwrapper.sh # linux
-# source /usr/local/bin/virtualenvwrapper.sh # macos
+# source ~/.local/bin/virtualenvwrapper.sh # linux
+source /usr/local/bin/virtualenvwrapper.sh # macos
 
 # source $dot/nvidia.sh
 
