@@ -1,20 +1,22 @@
 import requests
 import json
 
-tags = []
 
-image = 'jupyter/pyspark-notebook'
-url = f'https://hub.docker.com/v2/repositories/{image}/tags'
-r = requests.get(url, params={'page_size': 100, 'page': 1}).json()
-while True:
-    tags += r['results']
-    url = r['next']
-    if url is None:
-        break
-    print(url)
-    r = requests.get(url).json()
+def dockerhub_image_tags(image: str) -> list[str]:
+    """get all tags of an image on dockerhub"""
+    tags = []
+    url = f'https://hub.docker.com/v2/repositories/{image}/tags'
+    r = requests.get(url, params={'page_size': 100, 'page': 1}).json()
+    while True:
+        tags += r['results']
+        url = r['next']
+        if url is None:
+            break
+        print(url)
+        r = requests.get(url).json()
+    return tags
 
-
+tags = dockerhub_image_tags('jupyter/pyspark-notebook')
 
 def amd64_digest(tag: dict) -> str:
     return next(im for im in tag['images'] if im['architecture'] == 'amd64')['digest'].removeprefix('sha256:')
