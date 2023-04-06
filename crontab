@@ -4,6 +4,8 @@
 */3 * * * * zsh -c "source $HOME/.zshrc; dump_tabs tmp"
 */5 * * * * zsh -c "source $HOME/.zshrc; sh /Users/tandav/GoogleDrive/projects/notes/backup.sh"
 
+0 * * * * docker rmi $(docker images -f "dangling=true" -q)
+
 # sudo (sudo crontab -e)
 # https://serverfault.com/questions/141773/what-is-archive-mode-in-rsync#141778
 0 * * * * rsync -a --delete /media/tandav/sg8tb1/ /media/tandav/sg8tb2
