@@ -12,7 +12,7 @@ ln -sfv "$dot/.tmux.conf" ~
 ln -sfv "$dot/.vimrc" ~
 ln -sfv "$dot/shell/.bashrc" ~
 ln -sfv "$dot/shell/.bash_profile" ~
-ln -sfv "$dot/gists/postactivate" ~/.virtualenvs/postactivate
+ln -sfv "$dot/shell/postactivate" ~/.cache/.virtualenvs/postactivate
 ln -sfv "$dot/private/.pypirc" ~
 
 if [ "$HOSTNAME" == "u60" ]; then
