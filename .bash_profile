@@ -1,41 +1,32 @@
 #!/bin/bash
 
+# set -euo pipefail
+
 source ~/.bashrc
 
-# # >>> conda initialize >>>
-# # !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-#         . "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# # <<< conda initialize <<<
+OS_NAME=$(uname -s)
+export OS_NAME
 
-# Setting PATH for Python 3.11
-# The original version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.11/bin:${PATH}"
-export PATH
-
-# The next line updates PATH for Yandex Cloud CLI.
-# macos
-# if [ -f '/Users/tandav/yandex-cloud/path.bash.inc' ]; then source '/Users/tandav/yandex-cloud/path.bash.inc'; fi
-# linux
-if [ -f '/home/tandav/yandex-cloud/path.bash.inc' ]; then source '/home/tandav/yandex-cloud/path.bash.inc'; fi
-
-# The next line enables shell command completion for yc.
-# macos
-# if [ -f '/Users/tandav/yandex-cloud/completion.bash.inc' ]; then source '/Users/tandav/yandex-cloud/completion.bash.inc'; fi
-# linux
-if [ -f '/home/tandav/yandex-cloud/completion.bash.inc' ]; then source '/home/tandav/yandex-cloud/completion.bash.inc'; fi
-
-if [ -f "/home/tandav/miniconda3/etc/profile.d/mamba.sh" ]; then
-    . "/home/tandav/miniconda3/etc/profile.d/mamba.sh"
+if [ "$OS_NAME" == "Darwin" ]; then
+    source "$dot/aliases/macos.sh"
+elif [ "$OS_NAME" == "Linux" ]; then
+    source "$dot/aliases/linux.sh"
+else
+    echo "Unknown operating system."
 fi
 
-. "$HOME/.cargo/env"
+if [ "$HOSTNAME" == "u60" ]; then
+    source "$dot/aliases/nvidia.sh"
+    export s1=/media/tandav/sg8tb1
+    export JAVA_HOME='/usr/lib/jvm/java-8-openjdk-amd64'
+fi
+
+source "$dot/aliases/git.sh"
+source "$dot/private/private.sh"
+source "$dot/aliases/main.sh"
+
+# The next line updates PATH for Yandex Cloud CLI.
+if [ -f "$HOME/yandex-cloud/path.bash.inc" ]; then source "$HOME/yandex-cloud/path.bash.inc"; fi
+
+# The next line enables shell command completion for yc.
+if [ -f "$HOME/yandex-cloud/completion.bash.inc" ]; then source "$HOME/yandex-cloud/completion.bash.inc"; fi

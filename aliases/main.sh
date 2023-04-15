@@ -15,10 +15,15 @@ alias pf="fzf --preview='less {}' --bind shift-up:preview-page-up,shift-down:pre
 path() { echo "$PATH" | tr : "\n"; }
 
 function pc() {
-    #~/Downloads/pycharm-2022.1.3/bin/pycharm.sh "$1" > /dev/null 2>&1 &
-    # charm $1 > /dev/null 2>&1 &
-    open -a PyCharm "$1"
-    # open -a "PyCharm CE" $1
+    if [ "$OS_NAME" == "Darwin" ]; then
+        open -a PyCharm "$1"
+        # open -a "PyCharm CE" $1
+    elif [ "$OS_NAME" == "Linux" ]; then
+        #~/Downloads/pycharm-2022.1.3/bin/pycharm.sh "$1" > /dev/null 2>&1 &
+        charm "$1" > /dev/null 2>&1 &
+    else
+        echo "Unknown operating system."
+    fi
 }
 
 # c means content, f means files
@@ -47,8 +52,8 @@ rt() {
     open "$pic"
 }
 
-ytv() { yt-dlp --no-playlist -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' --output "$HOME/Desktop/%(title)s.%(ext)s" "$1"; }
-yta() { yt-dlp --no-playlist -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --output "$HOME/Desktop/%(title)s.%(ext)s" "$1"; }
+ytv() { "$HOME/.cache/.virtualenvs/yt-dlp/bin/yt-dlp" --no-playlist -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' --output "$HOME/Desktop/%(title)s.%(ext)s" "$1"; }
+yta() { "$HOME/.cache/.virtualenvs/yt-dlp/bin/yt-dlp" --no-playlist -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --output "$HOME/Desktop/%(title)s.%(ext)s" "$1"; }
 vid_and_audio() { ffmpeg -i "$1" -i "$2" -c:v copy -map 0:v:0 -map 1:a:0 -shortest ~/Desktop/out.mp4; }
 
 sshc() { $EDITOR ~/.ssh/config; }
@@ -64,12 +69,13 @@ myip() {
 tm() {
     tmux new-session -d -s main
 
-    # tmux new-window -d -n jupyter -c "$HOME"
-    # tmux send-keys -t main:jupyter "workon jupyter" C-m "jupyter notebook --no-browser" C-m
+    if [ "$OS_NAME" == "Darwin" ]; then
+        tmux new-window -d -n jupyter -c "$HOME"
+        tmux send-keys -t main:jupyter "workon jupyter" C-m "jupyter notebook --no-browser" C-m
 
-    tmux new-window -d -n notes -c "$HOME/docs/notes"
-    tmux send-keys -t main:notes "workon notes" C-m "make" C-m
-
+        tmux new-window -d -n notes -c "$HOME/docs/notes"
+        tmux send-keys -t main:notes "workon notes" C-m "make" C-m
+    fi
     tmux attach -t main
 }
 
@@ -78,9 +84,6 @@ tk() {
 }
 
 # ===================== python =======================
-
-# KERNELS_DIR=~/.local/share/jupyter/kernels # linux
-KERNELS_DIR=~/Library/Jupyter/kernels # macos
 
 mkkernel() {
     if [ -n "$1" ]; then

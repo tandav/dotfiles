@@ -14,8 +14,11 @@ ln -sfv "$dot/.bashrc" ~
 ln -sfv "$dot/.bash_profile" ~
 ln -sfv "$dot/gists/postactivate" ~/.virtualenvs/postactivate
 ln -sfv "$dot/private/.pypirc" ~
-ln -sfv "$dot/bin/OpenJupyter.desktop" ~/.local/share/applications
-ln -sfv "$gd/selfhosted/jupyter/jupyter_notebook_config.py" ~/.jupyter/jupyter_notebook_config.py
+
+if [ "$HOSTNAME" == "u60" ]; then
+    ln -sfv "$dot/bin/OpenJupyter.desktop" ~/.local/share/applications
+    ln -sfv "$gd/selfhosted/jupyter/jupyter_notebook_config.py" ~/.jupyter/jupyter_notebook_config.py
+fi
 
 mkdir -p "$HOME/.config/pip"
 ln -sfv "$dot/private/pip.conf" "$HOME/.config/pip/pip.conf"
