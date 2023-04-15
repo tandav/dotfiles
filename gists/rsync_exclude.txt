@@ -1,0 +1,13 @@
+**/*.pyc
+**/*.class
+**/.venv/
+**/.mypy_cache/
+**/.ruff_cache/
+**/.pytest_cache/
+**/.dvc/cache/
+**/.dvc/tmp
+**/.idea/
+**/.vscode/
+**/.hypothesis/
+**/__pycache__/
+**/navidrome/data/cache/
