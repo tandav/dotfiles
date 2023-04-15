@@ -146,7 +146,7 @@ export PATH=$dot/bin:$PATH
 
 export KEEPASS_DB=$dot/private/tandav.kdbx
 
-export WORKON_HOME=~/.virtualenvs
+export WORKON_HOME=~/.cache/.virtualenvs
 # export VIRTUALENVWRAPPER_PYTHON=/usr/local/opt/python@3.10/bin/python3.10
 # export VIRTUALENVWRAPPER_PYTHON=/usr/local/opt/python@3.11/bin/python3.11
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.11
