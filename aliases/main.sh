@@ -15,10 +15,15 @@ alias pf="fzf --preview='less {}' --bind shift-up:preview-page-up,shift-down:pre
 path() { echo "$PATH" | tr : "\n"; }
 
 function pc() {
-    #~/Downloads/pycharm-2022.1.3/bin/pycharm.sh "$1" > /dev/null 2>&1 &
-    # charm $1 > /dev/null 2>&1 &
-    open -a PyCharm "$1"
-    # open -a "PyCharm CE" $1
+    if [ "$OS_NAME" == "Darwin" ]; then
+        open -a PyCharm "$1"
+        # open -a "PyCharm CE" $1
+    elif [ "$OS_NAME" == "Linux" ]; then
+        #~/Downloads/pycharm-2022.1.3/bin/pycharm.sh "$1" > /dev/null 2>&1 &
+        charm "$1" > /dev/null 2>&1 &
+    else
+        echo "Unknown operating system."
+    fi
 }
 
 # c means content, f means files
