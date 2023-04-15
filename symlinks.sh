@@ -14,6 +14,7 @@ ln -sfv "$dot/.bashrc" ~
 ln -sfv "$dot/.bash_profile" ~
 ln -sfv "$dot/gists/postactivate" ~/.virtualenvs/postactivate
 ln -sfv "$dot/private/.pypirc" ~
+ln -sfv "$dot/bin/OpenJupyter.desktop" ~/.local/share/applications
 ln -sfv "$gd/selfhosted/jupyter/jupyter_notebook_config.py" ~/.jupyter/jupyter_notebook_config.py
 
 mkdir -p "$HOME/.config/pip"
