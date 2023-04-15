@@ -38,7 +38,8 @@ ff() { find . -iname "**$1**"; }               # ff means find filename
 recent() { /bin/ls -hAlt . | head -20; }
 
 # shellcheck disable=SC2046
-killport() { kill -9 $(lsof -ti :"$1"); }
+# killport() { kill -9 $(lsof -ti :"$1"); }
+killport() { lsof -ti :"$1" | xargs kill -9; }
 
 rt() {
     pic=$HOME/Desktop/$RANDOM.png
