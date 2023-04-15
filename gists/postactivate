@@ -1,0 +1,8 @@
+#!/bin/bash
+# This hook is sourced after every virtualenv is activated.
+
+CACHE_DIR=$VIRTUAL_ENV/cache
+mkdir -p "$CACHE_DIR"
+export PYTHONPYCACHEPREFIX=$CACHE_DIR/pycache
+export MYPY_CACHE_DIR=$CACHE_DIR/.mypy_cache
+export RUFF_CACHE_DIR=$CACHE_DIR/.ruff_cache

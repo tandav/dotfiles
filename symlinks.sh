@@ -12,6 +12,7 @@ ln -sfv "$dot/.tmux.conf" ~
 ln -sfv "$dot/.vimrc" ~
 ln -sfv "$dot/.bashrc" ~
 ln -sfv "$dot/.bash_profile" ~
+ln -sfv "$dot/gists/postactivate" ~/.virtualenvs/postactivate
 ln -sfv "$dot/private/.pypirc" ~
 ln -sfv "$gd/selfhosted/jupyter/jupyter_notebook_config.py" ~/.jupyter/jupyter_notebook_config.py
 
