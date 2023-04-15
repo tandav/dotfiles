@@ -10,8 +10,8 @@ ln -sfv "$dot/git/.gitignore_global" ~
 ln -sfv "$dot/private/.gitconfig-job" ~
 ln -sfv "$dot/.tmux.conf" ~
 ln -sfv "$dot/.vimrc" ~
-ln -sfv "$dot/.bashrc" ~
-ln -sfv "$dot/.bash_profile" ~
+ln -sfv "$dot/shell/.bashrc" ~
+ln -sfv "$dot/shell/.bash_profile" ~
 ln -sfv "$dot/gists/postactivate" ~/.virtualenvs/postactivate
 ln -sfv "$dot/private/.pypirc" ~
 
