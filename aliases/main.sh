@@ -97,7 +97,7 @@ mkkernel() {
 }
 
 lskernel() {
-    find "$KERNELS_DIR" -type d -mindepth 1 -maxdepth 1
+    find "$KERNELS_DIR" -mindepth 1 -maxdepth 1 -type d
 }
 
 rmkernel() {
