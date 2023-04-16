@@ -85,7 +85,7 @@ export PATH=$dot/bin:$PATH
 export KEEPASS_DB=$dot/private/tandav.kdbx
 
 export WORKON_HOME=~/.cache/.virtualenvs
-# export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.11
+
 # mkvirtualenv myenv --python /usr/local/opt/python@3.10/bin/python3.10
 # mkvirtualenv libmv-dagops --python python3.11
 # mktmpenv --python /usr/local/opt/python@3.10/bin/python3.10
