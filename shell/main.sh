@@ -2,12 +2,10 @@
 
 alias ls='exa --long --header --group-directories-first'
 alias l='exa --long --header --group-directories-first --all'
+alias grep='grep --color=auto'
 alias s=subl
 alias o=open
-alias p=python
-alias sz='source ~/.bashrc'
-alias req='touch requirements.txt'
-alias grep='grep --color=auto'
+alias sz='source ~/.bash_profile'
 alias tc='clear; tmux clear-history; clear'
 alias fixssh='eval $(tmux showenv -s SSH_AUTH_SOCK)'
 alias pf="fzf --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
@@ -52,8 +50,8 @@ rt() {
     open "$pic"
 }
 
-ytv() { "$HOME/.cache/.virtualenvs/yt-dlp/bin/yt-dlp" --no-playlist -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' --output "$HOME/Desktop/%(title)s.%(ext)s" "$1"; }
-yta() { "$HOME/.cache/.virtualenvs/yt-dlp/bin/yt-dlp" --no-playlist -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --output "$HOME/Desktop/%(title)s.%(ext)s" "$1"; }
+ytv() { "$HOME/.cache/virtualenvs/yt-dlp/bin/yt-dlp" --no-playlist -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' --output "$HOME/Desktop/%(title)s.%(ext)s" "$1"; }
+yta() { "$HOME/.cache/virtualenvs/yt-dlp/bin/yt-dlp" --no-playlist -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --output "$HOME/Desktop/%(title)s.%(ext)s" "$1"; }
 vid_and_audio() { ffmpeg -i "$1" -i "$2" -c:v copy -map 0:v:0 -map 1:a:0 -shortest ~/Desktop/out.mp4; }
 
 sshc() { $EDITOR ~/.ssh/config; }
@@ -84,6 +82,9 @@ tk() {
 }
 
 # ===================== python =======================
+
+alias req='touch requirements.txt'
+alias p=python
 
 mkkernel() {
     if [ -n "$1" ]; then

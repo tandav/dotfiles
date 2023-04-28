@@ -43,7 +43,24 @@ alias sm='python $gists/send_email.py'
 # in order to run bm command (create blank map)
 export PATH=${PATH}:~/Documents/html-map
 
+# =========================================================================
+
+#'Safari'  Chromium,  Brave Browser, Google Chrome. If change, change also in $pj/n_tabs/com.tandav.n_tabs.plist
+# export BROWSER='Google Chrome'
+
+# export DOCKER_HOST=unix:///run/user/1000/docker.sock
+# export EDITOR="subl -nw"
+#export EDITOR="subl"
+# export EDITOR='nvim'
+
 # ================================ ARCHIVE ================================
+
+brewup() {
+    brew update
+    brew upgrade
+    brew cleanup --prune-prefix
+    brew doctor
+}
 
 # search notes:
 # rg --glob '*.md' search_query .
