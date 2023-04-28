@@ -2,24 +2,25 @@
 
 # set -euo pipefail
 
-export EDITOR=vim
+# export EDITOR=vim
 
 # export LC_ALL=en_US.UTF-8
 # export LANG=en_US.UTF-8
 # export LANGUAGE=
 
-HISTCONTROL=ignoredups
+# HISTCONTROL=ignoredups
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=10000000
-HISTFILESIZE=10000000
-HISTTIMEFORMAT="%F %T: "
-HISTFILE=~/.bash_history
+# HISTSIZE=10000000
+# HISTFILESIZE=10000000
+# HISTTIMEFORMAT="%F %T: "
+# HISTFILE=~/.bash_history
+
 # append to the history file, don't overwrite it
-shopt -s histappend
+# shopt -s histappend
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+# shopt -s checkwinsize
 shopt -s direxpand # https://askubuntu.com/a/136633/1594515
 
 export dt=~/Desktop
@@ -30,6 +31,7 @@ export bh=~/docs/bhairava
 export PATH=$dot/bin:$PATH
 export KEEPASS_DB=$dot/private/tandav.kdbx
 export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n$ '
+export SHELL=/usr/local/bin/bash
 
 export WORKON_HOME=~/.cache/virtualenvs
 # mkvirtualenv myenv --python /usr/local/opt/python@3.10/bin/python3.10
