@@ -2,7 +2,7 @@
 
 # set -euo pipefail
 
-# export EDITOR=vim
+export EDITOR=vim
 
 # export LC_ALL=en_US.UTF-8
 # export LANG=en_US.UTF-8
