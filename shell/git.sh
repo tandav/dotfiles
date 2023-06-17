@@ -27,19 +27,19 @@ alias glstats='git shortlog --summary --numbered --email --all --no-merges' # ht
 alias gitdel='git log --diff-filter=D --summary'
 
 gupd() {
-    git add -v . &&
-        git commit -v -m '_' &&
-        git push -v origin HEAD
+    git add --verbose . &&
+        git commit --verbose --no-verify --message '_' &&
+        git push --verbose origin HEAD
 }
 
 gupda() {
-    git add -v . &&
-        git commit -v --amend --no-edit &&
-        git push -v --force origin HEAD
+    git add --verbose . &&
+        git commit --verbose --no-verify --amend --no-edit &&
+        git push --verbose --force origin HEAD
 }
 
 gpp() {
-    git push -v
+    git push --verbose
     git push --tags
 }
 
