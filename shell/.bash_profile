@@ -65,7 +65,6 @@ fi
 # alias poetry="~/Library/Application\ Support/pypoetry/venv/bin/poetry"
 # curl -sSL https://install.python-poetry.org | python3.10 - --version 1.1.15
 export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/yandex-cloud/bin:$PATH
 
 # =====================================================================================
 
@@ -76,15 +75,17 @@ source "$dot/private/private.sh"
 
 # =====================================================================================
 
+export PATH=$HOME/yandex-cloud/bin:$PATH
+
 # The next line updates PATH for Yandex Cloud CLI.
-if [ -f "$HOME/yandex-cloud/path.bash.inc" ]; then source "$HOME/yandex-cloud/path.bash.inc"; fi
+# if [ -f "$HOME/yandex-cloud/path.bash.inc" ]; then source "$HOME/yandex-cloud/path.bash.inc"; fi
 
 # The next line enables shell command completion for yc.
-if [ -f "$HOME/yandex-cloud/completion.bash.inc" ]; then source "$HOME/yandex-cloud/completion.bash.inc"; fi
+# if [ -f "$HOME/yandex-cloud/completion.bash.inc" ]; then source "$HOME/yandex-cloud/completion.bash.inc"; fi
 
 # =====================================================================================
 
 # kubectl
 alias k='kubectl'
-source <(kubectl completion bash)
-complete -o default -F __start_kubectl k
+# source <(kubectl completion bash)
+# complete -o default -F __start_kubectl k

@@ -30,6 +30,7 @@ alias hm='python3 ~/GoogleDrive/Notes/etc/htmlmap.py'
 alias tmp='$EDITOR $pj/tmp_notes/tmp.md'
 alias spark='echo "from pyspark.sql import SparkSession\nspark = SparkSession.builder.getOrCreate()" | pbcopy'
 alias sm='python $gists/send_email.py'
+alias pf="fzf --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
 # alias ls='ls -G'
 # alias l='ls -hAlt'
 # alias ip=ipython

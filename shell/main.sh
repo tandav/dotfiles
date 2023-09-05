@@ -8,7 +8,6 @@ alias o=open
 alias sz='source ~/.bash_profile'
 alias tc='clear; tmux clear-history; clear'
 alias fixssh='eval $(tmux showenv -s SSH_AUTH_SOCK)'
-alias pf="fzf --preview='less {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
 
 path() { echo "$PATH" | tr : "\n"; }
 

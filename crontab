@@ -13,3 +13,15 @@
 # copying to exfat: https://serverfault.com/a/141778/548704
 # TODO: fix weird unsupported filenames
 # 0 * * * * rsync -rlt --delete /media/tandav/sg8tb1/ /media/tandav/mypassport/hdd-mirror
+
+
+
+
+# mbp
+crontab -e
+0/1 * * * * cd /Users/tandav/docs/notes && /Users/tandav/.cache/virtualenvs/notes-cron-export/bin/python -m cron_export
+0/5 * * * * cp /Users/tandav/docs/dotfiles/private/tandav.kdbx "/Users/tandav/Library/Mobile Documents/com~apple~CloudDocs"
+
+
+sudo crontab -e
+0/10 * * * * /Users/tandav/.cache/virtualenvs/mail/bin/python /Users/tandav/docs/mail/forward_cron_mail.py

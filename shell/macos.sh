@@ -13,7 +13,7 @@ function cdf() {
 }
 
 export PATH="/usr/local/bin:${PATH}" # homebrew binaries
-
+export PATH="/usr/local/sbin:$PATH"  # homebrew binaries
 # for GNU Bash
 # https://formulae.brew.sh/formula/bash-completion@2
 # https://superuser.com/a/1393343/1129682
