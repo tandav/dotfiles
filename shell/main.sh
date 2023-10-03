@@ -72,6 +72,9 @@ tm() {
 
         tmux new-window -d -n notes -c "$HOME/docs/notes"
         tmux send-keys -t main:notes "workon notes" C-m "make" C-m
+
+        tmux new-window -d -n cron -c "$HOME/docs/dotfiles/gists"
+        tmux send-keys -t main:cron "workon cron-python" C-m "python cron.py" C-m
     fi
     tmux attach -t main
 }
