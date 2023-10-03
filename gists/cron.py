@@ -20,38 +20,27 @@ import socket
 import pycron
 
 
-def log_function_call(func_name: str | None = None):
-    def log_function_call_(func):
-        @functools.wraps(func)
-        async def wrapper(*args, **kwargs):
-            start_time = datetime.datetime.now()
-    #         logging.info(json.dumps({
-            print(json.dumps({
-                'timestamp': str(start_time),
-                'event': 'start',
-                'function': func_name or func.__name__,
-            }), file=sys.stderr)
-            result = await func(*args, **kwargs)
-            end_time = datetime.datetime.now()
-    #         logging.info(json.dumps({
-            print(json.dumps({
-                'timestamp': str(end_time),
-                'event': 'stop',
-                'function': func_name or func.__name__,
-                'dt_seconds': (end_time - start_time).total_seconds(),
-            }), file=sys.stderr)
-            return result
-        return wrapper
-    return log_function_call_
+def make_task(p: Path):
+    task_globals = runpy.run_path(p)
+    schedule = task_globals['schedule']
+    function_name = p.name
+    function = task_globals['main']
+
+    @pycron.cron(schedule)
+    async def task_logged(timestamp: datetime.datetime):
+        start_time = datetime.datetime.now()
+        result = await function(timestamp)
+        end_time = datetime.datetime.now()
+        print(json.dumps({'timestamp': str(start_time), 'event': 'start', 'function': function_name}), file=sys.stderr)
+        print(json.dumps({'timestamp': str(end_time), 'event': 'stop', 'function': function_name, 'dt_seconds': (end_time - start_time).total_seconds()}), file=sys.stderr)
+    return task_logged
 
 
 def load_tasks(tasks_dir: str | Path):
     for p in Path(tasks_dir).rglob('*.py'):
         if p.stem == '__init__':
             continue
-        task_globals = runpy.run_path(p)#, init_globals={'util': util})
-        task = log_function_call(p.stem)(task_globals['main'])
-        task = pycron.cron(task_globals['schedule'])(task)
+        task = make_task(p)
 
 def main():
     tasks_dir = os.environ.get('CRON_PYTHON_TASKS_DIR', Path(os.environ['dot']) / 'crontab' / socket.gethostname())
