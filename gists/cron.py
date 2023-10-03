@@ -66,16 +66,14 @@ def load_tasks():
     for p in Path(tasks_dir).rglob('*.py'):
         task = runpy.run_path(p, init_globals={'pycron': pycron}, run_name=Path(p).stem)
 
-    scheduled_new = []
-    for f in pycron.scheduled_functions.copy():
+    for i, f in enumerate(pycron.scheduled_functions):
         new_f = log_function_call(f.function) # wrap into logging function
         new_f = cron_status_after_call(new_f)
-        scheduled_new.append(pycron.ScheduledFunc(
+        pycron.scheduled_functions[i] = pycron.ScheduledFunc(
             function=new_f,
             cron_str=f.cron_str,
             last_run=f.last_run,
-        ))
-    pycron.scheduled_functions = scheduled_new
+        )
     print_cron_status()
 
 
