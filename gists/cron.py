@@ -20,32 +20,50 @@ import socket
 import pycron
 
 
-def make_task(p: Path):
-    task_globals = runpy.run_path(p)
-    schedule = task_globals['schedule']
-    function_name = p.name
-    function = task_globals['main']
-
-    @pycron.cron(schedule)
-    async def task_logged(timestamp: datetime.datetime):
+def log_function_call(func):
+    @functools.wraps(func)
+    async def wrapper(*args, **kwargs):
         start_time = datetime.datetime.now()
-        result = await function(timestamp)
+#         logging.info(json.dumps({
+        print(json.dumps({
+            'timestamp': str(start_time),
+            'event': 'start',
+            'function': func.__module__,
+        }), file=sys.stderr)
+        result = await func(*args, **kwargs)
         end_time = datetime.datetime.now()
-        print(json.dumps({'timestamp': str(start_time), 'event': 'start', 'function': function_name}), file=sys.stderr)
-        print(json.dumps({'timestamp': str(end_time), 'event': 'stop', 'function': function_name, 'dt_seconds': (end_time - start_time).total_seconds()}), file=sys.stderr)
-    return task_logged
+#         logging.info(json.dumps({
+        print(json.dumps({
+            'timestamp': str(end_time),
+            'event': 'stop',
+            'function': func.__module__,
+            'dt_seconds': (end_time - start_time).total_seconds(),
+        }), file=sys.stderr)
+        return result
+    return wrapper
 
 
-def load_tasks(tasks_dir: str | Path):
+
+def load_tasks():
+    tasks_dir = os.environ.get('CRON_PYTHON_TASKS_DIR', Path(os.environ['dot']) / 'crontab' / socket.gethostname())
+    assert tasks_dir.exists(), str(tasks_dir)
     for p in Path(tasks_dir).rglob('*.py'):
         if p.stem == '__init__':
             continue
-        task = make_task(p)
+        task = runpy.run_path(p, init_globals={'pycron': pycron}, run_name=Path(p).stem)
+
+    pycron.scheduled_functions = [
+        pycron.ScheduledFunc(
+            function=log_function_call(f.function), # wrap into logging function
+            cron_str=f.cron_str,
+            last_run=f.last_run,
+        )
+        for f in pycron.scheduled_functions.copy()
+    ]
+
 
 def main():
-    tasks_dir = os.environ.get('CRON_PYTHON_TASKS_DIR', Path(os.environ['dot']) / 'crontab' / socket.gethostname())
-    assert tasks_dir.exists(), str(tasks_dir)
-    load_tasks(tasks_dir)
+    load_tasks()
     pycron.start()
 
 
