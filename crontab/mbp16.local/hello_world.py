@@ -12,5 +12,6 @@
 # @pycron.cron("*/20 * * * *")
 @pycron.cron('*/5 * * * *') # every 5 minutes
 # @pycron.cron("* * * * * */1") # every 1 second
+# @pycron.cron('* * * * * */5') # every 5 seconds
 async def main(timestamp):
     print('hello world')

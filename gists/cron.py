@@ -18,6 +18,22 @@ import sys
 import datetime
 import socket
 import pycron
+from croniter import croniter
+
+
+def print_cron_status():
+    for f in pycron.scheduled_functions:
+        last_run: datetime.datetime = datetime.datetime.fromtimestamp(f.last_run)
+        next_run_timestamp: int = croniter(f.cron_str, last_run).get_next(datetime.datetime)
+        print(f'{f.cron_str:>15} {f.function.__module__:<25} next run: {next_run_timestamp}')
+
+def cron_status_after_call(func):
+    @functools.wraps(func)
+    async def wrapper(*args, **kwargs):
+        result = await func(*args, **kwargs)
+        print_cron_status()
+        return result
+    return wrapper
 
 
 def log_function_call(func):
@@ -48,18 +64,20 @@ def load_tasks():
     tasks_dir = os.environ.get('CRON_PYTHON_TASKS_DIR', Path(os.environ['dot']) / 'crontab' / socket.gethostname())
     assert tasks_dir.exists(), str(tasks_dir)
     for p in Path(tasks_dir).rglob('*.py'):
-        if p.stem == '__init__':
-            continue
         task = runpy.run_path(p, init_globals={'pycron': pycron}, run_name=Path(p).stem)
 
-    pycron.scheduled_functions = [
-        pycron.ScheduledFunc(
-            function=log_function_call(f.function), # wrap into logging function
+    scheduled_new = []
+    for f in pycron.scheduled_functions.copy():
+        new_f = log_function_call(f.function) # wrap into logging function
+        new_f = cron_status_after_call(new_f)
+        scheduled_new.append(pycron.ScheduledFunc(
+            function=new_f,
             cron_str=f.cron_str,
             last_run=f.last_run,
-        )
-        for f in pycron.scheduled_functions.copy()
-    ]
+        ))
+    pycron.scheduled_functions = scheduled_new
+    print_cron_status()
+
 
 
 def main():
