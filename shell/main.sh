@@ -64,17 +64,18 @@ myip() {
 # ====================== tmux ========================
 
 tm() {
-    tmux new-session -d -s main
+    tmux new-session -d -s main -n jobs -c "$HOME"
+    # tmux new-session -d -s main
 
     if [ "$OS_NAME" == "Darwin" ]; then
-        tmux new-window -d -n jupyter -c "$HOME"
-        tmux send-keys -t main:jupyter "workon jupyter" C-m "jupyter notebook --no-browser" C-m
-
-        tmux new-window -d -n notes -c "$HOME/docs/notes"
-        tmux send-keys -t main:notes "workon notes" C-m "make" C-m
-
-        tmux new-window -d -n cron -c "$HOME/docs/dotfiles/gists"
-        tmux send-keys -t main:cron "workon cron-python" C-m "python cron.py" C-m
+        # tmux new-window -d -n jobs -c "$HOME"
+        tmux send-keys -t main:jobs "workon jupyter" C-m "jupyter notebook --no-browser" C-m
+        # # tmux new-window -d -n notes -c "$HOME/docs/notes"
+        tmux split-window -p 66 -h -c "$HOME/docs/notes"
+        tmux send-keys -t main:jobs "workon notes" C-m "make" C-m
+        # # tmux new-window -d -n cron -c "$HOME/docs/dotfiles/gists"
+        tmux split-window -p 66 -h -c "$HOME/docs/dotfiles/gists"
+        tmux send-keys -t main:jobs "workon cron-python" C-m "python cron.py" C-m
     fi
     tmux attach -t main
 }

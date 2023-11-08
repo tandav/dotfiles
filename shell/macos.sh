@@ -33,7 +33,9 @@ export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
 export KERNELS_DIR=~/Library/Jupyter/kernels
 # export VIRTUALENVWRAPPER_PYTHON=/usr/local/opt/python@3.10/bin/python3.10
 # export VIRTUALENVWRAPPER_PYTHON=/usr/local/opt/python@3.11/bin/python3.11
-export VIRTUALENVWRAPPER_PYTHON="/Library/Frameworks/Python.framework/Versions/3.11/bin/python3.11"
+# export VIRTUALENVWRAPPER_PYTHON=/Users/tandav/.cache/virtualenvs/virtualenvwrapper/bin/python
+# export VIRTUALENVWRAPPER_PYTHON="/Library/Frameworks/Python.framework/Versions/3.11/bin/python3.11"
+export VIRTUALENVWRAPPER_PYTHON="/Library/Frameworks/Python.framework/Versions/3.12/bin/python3.12"
 
 # virtualenvwrapper
 source /usr/local/bin/virtualenvwrapper.sh

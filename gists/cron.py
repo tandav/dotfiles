@@ -14,18 +14,45 @@ from pathlib import Path
 import json
 import functools
 import logging
+import humanize
 import sys
 import datetime
 import socket
 import pycron
+import operator
 from croniter import croniter
 
 
+def timestamp_utc_to_local(utc_timestamp: float) -> float:
+    utc_time = datetime.datetime.fromtimestamp(utc_timestamp).replace(tzinfo=datetime.timezone.utc)
+    return utc_time.astimezone().timestamp()
+
+
+def datetime_utc_to_local(dt: datetime.datetime) -> datetime.datetime:
+    utc_time = dt.replace(tzinfo=datetime.timezone.utc)
+    return utc_time.astimezone()#.replace(tzinfo=None)
+
+
 def print_cron_status():
-    for f in pycron.scheduled_functions:
-        last_run: datetime.datetime = datetime.datetime.fromtimestamp(f.last_run)
-        next_run_timestamp: int = croniter(f.cron_str, last_run).get_next(datetime.datetime)
-        print(f'{f.cron_str:>15} {f.function.__module__:<25} next run: {next_run_timestamp}')
+    data = []
+    for i, f in enumerate(pycron.scheduled_functions):
+        last_run = datetime.datetime.fromtimestamp(f.last_run)
+        next_run = croniter(f.cron_str, last_run).get_next(datetime.datetime)
+        local = datetime_utc_to_local(next_run)
+        now = datetime.datetime.now()
+        relative = humanize.naturaltime(local.replace(tzinfo=None))
+        string = f'{f.function.__module__:<25} ┃ {f.cron_str:>15} ┃ next run: ┃ {relative:>20} ┃ {local.replace(tzinfo=None)} (local UTC{local.tzinfo}) ┃ {next_run} (UTC)'
+        data.append({
+            'last_run': last_run,
+            'next_run': next_run,
+            'string': string,
+        })
+    data.sort(key=operator.itemgetter('next_run', 'last_run'))
+    print('━' * 26 + '┳' + '━' * 17 + '┳' + '━' * 11 + '┳' + '━' * 22 + '┳' + '━' * 36 + '┳' + '━' * 26)
+    for d in data:
+        print(d['string'])
+    print('━' * 26 + '┻' + '━' * 17 + '┻' + '━' * 11 + '┻' + '━' * 22 + '┻' + '━' * 36 + '┻' + '━' * 26)
+
 
 def cron_status_after_call(func):
     @functools.wraps(func)
@@ -60,6 +87,7 @@ def log_function_call(func):
 
 
 
+
 def load_tasks():
     tasks_dir = os.environ.get('CRON_PYTHON_TASKS_DIR', Path(os.environ['dot']) / 'crontab' / socket.gethostname())
     assert tasks_dir.exists(), str(tasks_dir)
@@ -72,7 +100,8 @@ def load_tasks():
         pycron.scheduled_functions[i] = pycron.ScheduledFunc(
             function=new_f,
             cron_str=f.cron_str,
-            last_run=f.last_run,
+            last_run=f.last_run, # UTC
+            # last_run=timestamp_utc_to_local(f.last_run), # local
         )
     print_cron_status()
 

@@ -13,6 +13,7 @@ ln -sfv "$dot/.vimrc" ~
 ln -sfv "$dot/shell/.bashrc" ~
 ln -sfv "$dot/shell/.bash_profile" ~
 ln -sfv "$dot/shell/postactivate" ~/.cache/virtualenvs/postactivate
+ln -sfv "$dot/private/ssh_config" ~/.ssh/config
 
 if [ "$HOSTNAME" == "u60" ]; then
     ln -sfv "$dot/bin/OpenJupyter.desktop" ~/.local/share/applications
