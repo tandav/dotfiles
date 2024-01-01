@@ -34,7 +34,7 @@ repos:
       args: [-e, SC2154, -e, SC1091, -e, SC1090]
 
   - repo: https://github.com/scop/pre-commit-shfmt
-    rev: v3.7.0-1
+    rev: v3.7.0-4
     hooks:
       - id: shfmt  # requires Go to build
         args: [-i, '4', -ci, -sr, -w, -s]

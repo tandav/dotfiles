@@ -1,7 +1,7 @@
 #!/bin/bash
 
-alias ls='exa --long --header --group-directories-first'
-alias l='exa --long --header --group-directories-first --all'
+alias ls='eza --long --header --group-directories-first'
+alias l='eza --long --header --group-directories-first --all'
 alias grep='grep --color=auto'
 alias s=subl
 alias o=open
@@ -36,6 +36,21 @@ rgc() { rg --hidden --glob '!.git' . | fzf; }
 rgf() { rg --hidden --glob '!.git' . --files | fzf; }
 rgext() { rg --hidden --glob "*.$1" . | fzf; } # search inside jupyter notebooks
 ff() { find . -iname "**$1**"; }               # ff means find filename
+function frg {
+    # https://news.ycombinator.com/item?id=38473516
+    # frg .
+    result=$(rg --ignore-case --color=always --line-number --no-heading "$@" |
+    fzf --ansi \
+        --color 'hl:-1:underline,hl+:-1:underline:reverse' \
+        --delimiter ':' \
+        --preview "bat --color=always {1} --theme='Solarized (light)' --highlight-line {2}" \
+        --preview-window 'up,60%,border-bottom,+{2}+3/3,~3')
+    file=${result%%:*}
+    linenumber=$(echo "${result}" | cut -d: -f2)
+    if [[ -n "$file" ]]; then
+          $EDITOR +"${linenumber}" "$file"
+    fi
+}
 
 recent() { /bin/ls -hAlt . | head -20; }
 
@@ -70,9 +85,11 @@ tm() {
     if [ "$OS_NAME" == "Darwin" ]; then
         # tmux new-window -d -n jobs -c "$HOME"
         tmux send-keys -t main:jobs "workon jupyter" C-m "jupyter notebook --no-browser" C-m
+        
         # # tmux new-window -d -n notes -c "$HOME/docs/notes"
-        tmux split-window -p 66 -h -c "$HOME/docs/notes"
-        tmux send-keys -t main:jobs "workon notes" C-m "make" C-m
+        # tmux split-window -p 66 -h -c "$HOME/docs/notes"
+        # tmux send-keys -t main:jobs "workon notes" C-m "make" C-m
+        
         # # tmux new-window -d -n cron -c "$HOME/docs/dotfiles/gists"
         tmux split-window -p 66 -h -c "$HOME/docs/dotfiles/gists"
         tmux send-keys -t main:jobs "workon cron-python" C-m "python cron.py" C-m
@@ -131,5 +148,6 @@ jh() {
     # open -a $dot/OpenJupyter.app .
     # p $dot/jupyter_opener.py $PWD
     # open "http://localhost:8888/notebooks$(echo $PWD | sed "s|$HOME||")" # https://stackoverflow.com/a/23134318/4204843
-    open "http://localhost:8888/notebooks${PWD#"$HOME"}" # https://stackoverflow.com/a/20615306/4204843
+    # open "http://localhost:8888/notebooks${PWD#"$HOME"}" # https://stackoverflow.com/a/20615306/4204843
+    open "http://localhost:8888/tree${PWD#"$HOME"}" # https://stackoverflow.com/a/20615306/4204843
 }

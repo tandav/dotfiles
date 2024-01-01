@@ -39,3 +39,8 @@
 
 [safe]
 	directory = /home/tandav/github-runners/pitch-detectors/_work/pitch-detectors/pitch-detectors
+
+# https://matklad.github.io/2023/12/31/git-things.html
+[diff]
+  colormoved = "default"
+  colormovedws = "allow-indentation-change"

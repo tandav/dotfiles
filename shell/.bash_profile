@@ -1,16 +1,14 @@
-#!/bin/bash
-
 # set -euo pipefail
 
-export EDITOR=vim
+export EDITOR=micro
 
 # export LC_ALL=en_US.UTF-8
 # export LANG=en_US.UTF-8
 # export LANGUAGE=
 
-# HISTCONTROL=ignoredups
+HISTCONTROL=ignoreboth
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-# HISTSIZE=10000000
+HISTSIZE=10000000
 # HISTFILESIZE=10000000
 # HISTTIMEFORMAT="%F %T: "
 # HISTFILE=~/.bash_history
@@ -31,6 +29,7 @@ export bh=~/docs/bhairava
 export PATH=$dot/bin:$PATH
 export KEEPASS_DB=$dot/private/tandav.kdbx
 export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n$ '
+# export SHELL=/usr/bin/bash
 export SHELL=/usr/local/bin/bash
 
 export WORKON_HOME=~/.cache/virtualenvs

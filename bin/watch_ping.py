@@ -1,5 +1,5 @@
 #!/Users/tandav/.cache/virtualenvs/ping/bin/python
-
+# TODO: add ping seconds to bar menubar
 
 
 # this script is tested only on macOS 13.0.1 (Ventura) using /sbin/ping command
@@ -128,8 +128,10 @@ def run_once():
         print(f'network {counter} ❌')
     print('---')
     print(f'{dt=:4.1f} seconds')
-    # print('---')
-    # print(f'{counter=}')
+    print('---')
+    print(f'{counter=}')
+    print('---')
+    print(f'{p.stdout}')
     redis.set('ping_t', t_now)
 
 

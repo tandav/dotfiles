@@ -42,7 +42,11 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 # python
 export KERNELS_DIR=~/.local/share/jupyter/kernels
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.11
+
+export WORKON_HOME=~/.cache/virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=~/.cache/virtualenvs/virtualenvwrapper/bin/python
+export VIRTUALENVWRAPPER_VIRTUALENV=~/.cache/virtualenvs/virtualenvwrapper/bin/virtualenv
+source ~/.cache/virtualenvs/virtualenvwrapper/bin/virtualenvwrapper.sh
 
 # virtualenvwrapper
-source ~/.local/bin/virtualenvwrapper.sh
+# source ~/.local/bin/virtualenvwrapper.sh
