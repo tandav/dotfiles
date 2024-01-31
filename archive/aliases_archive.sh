@@ -63,6 +63,9 @@ brewup() {
     brew doctor
 }
 
+sshc() { $EDITOR ~/.ssh/config; }
+recent() { /bin/ls -hAlt . | head -20; }
+
 # search notes:
 # rg --glob '*.md' search_query .
 # grep -ir --include="*.md" search_query .

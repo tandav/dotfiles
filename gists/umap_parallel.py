@@ -78,7 +78,7 @@ def main():
     n_neighbors_range =   2, 5, 15, 50, 100, 200
     params_space = itertools.product(min_dist_range, n_neighbors_range)
 
-    pics = dict()
+    pics = {}
     medoids = collections.Counter()
     with concurrent.futures.ProcessPoolExecutor() as pool:
         tasks = {

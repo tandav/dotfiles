@@ -1,6 +1,6 @@
 from pathlib import Path
 
-config = dict()
+config = {}
 
 for line in Path('job.properties').read_text().splitlines():
     if line == '' or line.startswith('#'):

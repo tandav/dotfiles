@@ -5,18 +5,20 @@ alias gc='git commit -v'
 alias gcn='git commit -v --no-verify'
 alias gcl='git clone --recursive'
 alias gco='git checkout'
-alias glg='git log --stat'
-alias glgp='git log --stat -p'
-alias glgg='git log --graph'
-alias glgga='git log --graph --decorate --all'
-alias glgm='git log --graph --max-count=10'
-alias glo='git log --oneline --decorate'
-alias glol="git log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
-alias glod="git log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'"
-alias glods="git log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short"
-alias glola="git log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all"
-alias glog='git log --oneline --decorate --graph'
-alias gloga='git log --oneline --decorate --graph --all'
+
+alias glg0='git log --stat'
+alias glg1='git log --stat -p'
+alias glg2='git log --graph'
+alias glg3='git log --graph --decorate --all'
+alias glg4='git log --graph --max-count=10'
+alias glg5='git log --oneline --decorate'
+alias glg6="git log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
+alias glg7="git log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'"
+alias glg8="git log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short"
+alias glg9="git log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all"
+alias glg10='git log --oneline --decorate --graph'
+alias glg11='git log --oneline --decorate --graph --all'
+
 alias gpoat='git push origin --all && git push origin --tags'
 alias gsb='git status -sb'
 alias gsps='git show --pretty=short --show-signature'

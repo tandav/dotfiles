@@ -8,6 +8,7 @@ alias o=open
 alias sz='source ~/.bash_profile'
 alias tc='clear; tmux clear-history; clear'
 alias fixssh='eval $(tmux showenv -s SSH_AUTH_SOCK)'
+alias rp='python3 $dot/gists/random_password.py'
 
 path() { echo "$PATH" | tr : "\n"; }
 
@@ -40,27 +41,25 @@ function frg {
     # https://news.ycombinator.com/item?id=38473516
     # frg .
     result=$(rg --ignore-case --color=always --line-number --no-heading "$@" |
-    fzf --ansi \
-        --color 'hl:-1:underline,hl+:-1:underline:reverse' \
-        --delimiter ':' \
-        --preview "bat --color=always {1} --theme='Solarized (light)' --highlight-line {2}" \
-        --preview-window 'up,60%,border-bottom,+{2}+3/3,~3')
+        fzf --ansi \
+            --color 'hl:-1:underline,hl+:-1:underline:reverse' \
+            --delimiter ':' \
+            --preview "bat --color=always {1} --theme='Solarized (light)' --highlight-line {2}" \
+            --preview-window 'up,60%,border-bottom,+{2}+3/3,~3')
     file=${result%%:*}
     linenumber=$(echo "${result}" | cut -d: -f2)
-    if [[ -n "$file" ]]; then
-          $EDITOR +"${linenumber}" "$file"
+    if [[ -n $file ]]; then
+        $EDITOR +"${linenumber}" "$file"
     fi
 }
-
-recent() { /bin/ls -hAlt . | head -20; }
 
 # shellcheck disable=SC2046
 # killport() { kill -9 $(lsof -ti :"$1"); }
 killport() { lsof -ti :"$1" | xargs kill -9; }
 
 rt() {
-    pic=$HOME/Desktop/$RANDOM.png
-    cp "$dot/README.png" "$pic"
+    pic="$HOME/Desktop/$(date -u +%Y-%m-%d-%H%M%S).png"
+    cp "$dot/gists/README.png" "$pic"
     open "$pic"
 }
 
@@ -68,7 +67,6 @@ ytv() { "$HOME/.cache/virtualenvs/yt-dlp/bin/yt-dlp" --no-playlist -f 'bestvideo
 yta() { "$HOME/.cache/virtualenvs/yt-dlp/bin/yt-dlp" --no-playlist -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0 --output "$HOME/Desktop/%(title)s.%(ext)s" "$1"; }
 vid_and_audio() { ffmpeg -i "$1" -i "$2" -c:v copy -map 0:v:0 -map 1:a:0 -shortest ~/Desktop/out.mp4; }
 
-sshc() { $EDITOR ~/.ssh/config; }
 myip() {
     echo -n "LAN: "
     ifconfig en0 | grep -w inet | cut -d ' ' -f 2
@@ -85,11 +83,11 @@ tm() {
     if [ "$OS_NAME" == "Darwin" ]; then
         # tmux new-window -d -n jobs -c "$HOME"
         tmux send-keys -t main:jobs "workon jupyter" C-m "jupyter notebook --no-browser" C-m
-        
+
         # # tmux new-window -d -n notes -c "$HOME/docs/notes"
         # tmux split-window -p 66 -h -c "$HOME/docs/notes"
         # tmux send-keys -t main:jobs "workon notes" C-m "make" C-m
-        
+
         # # tmux new-window -d -n cron -c "$HOME/docs/dotfiles/gists"
         tmux split-window -p 66 -h -c "$HOME/docs/dotfiles/gists"
         tmux send-keys -t main:jobs "workon cron-python" C-m "python cron.py" C-m
@@ -97,11 +95,11 @@ tm() {
     tmux attach -t main
 }
 
-tk() {
-    tmux kill-server
-}
+tk() { tmux kill-server; }
 
 # ===================== python =======================
+
+export PIP_DISABLE_PIP_VERSION_CHECK=1
 
 alias req='touch requirements.txt'
 alias p=python

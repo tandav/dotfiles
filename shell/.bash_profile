@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # set -euo pipefail
 
 export EDITOR=micro
@@ -29,13 +31,8 @@ export bh=~/docs/bhairava
 export PATH=$dot/bin:$PATH
 export KEEPASS_DB=$dot/private/tandav.kdbx
 export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n$ '
-# export SHELL=/usr/bin/bash
-export SHELL=/usr/local/bin/bash
 
 export WORKON_HOME=~/.cache/virtualenvs
-# mkvirtualenv myenv --python /usr/local/opt/python@3.10/bin/python3.10
-# mkvirtualenv libmv-dagops --python python3.11
-# mktmpenv --python /usr/local/opt/python@3.10/bin/python3.10
 
 # =====================================================================================
 
@@ -43,8 +40,10 @@ OS_NAME=$(uname -s)
 export OS_NAME
 
 if [ "$OS_NAME" == "Darwin" ]; then
+    export SHELL=/usr/local/bin/bash
     source "$dot/shell/macos.sh"
 elif [ "$OS_NAME" == "Linux" ]; then
+    export SHELL=/usr/bin/bash
     source "$dot/shell/linux.sh"
 else
     echo "Unknown operating system."
@@ -68,7 +67,6 @@ export PATH=$HOME/.local/bin:$PATH
 # =====================================================================================
 
 source "$dot/shell/main.sh"
-source ~/.bashrc
 source "$dot/shell/git.sh"
 source "$dot/private/private.sh"
 
@@ -89,7 +87,6 @@ alias k='kubectl'
 # source <(kubectl completion bash)
 # complete -o default -F __start_kubectl k
 
-# Setting PATH for Python 3.12
-# The original version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.12/bin:${PATH}"
-export PATH
+# =====================================================================================
+
+source ~/.local/completions/task.bash
