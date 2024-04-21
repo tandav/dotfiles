@@ -44,3 +44,4 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nmap ; :
+set viminfo+=n~/.cache/.viminfo

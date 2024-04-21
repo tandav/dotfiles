@@ -13,7 +13,7 @@ HISTCONTROL=ignoreboth
 HISTSIZE=10000000
 # HISTFILESIZE=10000000
 # HISTTIMEFORMAT="%F %T: "
-# HISTFILE=~/.bash_history
+HISTFILE=~/.cache/.bash_history
 
 # append to the history file, don't overwrite it
 # shopt -s histappend
@@ -63,6 +63,10 @@ fi
 # alias poetry="~/Library/Application\ Support/pypoetry/venv/bin/poetry"
 # curl -sSL https://install.python-poetry.org | python3.10 - --version 1.1.15
 export PATH=$HOME/.local/bin:$PATH
+
+# =====================================================================================
+
+export LESSHISTFILE="$HOME/.cache/.lesshst"
 
 # =====================================================================================
 

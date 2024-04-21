@@ -56,7 +56,8 @@ function frg {
 # shellcheck disable=SC2046
 # killport() { kill -9 $(lsof -ti :"$1"); }
 killport() { lsof -ti :"$1" | xargs kill -9; }
-
+timestamp() { date +%Y-%m-%d-%H%M%S; }
+tp() { date "+%Y-%m-%d %H:%M" | pbcopy; }
 rt() {
     pic="$HOME/Desktop/$(date -u +%Y-%m-%d-%H%M%S).png"
     cp "$dot/gists/README.png" "$pic"
@@ -100,9 +101,11 @@ tk() { tmux kill-server; }
 # ===================== python =======================
 
 export PIP_DISABLE_PIP_VERSION_CHECK=1
+export PYTHONHISTFILE="$HOME/.cache/.python_history"
 
 alias req='touch requirements.txt'
 alias p=python
+alias pip='/Users/tandav/.cache/virtualenvs/uv/bin/uv pip'
 
 mkkernel() {
     if [ -n "$1" ]; then

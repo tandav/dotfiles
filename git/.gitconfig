@@ -1,6 +1,6 @@
 [core]
     # editor = subl -nw
-    excludesfile = ~/.gitignore_global
+    excludesfile = ~/docs/dotfiles/git/.gitignore_global
 	quotepath = false
 
 # [includeIf "gitdir:~/docs/"]
@@ -18,7 +18,7 @@
     format = ssh
 
 [includeIf "gitdir:~/docs/job/"]
-  path = .gitconfig-job
+  path = ~/docs/dotfiles/private/.gitconfig-job
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
