@@ -42,6 +42,7 @@ export OS_NAME
 if [ "$OS_NAME" == "Darwin" ]; then
     export SHELL=/usr/local/bin/bash
     source "$dot/shell/macos.sh"
+    source "$dot/private/private.sh"
 elif [ "$OS_NAME" == "Linux" ]; then
     export SHELL=/usr/bin/bash
     source "$dot/shell/linux.sh"
@@ -72,7 +73,6 @@ export LESSHISTFILE="$HOME/.cache/.lesshst"
 
 source "$dot/shell/main.sh"
 source "$dot/shell/git.sh"
-source "$dot/private/private.sh"
 
 # =====================================================================================
 

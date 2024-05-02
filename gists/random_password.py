@@ -2,6 +2,7 @@
 '''
 random password
 base58 is used to remove easily mistakable characters: 0, O, I, l
+- [Understanding and avoiding visually ambiguous characters in IDs | Hacker News](https://news.ycombinator.com/item?id=40127124)
 '''
 
 import string
