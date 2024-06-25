@@ -12,6 +12,8 @@ alias rp='python3 $dot/gists/random_password.py'
 
 path() { echo "$PATH" | tr : "\n"; }
 
+loadenv() { export "$(grep -Ev '^(#|$)' .env | xargs)"; }
+
 function pc() {
     if [ "$OS_NAME" == "Darwin" ]; then
         open -a PyCharm "$1"
@@ -90,7 +92,7 @@ tm() {
         # tmux send-keys -t main:jobs "workon notes" C-m "make" C-m
 
         # # tmux new-window -d -n cron -c "$HOME/docs/dotfiles/gists"
-        tmux split-window -p 66 -h -c "$HOME/docs/dotfiles/gists"
+        tmux split-window -p 66 -h -c "$HOME/docs/crontab-python"
         tmux send-keys -t main:jobs "workon cron-python" C-m "python cron.py" C-m
     fi
     tmux attach -t main
@@ -102,6 +104,7 @@ tk() { tmux kill-server; }
 
 export PIP_DISABLE_PIP_VERSION_CHECK=1
 export PYTHONHISTFILE="$HOME/.cache/.python_history"
+export PIP_INDEX_URL=https://pypi.tandav.me/index/
 
 alias req='touch requirements.txt'
 alias p=python

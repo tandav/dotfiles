@@ -3,7 +3,7 @@ ci:
   autoupdate_schedule: monthly
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v4.6.0
     hooks:
       - id: check-added-large-files
       - id: check-yaml
@@ -28,13 +28,13 @@ repos:
       - id: requirements-txt-fixer
 
   - repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: v0.9.0.6
+    rev: v0.10.0.1
     hooks:
     - id: shellcheck
       args: [-e, SC2154, -e, SC1091, -e, SC1090]
 
   - repo: https://github.com/scop/pre-commit-shfmt
-    rev: v3.7.0-4
+    rev: v3.8.0-1
     hooks:
       - id: shfmt  # requires Go to build
         args: [-i, '4', -ci, -sr, -w, -s]

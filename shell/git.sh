@@ -3,8 +3,6 @@
 # copied from oh-my-zsh (and cleaned)
 alias gc='git commit -v'
 alias gcn='git commit -v --no-verify'
-alias gcl='git clone --recursive'
-alias gco='git checkout'
 
 alias glg0='git log --stat'
 alias glg1='git log --stat -p'
@@ -20,13 +18,10 @@ alias glg10='git log --oneline --decorate --graph'
 alias glg11='git log --oneline --decorate --graph --all'
 
 alias gpoat='git push origin --all && git push origin --tags'
-alias gsb='git status -sb'
 alias gsps='git show --pretty=short --show-signature'
-alias gst='git status'
 alias glstats='git shortlog --summary --numbered --email --all --no-merges' # https://stackoverflow.com/a/9839491/4204843
 
 # my new
-alias gitdel='git log --diff-filter=D --summary'
 
 gupd() {
     git add --verbose . &&

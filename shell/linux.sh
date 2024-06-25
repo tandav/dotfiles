@@ -38,7 +38,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 #   fi
 # fi
 
-. "$HOME/.cargo/env"
+source "$HOME/.cargo/env"
 
 # python
 export KERNELS_DIR=~/.local/share/jupyter/kernels

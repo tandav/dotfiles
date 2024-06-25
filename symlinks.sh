@@ -6,7 +6,6 @@ echo "$dot"
 
 ln -sfv "$dot/git/.gitconfig" ~
 ln -sfv "$dot/.tmux.conf" ~
-ln -sfv "$dot/.vimrc" ~
 ln -sfv "$dot/shell/.bash_profile" ~
 ln -sfv "$dot/shell/postactivate" ~/.cache/virtualenvs/postactivate
 ln -sfv "$dot/private/ssh_config" ~/.ssh/config
