@@ -55,11 +55,6 @@ fi
 source "$dot/shell/main.sh"
 source "$dot/shell/git.sh"
 
-# https://github.com/wting/autojump
-# https://formulae.brew.sh/formula/z
-# https://github.com/rupa/z
-source /usr/local/etc/profile.d/z.sh
-
 # =====================================================================================
 
 export PATH=$HOME/yandex-cloud/bin:$PATH

@@ -108,7 +108,7 @@ export PIP_INDEX_URL=https://pypi.tandav.me/index/
 
 alias req='touch requirements.txt'
 alias p=python
-alias pip='/Users/tandav/.cache/virtualenvs/uv/bin/uv pip'
+alias pip='$HOME/.cache/virtualenvs/uv/bin/uv pip'
 
 mkkernel() {
     if [ -n "$1" ]; then
