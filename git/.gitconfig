@@ -1,10 +1,6 @@
 [core]
-    # editor = subl -nw
     excludesfile = ~/docs/dotfiles/git/.gitignore_global
 	quotepath = false
-
-# [includeIf "gitdir:~/docs/"]
-#   path = .gitconfig-personal
 
 [user]
     name = Alexander Rodionov
@@ -17,15 +13,6 @@
 [gpg]
     format = ssh
 
-[includeIf "gitdir:~/docs/job/"]
-  path = ~/docs/dotfiles/private/.gitconfig-job
-
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-
 [init]
 	defaultBranch = main
 
@@ -37,10 +24,5 @@
 [pull]
     rebase = true
 
-[safe]
-	directory = /home/tandav/github-runners/pitch-detectors/_work/pitch-detectors/pitch-detectors
-
-# https://matklad.github.io/2023/12/31/git-things.html
-[diff]
-  colormoved = "default"
-  colormovedws = "allow-indentation-change"
+[includeIf "gitdir:~/docs/job/"]
+  path = ~/docs/dotfiles/private/job.gitconfig

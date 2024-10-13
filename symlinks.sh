@@ -6,9 +6,11 @@ echo "$dot"
 
 ln -sfv "$dot/git/.gitconfig" ~
 ln -sfv "$dot/.tmux.conf" ~
-ln -sfv "$dot/shell/.bash_profile" ~
+ln -sfv "$dot/shell/.profile" ~
+ln -sfv "$dot/shell/.bashrc" ~
 ln -sfv "$dot/shell/postactivate" ~/.cache/virtualenvs/postactivate
 ln -sfv "$dot/private/ssh_config" ~/.ssh/config
+ln -sfv "$dot/private/ssh_config.d" ~/.ssh/ssh_config.d
 
 if [ "$HOSTNAME" == "u60" ]; then
     ln -sfv "$dot/bin/OpenJupyter.desktop" ~/.local/share/applications

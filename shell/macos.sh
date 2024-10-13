@@ -22,25 +22,13 @@ export PATH="/usr/local/sbin:$PATH"  # homebrew binaries
 # coreutils: macOS -> gnu
 # export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
+export PATH=$PATH:~/.cargo/bin
 
 # python
-
-# Setting PATH for Python 3.11
-# The original version is saved in .bash_profile.pysave
-# export PATH="/Library/Frameworks/Python.framework/Versions/3.11/bin:${PATH}"
-# export PATH=/usr/local/opt/python@3.10/bin:$PATH
-
 export KERNELS_DIR=~/Library/Jupyter/kernels
-# export VIRTUALENVWRAPPER_PYTHON=/usr/local/opt/python@3.10/bin/python3.10
-# export VIRTUALENVWRAPPER_PYTHON=/usr/local/opt/python@3.11/bin/python3.11
-# export VIRTUALENVWRAPPER_PYTHON=/Users/tandav/.cache/virtualenvs/virtualenvwrapper/bin/python
-# export VIRTUALENVWRAPPER_PYTHON="/Library/Frameworks/Python.framework/Versions/3.11/bin/python3.11"
-export VIRTUALENVWRAPPER_PYTHON="/Library/Frameworks/Python.framework/Versions/3.12/bin/python3.12"
 
 # virtualenvwrapper
+export WORKON_HOME=~/.cache/virtualenvs
+export VIRTUALENVWRAPPER_PYTHON="/Users/tandav/.cache/virtualenvs/virtualenvwrapper/bin/python"
+export VIRTUALENVWRAPPER_VIRTUALENV=~/.cache/virtualenvs/virtualenvwrapper/bin/virtualenv
 source /usr/local/bin/virtualenvwrapper.sh
-
-# Setting PATH for Python 3.12
-# The original version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.12/bin:${PATH}"
-export PATH
